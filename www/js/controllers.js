@@ -14,6 +14,27 @@ angular.module('starter.controllers', [])
 .controller('AccountCtrl', function($scope) {
 })
 
+// this guy
+
 .controller('FavoritesController', function($scope, $http) {
   console.log('heiaa');
+
+  $scope.items = [
+    {title: 'Lasser', description: 'Du starter med en jevning av...', id: _.uniqueId(), img: '/img/lasagne-02_6.jpg'},
+    {title: 'Lasser', description: 'Du starter med en jevning av...', id: _.uniqueId(), img: '/img/lasagne-02_6.jpg'},
+    {title: 'Lasser', description: 'Du starter med en jevning av...', id: _.uniqueId(), img: '/img/lasagne-02_6.jpg'},
+    {title: 'Lasser', description: 'Du starter med en jevning av...', id: _.uniqueId(), img: '/img/lasagne-02_6.jpg'},
+    {title: 'Lasser', description: 'Du starter med en jevning av...', id: _.uniqueId(), img: '/img/lasagne-02_6.jpg'},
+    {title: 'Lasser', description: 'Du starter med en jevning av...', id: _.uniqueId(), img: '/img/lasagne-02_6.jpg'},
+    {title: 'Lasser', description: 'Du starter med en jevning av...', id: _.uniqueId(), img: '/img/lasagne-02_6.jpg'},
+    {title: 'Lasser', description: 'Du starter med en jevning av...', id: _.uniqueId(), img: '/img/lasagne-02_6.jpg'}
+  ]
+  $scope.delete = function(item) {
+    // delete item from favs
+    console.log(item);
+  }
+})
+
+.controller('RecipeController', function($scope, $http) {
+  console.log($http, $scope);
 });

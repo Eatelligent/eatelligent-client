@@ -77,14 +77,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       }
     })
 
-    .state('tab.favorites', {
+    .state('favorites', {
       url: '/favorites',
-      views: {
-        'favorites': {
-          templateUrl: 'templates/favorites.html',
-          controller: 'FavoritesController'
-        }
-      }
+      templateUrl: 'templates/favorites.html',
+      controller: 'FavoritesController'
+    })
+
+    .state('recipes', {
+      url: '/recipes/:id',
+      templateUrl: 'templates/recipe.html',
+      controller: 'RecipeController'
     });
 
   // if none of the above states are matched, use this as the fallback

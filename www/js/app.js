@@ -87,6 +87,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       url: '/recipes/:id',
       templateUrl: 'templates/recipe.html',
       controller: 'RecipeController'
+    })
+
+    .state('settings', {
+      url: '/settings',
+      templateUrl: 'templates/settings.html',
+      controller: 'SettingsController'
     });
 
   // if none of the above states are matched, use this as the fallback

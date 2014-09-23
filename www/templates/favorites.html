@@ -1,49 +1,35 @@
 <ion-view title="Favorites">
   <ion-content class="padding">
 
-    <!-- <div class="list card">
+    <ion-list ng-controller="FavoritesController"
+              show-delete="shouldShowDelete"
+              show-reorder="false"
+              can-swipe="true">
+      <ion-item ng-repeat="item in items"
+                class="item-thumbnail-left" href="#/recipes/{{item.id}}">
 
-      <div class="item item-avatar">
-        <img src="img/lasagne-02_6.jpg">
-        <h2>Lasser</h2>
-        <p>Pelle Krogstad</p>
-      </div>
+        <img ng-src="{{item.img}}">
+        <h2>{{item.title}}</h2>
+        <p>{{item.description}}</p>
+        <ion-option-button class="button-assertive"
+                           ng-click="delete(item)">
+          
+          <i class="icon ion-trash-a"></i>
+          Delete
+        </ion-option-button>
+        <!-- <ion-option-button class="button-info"
+                           ng-click="edit(item)">
+          Edit
+        </ion-option-button> -->
+        <ion-delete-button class="ion-minus-circled"
+                           ng-click="items.splice($index, 1)">
+        </ion-delete-button>
+        <ion-reorder-button class="ion-navicon"
+                            on-reorder="reorderItem(item, $fromIndex, $toIndex)">
+        </ion-reorder-button>
 
-      <div class="item item-image">
-        <img src="img/lasagne-02_6.jpg">
-      </div>
-
-    </div> -->
-
-  <ion-list ng-controller="FavoritesController"
-            show-delete="shouldShowDelete"
-            show-reorder="false"
-            can-swipe="true">
-    <ion-item ng-repeat="item in items"
-              class="item-thumbnail-left" href="#/recipes/{{item.id}}">
-
-      <img ng-src="{{item.img}}">
-      <h2>{{item.title}}</h2>
-      <p>{{item.description}}</p>
-      <ion-option-button class="button-assertive"
-                         ng-click="delete(item)">
-        
-        <i class="icon ion-trash-a"></i>
-        Delete
-      </ion-option-button>
-      <!-- <ion-option-button class="button-info"
-                         ng-click="edit(item)">
-        Edit
-      </ion-option-button> -->
-      <ion-delete-button class="ion-minus-circled"
-                         ng-click="items.splice($index, 1)">
-      </ion-delete-button>
-      <ion-reorder-button class="ion-navicon"
-                          on-reorder="reorderItem(item, $fromIndex, $toIndex)">
-      </ion-reorder-button>
-
-    </ion-item>
-  </ion-list>
+      </ion-item>
+    </ion-list>
 
   </ion-content>
 </ion-view>

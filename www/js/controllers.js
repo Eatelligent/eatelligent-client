@@ -37,4 +37,21 @@ angular.module('starter.controllers', [])
 
 .controller('RecipeController', function($scope, $http) {
   console.log($http, $scope);
+})
+
+.controller('SettingsController', function($scope, $http) {
+  console.log('SettingsController');
+
+  $scope.settings = {
+    email: 'pelle@krogstad.no',
+    name: 'Pelle Krogstad',
+    allergies: {}
+  };
+
+  $scope.allergyChange = function(what) {
+    $scope.settings.allergies[what] = 'vasadasdl'
+    console.log($scope.settings);
+  }
+
+
 });

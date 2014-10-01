@@ -29,74 +29,68 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   // Each state's controller can be found in controllers.js
   $stateProvider
 
-    // setup an abstract state for the tabs directive
-    .state('tab', {
-      url: "/tab",
+    // login and signup states
+    .state('account', {
       abstract: true,
-      templateUrl: "templates/tabs.html"
-    })
-
-    // Each tab has its own nav history stack:
-
-    .state('tab.dash', {
-      url: '/dash',
-      views: {
-        'tab-dash': {
-          templateUrl: 'templates/tab-dash.html',
-          controller: 'DashCtrl'
-        }
-      }
-    })
-
-    .state('tab.friends', {
-      url: '/friends',
-      views: {
-        'tab-friends': {
-          templateUrl: 'templates/tab-friends.html',
-          controller: 'FriendsCtrl'
-        }
-      }
-    })
-    .state('tab.friend-detail', {
-      url: '/friend/:friendId',
-      views: {
-        'tab-friends': {
-          templateUrl: 'templates/friend-detail.html',
-          controller: 'FriendDetailCtrl'
-        }
-      }
-    })
-
-    .state('tab.account', {
       url: '/account',
-      views: {
-        'tab-account': {
-          templateUrl: 'templates/tab-account.html',
-          controller: 'AccountCtrl'
-        }
-      }
+      templateUrl: 'templates/account.html'
     })
 
-    .state('favorites', {
+    .state('account.signup', {
+      url: '/signup',
+      templateUrl: 'templates/signup.html',
+      controller: 'SignupController'
+
+    })
+
+    .state('account.signup-facebook', {
+      url: '/signup/facebook',
+      templateUrl: 'templates/signup/facebook.html'
+    })
+
+    .state('account.signup-google', {
+      url: '/signup/google',
+      templateUrl: 'templates/signup/google.html'
+    })
+
+    .state('account.signup-fresh', {
+      url: '/signup/fresh',
+      templateUrl: 'templates/signup/fresh.html',
+    })
+
+    .state('account.login', {
+      url: '/login',
+      templateUrl: 'templates/login.html',
+      controller: 'LoginController'
+    })
+
+    // app states
+    .state('app', {
+      abstract: true,
+      url: '/app',
+      templateUrl: 'templates/app.html'
+    })
+
+    .state('app.favorites', {
       url: '/favorites',
       templateUrl: 'templates/favorites.html',
       controller: 'FavoritesController'
     })
 
-    .state('recipes', {
+    .state('app.recipes', {
       url: '/recipes/:id',
       templateUrl: 'templates/recipe.html',
       controller: 'RecipeController'
     })
 
-    .state('settings', {
+    .state('app.settings', {
       url: '/settings',
       templateUrl: 'templates/settings.html',
       controller: 'SettingsController'
     });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/dash');
+  $urlRouterProvider.otherwise('/account/login');
 
 });
 

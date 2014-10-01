@@ -4,15 +4,15 @@ angular.module('starter.directives', [])
 
     $scope.links = [
       {
-        'url': '#/settings',
+        'url': '#/app/settings',
         'name': 'Settings'
       },
       {
-        'url': '#/favorites',
+        'url': '#/app/favorites',
         'name': 'Favorites'
       },
       {
-        'url': '#/recipes/'+random,
+        'url': '#/app/recipes/'+random,
         'name': 'Random Recipe'
       }
     ]
@@ -21,4 +21,20 @@ angular.module('starter.directives', [])
     return {
       templateUrl: 'templates/sidebar.html'
     }
-  });
+  })
+
+  .controller('Years', ['$scope', function($scope) {
+    var years = [];
+    _.each(_.range(1920, 2010), function(y) {
+      years.push({
+        year: y,
+        selected: ''
+      });
+
+      if(y === 1990)
+        years[years.length-1].selected = 'selected';
+    });
+
+    $scope.years = years; 
+  }])
+;

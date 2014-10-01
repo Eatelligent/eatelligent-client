@@ -16,9 +16,20 @@ angular.module('starter.controllers', [])
 
 // this guy
 
-.controller('FavoritesController', function($scope, $http) {
-  console.log('heiaa');
+.controller('SignupController', function($scope, $http, $location) {
+  $scope.redirect = function(location) {
+    window.location = '#/account/signup/'+location;
+  }
+})
 
+.controller('LoginController', function($scope, $http, $location) {
+  $scope.user = {
+    email: '',
+    password: ''
+  };
+})
+
+.controller('FavoritesController', function($scope, $http) {
   $scope.items = [
     {title: 'Lasser', description: 'Du starter med en jevning av...', id: _.uniqueId(), img: '/img/lasagne-02_6.jpg'},
     {title: 'Lasser', description: 'Du starter med en jevning av...', id: _.uniqueId(), img: '/img/lasagne-02_6.jpg'},
@@ -52,6 +63,5 @@ angular.module('starter.controllers', [])
     $scope.settings.allergies[what] = 'vasadasdl'
     console.log($scope.settings);
   }
-
 
 });

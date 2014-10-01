@@ -1,0 +1,115 @@
+
+<ion-view title="Settings">
+  <ion-content>
+    <ion-list>
+
+      <div class="item item-divider">
+        Personinformasjon
+      </div>
+
+      <ion-item class="item item-icon-left" href="#">
+        <i class="icon ion-email"></i>
+        Email
+        <span class="item-note">
+          {{email}}
+        </span>
+      </ion-item>
+
+      <ion-item class="item item-icon-left" href="#">
+        <i class="icon ion-person"></i>
+        Navn
+        <span class="item-note">
+          <input type="text" value="{{settings.name}}">
+        </span>
+      </ion-item>
+
+      <div class="item item-divider">
+        Allergier
+      </div>
+
+      <ul class="list">
+
+        <li class="item item-toggle">
+          Glutenallergi
+          <label class="toggle toggle-positive">
+            <input type="checkbox" ng-model="settings.allergies.gluten" ng-change="allergyChange('gluten')">
+            <div class="track">
+              <div class="handle"></div>
+            </div>
+          </label>
+        </li>
+
+        <li class="item item-toggle">
+          Nøtter
+          <label class="toggle toggle-positive">
+            <input type="checkbox" ng-model="settings.allergies.nuts" ng-click="allergyChange('nuts')">
+            <div class="track">
+              <div class="handle"></div>
+            </div>
+          </label>
+        </li>
+
+        <li class="item item-toggle">
+          Cøliaki
+          <label class="toggle toggle-positive">
+            <input type="checkbox" ng-model="settings.allergies.celiac" ng-click="allergyChange('celiac')">
+            <div class="track">
+              <div class="handle"></div>
+            </div>
+          </label>
+        </li>
+        <li class="item item-toggle">
+          Soya
+          <label class="toggle toggle-positive">
+            <input type="checkbox" ng-model="settings.allergies.soya" ng-click="allergyChange('soya')">
+            <div class="track">
+              <div class="handle"></div>
+            </div>
+          </label>
+        </li>
+        <li class="item item-toggle">
+          Hvete
+          <label class="toggle toggle-positive">
+            <input type="checkbox" ng-model="settings.allergies.wheat" ng-click="allergyChange('wheat')">
+            <div class="track">
+              <div class="handle"></div>
+            </div>
+          </label>
+        </li>
+
+      </ul>
+
+    </ion-list>
+  </ion-content>
+</ion-view>
+
+<!-- <div class="list">
+
+  <a class="item item-icon-left" href="#">
+    <i class="icon ion-email"></i>
+    Check mail
+  </a>
+
+  <a class="item item-icon-left item-icon-right" href="#">
+    <i class="icon ion-chatbubble-working"></i>
+    Call Ma
+    <i class="icon ion-ios7-telephone-outline"></i>
+  </a>
+
+  <a class="item item-icon-left" href="#">
+    <i class="icon ion-mic-a"></i>
+    Record album
+    <span class="item-note">
+      Grammy
+    </span>
+  </a>
+
+  <a class="item item-icon-left" href="#">
+    <i class="icon ion-person-stalker"></i>
+    Friends
+    <span class="badge badge-assertive">0</span>
+  </a>
+
+</div>
+
+ -->

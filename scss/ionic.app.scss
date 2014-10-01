@@ -21,7 +21,26 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
 
+// Mealchooser styles
+$sidebar_image_size: 120px;
 
-body {
-  background-color: magenta;
+.sidebar__profile {
+  height: 140px;
+  margin-top: 20px;
 }
+
+  .sidebar__profile__image {
+    width: $sidebar_image_size;
+    height: $sidebar_image_size;
+    overflow: hidden;
+    margin: 0 auto;
+    border-radius: 50%;
+
+    img {
+      width: $sidebar_image_size;
+      height: $sidebar_image_size;
+    }
+  }
+
+
+@import "ionic_edits";

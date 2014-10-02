@@ -1,0 +1,96 @@
+// Recipe (app/recipes/:recipe_id)
+.recipe__image {
+  max-height: 500px;
+  overflow: hidden;
+}
+  .recipe__image__maximize {
+    width: 100%;
+  }
+
+
+.recipe__content {
+  @include outer-container;
+}
+  .recipe__content__row {
+    @include span-columns(12);
+    @include pad(0 0 20px 0);
+  }
+
+    .recipe__content__rating {
+      text-align: center;
+
+      i {
+        font-size: 45px;
+      }
+
+      &.rated {
+        i {
+          color: $energized;
+        }      
+      }
+    }
+      .recipe__content__rating__star {
+        @include span-columns(2.4);
+        @include omega(5n);
+      }
+
+    .recipe__content__name {
+      @include span-columns(12);
+
+      h2, h3, h4, h5, h6 {
+        margin: 0;
+      }
+    }
+
+    .recipe__content__portions, .recipe__content__portions__controls {
+      @include span-columns(6);
+
+      button {
+        @include span-columns(6);
+        @include omega(2n);
+      }
+    }
+      .recipe__content__portions__text {
+        display: inline-block;
+        margin-top: 15px;
+        font-size: 16pt;
+      }
+
+    .recipe__content__info {
+      @include span-columns(6);
+    }
+
+      .recipe__content__info__item {
+        font-size: 20px;
+
+        i {
+          font-size: 22px;
+        }
+      }
+
+    .recipe__content__ingredients {
+      @include span-columns(6);
+      ul {
+        @include pad(0 0 0 20px);
+        list-style-type: disc !important;
+      }
+    }
+
+    .recipe__content__nutrients {
+      @include span-columns(6);
+      ul {
+        @include pad(0 0 0 20px);
+        list-style-type: disc !important;
+      }
+    }
+
+    .recipe__content__procedure {
+      ul {
+        @include pad(0 0 0 30px);
+        list-style-type: decimal !important;
+
+        li {
+          @include pad(0 0 15px 0);
+        }
+      }
+    }

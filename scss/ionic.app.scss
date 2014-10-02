@@ -21,7 +21,13 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
 
-// Mealchooser styles
+// Include Bourbon and Neat
+@import "bourbon";
+@import "neat";
+
+/* Mealchooser styles */
+
+// Sidebar
 $sidebar_image_size: 120px;
 
 .sidebar__profile {
@@ -43,4 +49,79 @@ $sidebar_image_size: 120px;
   }
 
 
+// Recipe
+.recipe__image {
+  max-height: 500px;
+  overflow: hidden;
+}
+  .recipe__image__maximize {
+    width: 100%;
+  }
+
+
+.recipe__content {
+  @include outer-container();
+}
+  .recipe__content__row {
+    @include span-columns(12);
+    @include pad(0 0 30px 0);
+  }
+
+    .recipe__content__name {
+      @include span-columns(7);
+
+      h2, h3, h4, h5, h6 {
+        margin: 0;
+      }
+    }
+
+    .recipe__content__info {
+      @include span-columns(5);
+    }
+
+      .recipe__content__info__item {
+        margin-bottom: 25px;
+        font-size: 25px;
+
+        i {
+          font-size: 25px;
+        }
+      }
+
+    .recipe__content__rating {
+      text-align: center;
+
+      i {
+        font-size: 45px;
+      }
+
+      &.rated {
+        i {
+          color: $energized;
+        }      
+      }
+    }
+      .recipe__content__rating__star {
+        @include span-columns(2.4);
+        @include omega(5n);
+      }
+
+    .recipe__content__ingredients {
+      @include span-columns(6);
+    }
+
+    .recipe__content__nutrients {
+      @include span-columns(6);
+    }
+
+    .recipe__content__procedure {
+      ul {
+        @include pad(0 0 0 30px);
+        list-style-type: decimal !important;
+
+        li {
+          @include pad(0 0 15px 0);
+        }
+      }
+    }
 @import "ionic_edits";

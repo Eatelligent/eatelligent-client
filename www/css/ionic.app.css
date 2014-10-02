@@ -7815,6 +7815,12 @@ $ios-transition-box-shadow-end: -200px 0px 200px rgba(0,0,0,0.15), -5px 0px 5px 
   -webkit-transition: none !important;
   transition: none !important; }
 
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+
+/* Mealchooser styles */
 .sidebar__profile {
   height: 140px;
   margin-top: 20px; }
@@ -7828,6 +7834,96 @@ $ios-transition-box-shadow-end: -200px 0px 200px rgba(0,0,0,0.15), -5px 0px 5px 
   .sidebar__profile__image img {
     width: 120px;
     height: 120px; }
+
+.recipe__image {
+  max-height: 500px;
+  overflow: hidden; }
+
+.recipe__image__maximize {
+  width: 100%; }
+
+.recipe__content {
+  max-width: 68em;
+  margin-left: auto;
+  margin-right: auto; }
+  .recipe__content:after {
+    content: "";
+    display: table;
+    clear: both; }
+
+.recipe__content__row {
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 100%;
+  padding: 0 0 30px 0; }
+  .recipe__content__row:last-child {
+    margin-right: 0; }
+
+.recipe__content__name {
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 57.35098%; }
+  .recipe__content__name:last-child {
+    margin-right: 0; }
+  .recipe__content__name h2, .recipe__content__name h3, .recipe__content__name h4, .recipe__content__name h5, .recipe__content__name h6 {
+    margin: 0; }
+
+.recipe__content__info {
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 40.29137%; }
+  .recipe__content__info:last-child {
+    margin-right: 0; }
+
+.recipe__content__info__item {
+  margin-bottom: 25px;
+  font-size: 25px; }
+  .recipe__content__info__item i {
+    font-size: 25px; }
+
+.recipe__content__rating {
+  text-align: center; }
+  .recipe__content__rating i {
+    font-size: 45px; }
+  .recipe__content__rating.rated i {
+    color: #f0b840; }
+
+.recipe__content__rating__star {
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 18.11388%; }
+  .recipe__content__rating__star:last-child {
+    margin-right: 0; }
+  .recipe__content__rating__star:nth-child(5n) {
+    margin-right: 0; }
+  .recipe__content__rating__star:nth-child(5n+1) {
+    clear: left; }
+
+.recipe__content__ingredients {
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 48.82117%; }
+  .recipe__content__ingredients:last-child {
+    margin-right: 0; }
+
+.recipe__content__nutrients {
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 48.82117%; }
+  .recipe__content__nutrients:last-child {
+    margin-right: 0; }
+
+.recipe__content__procedure ul {
+  padding: 0 0 0 30px;
+  list-style-type: decimal !important; }
+  .recipe__content__procedure ul li {
+    padding: 0 0 15px 0; }
 
 .list--signup {
   cursor: pointer; }

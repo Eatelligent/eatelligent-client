@@ -6,6 +6,7 @@ var sass = require('gulp-sass');
 var minifyCss = require('gulp-minify-css');
 var rename = require('gulp-rename');
 var sh = require('shelljs');
+var neat = require('node-neat').includePaths;
 
 var paths = {
   sass: ['./scss/**/*.scss']
@@ -15,7 +16,9 @@ gulp.task('default', ['sass', 'watch']);
 
 gulp.task('sass', function(done) {
   gulp.src('./scss/ionic.app.scss')
-    .pipe(sass())
+    .pipe(sass({
+      includePaths: ['styes'].concat(neat)
+    }))
     .pipe(gulp.dest('./www/css/'))
     .pipe(minifyCss({
       keepSpecialComments: 0

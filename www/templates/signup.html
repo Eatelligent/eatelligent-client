@@ -1,11 +1,11 @@
-<ion-view title="Signup">
+<ion-view title="{{ 'signup.header' | translate }}">
   <ion-content scroll="false">
 
     <div ng-click="redirect('facebook')" class="list card list--signup">
       <div class="item item-avatar">
         <img src="img/icons/facebook_icon.svg">
         <h2>Facebook</h2>
-        <p>Logg inn ved hjelp av din Facebook-konto</p>
+        <p>{{ 'favorites.facebookDescription' | translate }}</p>
       </div>
     </div>
     
@@ -13,15 +13,15 @@
       <div class="item item-avatar">
         <img src="img/icons/google_icon.png">
         <h2>Google</h2>
-        <p>Logg inn ved hjelp av din Google-konto</p>
+        <p>{{ 'favorites.googleDescription' | translate }}</p>
       </div>
     </div>
 
     <div ng-click="redirect('fresh')" class="list card list--signup">
       <div class="item item-avatar">
         <img src="img/icons/mealchooser_icon.png">
-        <h2>Register brukerkonto</h2>
-        <p>Registrer ny bruker ved hjelp av din e-postadresse</p>
+        <h2>{{ 'favorites.freshHeader' | translate }}</h2>
+        <p>{{ 'favorites.freshDescription' | translate }}</p>
       </div>
     </div>
 

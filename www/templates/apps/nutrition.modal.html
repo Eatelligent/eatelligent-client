@@ -1,0 +1,40 @@
+<ion-modal-view>
+  <ion-header-bar>
+    <button class="button button-icon icon ion-ios7-close-empty pull-right" ng-click="closeModal()"></button>
+    <h1 class="title">{{ 'nutrientsModal.header' | translate }}</h1>
+  </ion-header-bar>
+  <ion-content>
+    <div class="recipe__content__nutrients"> <!-- Maybe doing modal here -->
+      <p>{{ 'nutrientsModal.showText' | translate }}</p>
+
+      <table>
+        <tbody>
+          <tr>
+            <td>{{ 'nutrientsModal.fat' | translate }}</td>
+            <td>123g</td>
+          </tr>
+          <tr>
+            <td>{{ 'nutrientsModal.cholesterol' | translate }}</td>
+            <td>324g</td>
+          </tr>
+          <tr>
+            <td>{{ 'nutrientsModal.sodium' | translate }}</td>
+            <td>1g</td>
+          </tr>
+          <tr>
+            <td>{{ 'nutrientsModal.potassium' | translate }}</td>
+            <td>394g</td>
+          </tr>
+          <tr>
+            <td>{{ 'nutrientsModal.carbohydrate' | translate }}</td>
+            <td>94g</td>
+          </tr>
+          <tr>
+            <td>{{ 'nutrientsModal.protein' | translate }}</td>
+            <td>54g</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </ion-content>
+</ion-modal-view>

@@ -1,4 +1,4 @@
-<ion-view title="Favorites">
+<ion-view title="{{ 'favorites.header' | translate }}">
   <ion-content class="padding">
 
     <ion-list ng-controller="FavoritesController"
@@ -6,7 +6,7 @@
               show-reorder="false"
               can-swipe="true">
       <ion-item ng-repeat="item in items"
-                class="item-thumbnail-left" href="#/recipes/{{item.id}}">
+                class="item-thumbnail-left" href="#/app/recipes/{{item.id}}">
 
         <img ng-src="{{item.img}}">
         <h2>{{item.title}}</h2>
@@ -15,7 +15,7 @@
                            ng-click="delete(item)">
           
           <i class="icon ion-trash-a"></i>
-          Delete
+          {{ 'favorites.remove' | translate }}
         </ion-option-button>
         <!-- <ion-option-button class="button-info"
                            ng-click="edit(item)">

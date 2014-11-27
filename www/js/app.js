@@ -5,8 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'starter.directives'])
-
+angular.module('starter', ['ionic', 'pascalprecht.translate', 'starter.controllers', 'starter.services', 'starter.directives'])
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -17,11 +16,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     if(window.StatusBar) {
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
+      // StatusBar.hide();
     }
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, $urlRouterProvider, $translateProvider) {
 
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
@@ -45,22 +45,22 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 
     .state('account.signup-facebook', {
       url: '/signup/facebook',
-      templateUrl: 'templates/signup/facebook.html'
+      templateUrl: 'templates/account/facebook.html'
     })
 
     .state('account.signup-google', {
       url: '/signup/google',
-      templateUrl: 'templates/signup/google.html'
+      templateUrl: 'templates/account/google.html'
     })
 
     .state('account.signup-fresh', {
       url: '/signup/fresh',
-      templateUrl: 'templates/signup/fresh.html',
+      templateUrl: 'templates/account/fresh.html',
     })
 
     .state('account.login', {
       url: '/login',
-      templateUrl: 'templates/login.html',
+      templateUrl: 'templates/account/login.html',
       controller: 'LoginController'
     })
 
@@ -73,25 +73,48 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 
     .state('app.favorites', {
       url: '/favorites',
-      templateUrl: 'templates/favorites.html',
+      templateUrl: 'templates/apps/favorites.html',
       controller: 'FavoritesController'
     })
 
     .state('app.recipes', {
       url: '/recipes/:id',
-      templateUrl: 'templates/recipe.html',
+      templateUrl: 'templates/apps/recipe.html',
       controller: 'RecipeController'
+    })
+
+    .state('app.shoppingcart', {
+      url: '/shoppingcart',
+      templateUrl: 'templates/apps/shoppingcart.html',
+      controller: 'ShoppingCartController'
+    })
+
+    .state('app.search', {
+      url: '/search',
+      templateUrl: 'templates/apps/search.html',
+      controller: 'SearchController'
+    })
+
+    .state('app.user', {
+      url: '/user/:id',
+      templateUrl: 'templates/apps/user.html',
+      controller: 'UserController'
     })
 
     .state('app.settings', {
       url: '/settings',
-      templateUrl: 'templates/settings.html',
+      templateUrl: 'templates/apps/settings.html',
       controller: 'SettingsController'
     });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/account/login');
+  $urlRouterProvider.otherwise('/app/settings');
 
+  // i18n
+  $translateProvider.translations('en', window.__translations_en);
+  $translateProvider.translations('no', window.__translations_no);
+
+  $translateProvider.preferredLanguage('en');
 });
 
 function ContentController($scope, $ionicSideMenuDelegate) {

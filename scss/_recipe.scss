@@ -18,9 +18,10 @@
 
     .recipe__content__rating {
       text-align: center;
+      color: $dark;
 
       i {
-        font-size: 45px;
+        font-size: 35px;
       }
 
       &.rated {
@@ -69,7 +70,7 @@
       }
 
     .recipe__content__ingredients {
-      @include span-columns(6);
+      @include span-columns(12);
       ul {
         @include pad(0 0 0 20px);
         list-style-type: disc !important;
@@ -77,11 +78,24 @@
     }
 
     .recipe__content__nutrients {
-      @include span-columns(6);
-      ul {
-        @include pad(0 0 0 20px);
-        list-style-type: disc !important;
+      @include pad(20px);
+      @include span-columns(12);
+      tr, {
+        @include span-columns(12);
+        td {
+          @include span-columns(5);
+
+          &:last-child {
+            text-align: right;
+          }
+        }
       }
+
+
+      // ul {
+      //   @include pad(0 0 0 20px);
+      //   list-style-type: disc !important;
+      // }
     }
 
     .recipe__content__procedure {

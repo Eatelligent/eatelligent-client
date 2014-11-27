@@ -1,38 +1,38 @@
-<ion-view title="Login">
+<ion-view title="{{ 'signup.freshHeader' | translate }}">
   <ion-content>
 
     <div class="item item-divider">
-      Brukerkonto
+      {{ 'signup.fresh.userAccount' | translate }}
     </div>
     <div class="list list-inset">
 
       <label class="item item-input">
-        <span class="input-label">Name</span>
+        <span class="input-label">{{ 'signup.fresh.name' | translate }}</span>
         <input ng-model="user.name" type="text">
       </label>
 
       <label class="item item-input">
-        <span class="input-label">Email</span>
+        <span class="input-label">{{ 'signup.fresh.email' | translate }}</span>
         <input ng-model="user.email" type="text">
       </label>
 
       <label class="item item-input">
-        <span class="input-label">Password</span>
+        <span class="input-label">{{ 'signup.fresh.password' | translate }}</span>
         <input type="password">
       </label>
 
       <label class="item item-input">
-        <span class="input-label">Password again</span>
+        <span class="input-label">{{ 'signup.fresh.passwordAgain' | translate }}</span>
         <input type="password">
       </label>
     </div>
     <div class="item item-divider">
-      Annen informasjon
+      {{ 'signup.fresh.otherInformation' | translate }}
     </div>
     <div class="list list-inset">
 
       <label class="item item-input item-select">
-        <span class="input-label">Fødselsår</span>
+        <span class="input-label">{{ 'signup.fresh.yearOfBirth' | translate }}</span>
 
          <select ng-controller="Years">
           <option ng-repeat="year in years" ng-selected="{{year.selected}}">{{year.year}}</option>
@@ -41,13 +41,13 @@
       </label>
 
       <label class="item item-input">
-        <span class="input-label">City</span>
+        <span class="input-label">{{ 'signup.fresh.city' | translate }}</span>
         <input type="text">
       </label>
 
     </div>
     <div class="padding">
-      <button class="button button-block button-positive">Registrer brukerkonto</button>
+      <button class="button button-block button-positive">{{ 'signup.fresh.signupCompleteButton' | translate }}</button>
     </div>
   </ion-content>
 </ion-view>

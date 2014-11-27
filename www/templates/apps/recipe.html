@@ -1,31 +1,27 @@
-<ion-view title="Random recipe">
+<ion-view title="{{recipename}}"> <!-- Lasagne med solbrente tomater og god stemning"> -->
   
   <ion-content overflow-scroll="false">
     <div class="recipe__image">
       <img class="recipe__image__maximize" src="img/lasagne-02_6.jpg"> <!-- Background and background-size: cover -->
     </div>
-  
-    <!-- <div class="list card">
-      <div class="item item-avatar">
-        <h2>Lasser</h2>
-        <p>Pelle Krogstad</p>
-      </div>
-    </div> -->
 
     <div class="recipe__content padding">
       <div class="recipe__content__row">
-        <div class="recipe__content__rating rated">
-          <div class="recipe__content__rating__star"><i class="icon ion-ios7-star"></i></div>
-          <div class="recipe__content__rating__star"><i class="icon ion-ios7-star"></i></div>
-          <div class="recipe__content__rating__star"><i class="icon ion-ios7-star-half"></i></div>
-          <div class="recipe__content__rating__star"><i class="icon ion-ios7-star-outline"></i></div>
-          <div class="recipe__content__rating__star"><i class="icon ion-ios7-star-outline"></i></div>
+        <div class="recipe__content__rating" ng-class="{rated: rated}">
+          <div class="recipe__content__rating__star" ng-repeat="i in numStars" ng-click="rate(i)">
+            <i ng-class="getStarClass(i)" class="icon"></i>
+          </div>
+          <!-- <div class="recipe__content__rating__star"><i class="icon ion-ios7-star"></i></div> -->
+          <!-- <div class="recipe__content__rating__star"><i class="icon ion-ios7-star"></i></div> -->
+          <!-- <div class="recipe__content__rating__star"><i class="icon ion-ios7-star-half"></i></div> -->
+          <!-- <div class="recipe__content__rating__star"><i class="icon ion-ios7-star-outline"></i></div> -->
+          <!-- <div class="recipe__content__rating__star"><i class="icon ion-ios7-star-outline"></i></div> -->
         </div>
       </div>
 
       <div class="recipe__content__row">
         <div class="recipe__content__name">
-          <h3>Lasagne med solbrente tomater og god stemning</h3>
+          <h3>{{recipename}}</h3><!-- Lasagne med solbrente tomater og god stemning</h3> -->
         </div>
       </div>
 
@@ -49,19 +45,21 @@
 
       <div class="recipe__content__row">
           <div class="recipe__content__portions">
-            <div class="recipe__content__portions__text">Porsjoner: 1</div>
+            <div class="recipe__content__portions__text">{{ 'recipe.portions' | translate }}: {{portions}}</div>
           </div>
           <div class="recipe__content__portions__controls">
-            <button class="button button-balanced"><i class="icon ion-plus"></i></button>
-            <button class="button button-assertive"><i class="icon ion-minus"></i></button>
+            <button class="button button-balanced" ng-click="incrementPortions()"><i class="icon ion-plus"></i></button>
+            <button class="button button-assertive" ng-click="decrementPortions()"><i class="icon ion-minus"></i></button>
           </div>
       </div>
 
+
       <div class="recipe__content__row">
         <div class="recipe__content__ingredients">
-          <h4>Ingredienser</h4>
+          <h4>{{ 'recipe.ingredients' | translate }}</h4>
           <ul>
-            <li>400 g kjøttdeig</li>
+            <li ng-repeat="ingredient in ingredients">{{ingredient.amount}} - {{ingredient.name}}</li>
+            <!-- <li>400 g kjøttdeig</li>
             <li>2 ss olje til steking</li>
             <li>1 stk hakket løk</li>
             <li>2 båt finhakket hvitløk</li>
@@ -70,27 +68,21 @@
             <li>1⁄2 ts pepper</li>
             <li>1 ts salt</li>
             <li>1 ss frisk basilikum</li>
-            <li>ca. 1 dl vann</li>
+            <li>ca. 1 dl vann</li> -->
           </ul>
         </div>
 
-        <div class="recipe__content__nutrients">
-          <h4>Næringsinnhold</h4>
-          <ul>
-            <li>14g Fat</li>
-            <li>3g Cholesterol</li>
-            <li>43g Sodium</li>
-            <li>132g Potassium</li>
-            <li>403g Carbohydrate</li>
-            <li>500g Protein</li>
-          </ul>
-        </div>
+      </div>
+      
+      <div class="recipe__content__row">
+        <button class="button button-light" ng-click="openModal()">{{ 'recipe.showNutrient' | translate }}</button>
       </div>
 
       <div class="recipe__content__row">
         <div class="recipe__content__procedure">
-          <h4>Fremgangsmåte</h4>
-          <ul>
+          <h4>{{ 'recipe.procedure' | translate }}</h4>
+          {{procedure}}
+          <!-- <ul>
             <li>Brun kjøttdeig i olje på sterk varme i to omganger. Ha all kjøttdeigen tilbake i stekepanna. Tilsett hakket løk, hvitløk, tomater, tomatpuré, salt, pepper og vann. La sausen småkoke i ca. 10 minutter til den begynner å tykne. Dryss over basilikum.</li>
 
             <li>Smelt smør i en kjele og rør inn mel. Spe med melk under omrøring og la sausen koke i ca. 10 minutter. Den skal være forholdsvis tykk. Ha i parmesan og la osten smelte. Smak til med krydder.</li>
@@ -100,7 +92,7 @@
             <li>Sett formen i stekeovn på 225° C og stek i 30-40 minutter. Kjenn etter med en pinne eller spiss kniv om pastaen er mør. La lasagnen hvile noen minutter før servering.</li>
 
             <li>Server med baguette og salat ved siden av.</li>
-          </ul>
+          </ul> -->
         </div>
       </div>
 

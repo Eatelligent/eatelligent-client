@@ -5,7 +5,7 @@
 </div>
 <ion-list>
   <ion-item ng-repeat="link in links" href="{{link.url}}" menu-close>
-    {{link.name}}
+    <any  translate="sidebar.{{link.name}}"></any>
   </ion-item>
 </ion-list>
 

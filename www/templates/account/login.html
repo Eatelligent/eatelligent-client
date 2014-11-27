@@ -1,0 +1,29 @@
+
+  <ion-view title="{{ 'login.header' | translate }}">
+    <ion-content>
+
+      <div class="card ng-hide" ng-show="errormessage">
+        <div class="item item-text-wrap">
+          {{errormessage}}
+        </div>
+      </div>
+
+      <div class="list list-inset">
+        <label class="item item-input">
+          <span class="input-label">{{ 'login.username' | translate }}</span>
+          <input type="text" ng-model="user.email">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">{{ 'login.password' | translate }}</span>
+          <input type="password" ng-model="user.password">
+        </label>
+      </div>
+      <div class="padding">
+        <button class="button button-block button-positive" ng-click="login()">{{ 'login.loginSubmitButton' | translate }}</button>
+      </div>
+
+      <div class="padding">
+        <a href="#/account/signup" class="button button-block button-positive">{{ 'login.newAccount' | translate }}</a>
+      </div>
+    </ion-content>
+  </ion-view>

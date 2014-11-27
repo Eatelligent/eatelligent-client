@@ -4,22 +4,34 @@ angular.module('starter.directives', [])
 
     $scope.links = [
       {
-        'url': '#/app/settings',
-        'name': 'Settings'
+        'url': '#/app/search',
+        'name': 'search'
       },
       {
         'url': '#/app/favorites',
-        'name': 'Favorites'
+        'name': 'favorites'
       },
-      {
+      { // todo
         'url': '#/app/recipes/'+random,
         'name': 'Random Recipe'
+      },
+      { // todo
+        'url': '#/app/user/'+random,
+        'name': 'Random User'
+      },
+      {
+        'url': '#/app/shoppingcart',
+        'name': 'shoppingCart'
+      },
+      {
+        'url': '#/app/settings',
+        'name': 'settings'
       }
     ]
   }])
   .directive('sideBar', function() {
     return {
-      templateUrl: 'templates/sidebar.html'
+      templateUrl: 'templates/apps/sidebar.html'
     }
   })
 

@@ -1,0 +1,13 @@
+.shopping__cart {}
+  .shopping__cart__item {
+    @include outer-container;
+  }
+    .shopping__cart__item__left {
+      @include span-columns(6);
+    }
+
+    .shopping__cart__item__right {
+      @include span-columns(6);
+      @include omega();
+      text-align: right;
+    }

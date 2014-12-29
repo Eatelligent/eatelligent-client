@@ -40,7 +40,6 @@ angular.module('starter', ['ionic', 'pascalprecht.translate', 'starter.controlle
       url: '/signup',
       templateUrl: 'templates/signup.html',
       controller: 'SignupController'
-
     })
 
     .state('account.signup-facebook', {

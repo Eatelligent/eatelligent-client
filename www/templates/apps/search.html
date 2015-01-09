@@ -3,20 +3,20 @@
     <div class="list">
       <label class="item item-input">
         <i class="icon ion-search placeholder-icon"></i>
-        <input type="text" placeholder="{{ 'search.placeholder' | translate }}">
+        <input type="text" ng-model="query" ng-change="search(this)" placeholder="{{ 'search.placeholder' | translate }}">
       </label>
     </div>
 
     <div class="search__results">
       <div class="search__results__header">
-        <h5 translate="search.showingNResults" translate-value-n="3"></h5>
+        <h5 translate="search.showingNResults" translate-value-n="{{results.length}}"></h5>
       </div>
 
       <div class="search__results__list list">
         <a class="item item-avatar" ng-repeat="result in results" href="#/app/recipes/{{result.id}}">
-          <img src="img/lasagne-02_6.jpg">
-          <h2>{{result.title}}</h2>
-          <p>{{result.description}}</p>
+          <img src="{{result.image}}">
+          <h2>{{result.name}}</h2>
+          <!-- <p>{{result.description}}</p> -->
         </a>
       </div>
     </div>

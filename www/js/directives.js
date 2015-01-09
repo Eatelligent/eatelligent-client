@@ -26,6 +26,10 @@ angular.module('starter.directives', [])
       {
         'url': '#/app/settings',
         'name': 'settings'
+      },
+      {
+        'url': '#/app/logout',
+        'name': 'signout'
       }
     ]
   }])

@@ -1,6 +1,6 @@
 
   <ion-view title="{{ 'login.header' | translate }}">
-    <ion-content>
+    <ion-content data-ng-init="checkIfAuthed()">
 
       <div class="card ng-hide" ng-show="errormessage">
         <div class="item item-text-wrap">

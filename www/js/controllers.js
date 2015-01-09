@@ -24,28 +24,52 @@ angular.module('starter.controllers', [])
 
 .controller('LoginController', function($scope, $http, $location) {
   $scope.user = {
-    email: 'tandeey@gmail.com',
-    password: 'password'
+    email: 'admin@admin.com',
+    password: 'admin'
   };
   // $scope.errormessage = '';
 
+  $scope.checkIfAuthed = function() {
+    $http.get(settings.apiUrl + '/api/user')
+      .success(function(data) {
+        window.location = '#/app/search'
+      });
+  };
 
   $scope.login = function() {
     var auth = {
       email: $scope.user.email,
       password: $scope.user.password
     };
-    console.log(auth);
+    console.log('AUTH', JSON.stringify(auth));
+    console.log(settings.apiUrl);
     
-    $http.post('http://localhost:9000/api/authenticate', auth)
+    $http.post(settings.apiUrl + '/api/authenticate', auth)
       .success(function(data) {
-        console.log('goal', data);
-        window.location = '#/app/search'
+        console.log('good', JSON.stringify(data));
+        window.location = '#/app/search';
+        $location.path('/app/search')
       })
       .error(function(data) {
+        console.log('piss', JSON.stringify(data));
         $scope.errormessage = data.message;
-      })
+      });
   };
+})
+
+.controller('SignoutController', function($http, $location) {
+  console.log('SignoutController');
+  $http.get(settings.apiUrl+ '/signOut')
+    .success(function(data, status, headers, config) {
+      // $location.path('#/account/login').replace();
+      window.location = '#/account/login'
+      window.location.reload();
+    })
+    .error(function() {
+      // $location.path('#/account/login').replace();
+      window.location = '#/account/login'
+      window.location.reload();
+    });
 })
 
 .controller('FavoritesController', function($scope, $http) {
@@ -67,14 +91,14 @@ angular.module('starter.controllers', [])
 
 .controller('RecipeController', function($scope, $http, $ionicModal) {
 
-  $http.get('http://localhost:9000/api/recipes/4')
+  $http.get(settings.apiUrl + '/api/recipes/4')
     .success(function(data, status, headers, config) {
       $scope.recipename = data.recipe.name;
       $scope.procedure = data.recipe.procedure;
       $scope.ingredients = data.recipe.ingredients;
     })
     .error(function(data, status, headers, config) {
-      console.log('error', data, status, headers, config);
+      console.log('error', JSON.stringify(data), status, headers, config);
     })
 
   $scope.globalRating = 3.5;
@@ -169,12 +193,33 @@ angular.module('starter.controllers', [])
   ]
 })
 
-.controller('SearchController', function($scope) {
-  $scope.results = [
-    {id: 1, title: 'Lasser', description: 'Du starter med en jevning av ...'},
-    {id: 2, title: 'Lasser med god stemning', description: 'Du starter med en jevning av ...'},
-    {id: 3, title: 'Suppa', description: 'Du starter med en jevning av ...'}
-  ]
+.controller('SearchController', function($scope, $http) {
+
+  // $http.get(settings.apiUrl + '/api/user')
+  //   .success(function(data) {
+  //     console.log('success', data);
+  //   })
+  //   .error(function(data, status) {
+  //     console.log('Error fetching user', JSON.stringify(data), 'Status:', status);
+  //   });
+  $scope.search = function(obj) {
+    var q = obj.query;
+
+    $http.get(settings.apiUrl + '/api/recipes/' + q)
+      .success(function(response) {
+        $scope.results = response.recipes;
+      })
+      .error(function(response) {
+        console.log('Error searching for recipe', JSON.stringify(response), 'Status:', status);
+      });
+  };
+
+  // $scope.results = [
+  //   {id: 1, title: 'Lasser', description: 'Du starter med en jevning av ...'},
+  //   {id: 2, title: 'Lasser med god stemning', description: 'Du starter med en jevning av ...'},
+  //   {id: 3, title: 'Suppa', description: 'Du starter med en jevning av ...'}
+  // ]
+  
 })
 
 .controller('UserController', function($scope) {
@@ -182,8 +227,6 @@ angular.module('starter.controllers', [])
 })
 
 .controller('SettingsController', function($scope, $http) {
-  console.log('SettingsController');
-
   $scope.settings = {
     email: 'pelle@krogstad.no',
     name: 'Pelle Krogstad',

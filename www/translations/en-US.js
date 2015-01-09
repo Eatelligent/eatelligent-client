@@ -3,7 +3,8 @@ window.__translations_en = {
     search: 'Search',
     favorites: 'Favorites',
     settings: 'Settings',
-    shoppingCart: 'Shopping Cart'
+    shoppingCart: 'Shopping Cart',
+    signout: 'Sign out'
   },
 
   search: {

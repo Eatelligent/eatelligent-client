@@ -1,12 +1,13 @@
 // Ionic Starter App
-
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'pascalprecht.translate', 'starter.controllers', 'starter.services', 'starter.directives'])
-.run(function($ionicPlatform) {
+angular.module('starter', ['ionic', 'pascalprecht.translate', 'starter.controllers', 'starter.services', 'starter.directives', 'ngCookies'])
+.run(function($ionicPlatform, $http, $cookies) {
+
+  $http.defaults.headers.post['id'] = $cookies.csrftoken;
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -21,8 +22,9 @@ angular.module('starter', ['ionic', 'pascalprecht.translate', 'starter.controlle
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider, $translateProvider) {
+.config(function($stateProvider, $urlRouterProvider, $translateProvider, $httpProvider) {
 
+  $httpProvider.defaults.withCredentials = true;
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
   // Set up the various states which the app can be in.
@@ -104,10 +106,15 @@ angular.module('starter', ['ionic', 'pascalprecht.translate', 'starter.controlle
       url: '/settings',
       templateUrl: 'templates/apps/settings.html',
       controller: 'SettingsController'
+    })
+
+    .state('app.logout', {
+      url: '/logout',
+      controller: 'SignoutController'
     });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/settings');
+  $urlRouterProvider.otherwise('/account/login');
 
   // i18n
   $translateProvider.translations('en', window.__translations_en);

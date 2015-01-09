@@ -6,21 +6,8 @@
     <title></title>
 
     <link href="css/ionic.app.css" rel="stylesheet">
-   
-    <script>
-      var injectScript = function(module) {
-        var script = document.createElement('script');
-        script.src = '/js/' + module + '.js';
-        var entry = document.getElementsByTagName('script')[0];
-        entry.parentNode.insertBefore(script, entry);
-      }
 
-      if (window.location.hostname === 'localhost') {
-        injectScript('settings.development');
-      } else {
-        injectScript('settings.production');
-      }
-    </script>
+    <script src="js/appsettings.js"></script>
 
     <!-- Other Libs -->
     <script src="lib/lodash/dist/lodash.js"></script>

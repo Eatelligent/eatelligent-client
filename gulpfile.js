@@ -5,6 +5,7 @@ var concat = require('gulp-concat');
 var sass = require('gulp-sass');
 var minifyCss = require('gulp-minify-css');
 var rename = require('gulp-rename');
+var preprocess = require('gulp-preprocess');
 var sh = require('shelljs');
 var neat = require('node-neat').includePaths;
 
@@ -50,4 +51,17 @@ gulp.task('git-check', function(done) {
     process.exit(1);
   }
   done();
+});
+
+
+gulp.task('dev', function() {
+  gulp.src('./appsettings.js')
+    .pipe(preprocess({context: { ENV: 'DEVELOPMENT', DEBUG: true}}))
+    .pipe(gulp.dest('./www/js/'));
+});
+
+gulp.task('prod', function() {
+  gulp.src('./appsettings.js')
+    .pipe(preprocess({context: { ENV: 'PRODUCTION'}}))
+    .pipe(gulp.dest('./www/js/'));
 });

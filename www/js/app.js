@@ -72,6 +72,12 @@ angular.module('starter', ['ionic', 'pascalprecht.translate', 'starter.controlle
       templateUrl: 'templates/app.html'
     })
 
+    .state('app.coldstart', {
+      url: '/coldstart',
+      templateUrl: 'templates/apps/coldstart.html',
+      controller: 'ColdstartController'
+    })
+
     .state('app.favorites', {
       url: '/favorites',
       templateUrl: 'templates/apps/favorites.html',

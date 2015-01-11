@@ -7,6 +7,11 @@ window.__translations_en = {
     signout: 'Sign out'
   },
 
+  coldstart: {
+    header: 'Welcome',
+    why: 'To help us give you a better recommendation for different recipes. Please answer a few questions to let us know you a little bit.'
+  },
+
   search: {
     header: 'Search recipes',
     placeholder: 'Search',

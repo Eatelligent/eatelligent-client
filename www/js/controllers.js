@@ -195,7 +195,7 @@ angular.module('starter.controllers', [])
 
 .controller('SearchController', function($scope, $http) {
 
-  // $http.get(settings.apiUrl + '/api/user')
+  // $http.get(settings.apiUrl + '/api/user') // TODO: Finne en plass å ha den kontinuerlige sjekken for om du er logga inn.
   //   .success(function(data) {
   //     console.log('success', data);
   //   })
@@ -214,15 +214,14 @@ angular.module('starter.controllers', [])
       });
   };
 
-  // $scope.results = [
-  //   {id: 1, title: 'Lasser', description: 'Du starter med en jevning av ...'},
-  //   {id: 2, title: 'Lasser med god stemning', description: 'Du starter med en jevning av ...'},
-  //   {id: 3, title: 'Suppa', description: 'Du starter med en jevning av ...'}
-  // ]
-  
+  // TODO: Sette $scope.results til ei top 10 liste når ingenting er utfylt. (Kanskje siste søk etter det)
 })
 
 .controller('UserController', function($scope) {
+  
+})
+
+.controller('ColdstartController', function($scope, $http) {
   
 })
 
@@ -235,7 +234,5 @@ angular.module('starter.controllers', [])
 
   $scope.allergyChange = function(what) {
     $scope.settings.allergies[what] = 'vasadasdl'
-    console.log($scope.settings);
   }
-
 });

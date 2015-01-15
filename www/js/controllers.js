@@ -19,7 +19,52 @@ angular.module('starter.controllers', [])
 .controller('SignupController', function($scope, $http, $location) {
   $scope.redirect = function(location) {
     window.location = '#/account/signup/'+location;
-  }
+  };
+})
+
+.controller('SignupControllerFresh', function($scope, $http) {
+  $scope.user = {
+    email: ''
+  };
+
+  $scope.isValid = function() {
+    var errors = $scope.errors = [];
+    if ($scope.user.password !== $scope.user.password2) {
+      errors.push({type: 'password', text: 'disjointPasswords'});
+    } else if (!$scope.user.password || !$scope.user.password2) {
+      errors.push({type: 'password', text: 'emptyPassword'});
+    } else if ($scope.user.password.length === 0 || $scope.user.password2.length === 0) {
+      errors.push({type: 'password', text: 'emptyPassword'});
+    }
+
+    if ($scope.user.email.indexOf('@') === -1) {
+      errors.push({type: 'email', text: 'noAlpha'});
+    }
+
+    return errors.length === 0;
+  };
+
+  $scope.signup = function() {
+    if ($scope.isValid()) {
+      console.log('valid');
+      $http.post(settings.apiUrl + '/api/users', $scope.user)
+        .success(function(response) {
+          $http.post(settings.apiUrl + '/api/authenticate', {
+            email: $scope.user.email,
+            password: $scope.user.password
+          })
+          .success(function(data) {
+            window.location = '#/app/search';
+          })
+        })
+        .error(function(data) {
+          console.log('Signup error:', JSON.stringify(data));
+        })
+    } else {
+      console.log('errors', $scope.errors);
+    }
+
+  };
 })
 
 .controller('LoginController', function($scope, $http, $location) {

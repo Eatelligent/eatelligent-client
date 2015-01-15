@@ -57,6 +57,7 @@ angular.module('starter', ['ionic', 'pascalprecht.translate', 'starter.controlle
     .state('account.signup-fresh', {
       url: '/signup/fresh',
       templateUrl: 'templates/account/fresh.html',
+      controller: 'SignupControllerFresh'
     })
 
     .state('account.login', {

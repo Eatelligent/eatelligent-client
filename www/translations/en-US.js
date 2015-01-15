@@ -68,14 +68,21 @@ window.__translations_en = {
 
     fresh: {
       userAccount: 'User account',
-      name: 'Name',
+      firstname: 'First name',
+      lastname: 'Last name',
       email: 'Email',
       password: 'Password',
       passwordAgain: 'Passowrd again',
       otherInformation: 'Other information',
       yearOfBirth: 'Year of birth',
       city: 'City',
-      signupCompleteButton: 'Register new user account'
+      signupCompleteButton: 'Register new user account',
+      validationErrorsHeader: 'Validation errors:',
+      errors: {
+        disjointPasswords: 'Passwords does not match',
+        emptyPassword: 'Empty password fields',
+        noAlpha: 'The email need to contain one @ (atsign)'
+      }
     }
   },
 

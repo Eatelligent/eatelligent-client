@@ -1,32 +1,52 @@
 <ion-view title="{{ 'signup.freshHeader' | translate }}">
   <ion-content>
 
+
     <div class="item item-divider">
       {{ 'signup.fresh.userAccount' | translate }}
     </div>
+
+    <ul class="card padding ng-hide" style="background-color: #ef4e3a; color: white" ng-show="errors">
+      {{ 'signup.fresh.validationErrorsHeader' | translate }}
+      <li ng-repeat="error in errors">
+        - <any translate="signup.fresh.errors.{{error.text}}"></any>
+      </li>
+    </ul>
+
     <div class="list list-inset">
+      <label class="item item-input">
+        <span class="input-label">{{ 'signup.fresh.firstname' | translate }}</span>
+        <input ng-model="user.firstName" type="text">
+      </label>
 
       <label class="item item-input">
-        <span class="input-label">{{ 'signup.fresh.name' | translate }}</span>
-        <input ng-model="user.name" type="text">
+        <span class="input-label">{{ 'signup.fresh.lastname' | translate }}</span>
+        <input ng-model="user.lastName" type="text">
       </label>
+    
+    </div>
+    <div class="list list-inset">
 
       <label class="item item-input">
         <span class="input-label">{{ 'signup.fresh.email' | translate }}</span>
         <input ng-model="user.email" type="text">
       </label>
 
+    </div>
+    <div class="list list-inset">
+    
       <label class="item item-input">
         <span class="input-label">{{ 'signup.fresh.password' | translate }}</span>
-        <input type="password">
+        <input ng-model="user.password" type="password">
       </label>
 
       <label class="item item-input">
         <span class="input-label">{{ 'signup.fresh.passwordAgain' | translate }}</span>
-        <input type="password">
+        <input ng-model="user.password2" type="password">
       </label>
     </div>
-    <div class="item item-divider">
+
+    <!-- <div class="item item-divider">
       {{ 'signup.fresh.otherInformation' | translate }}
     </div>
     <div class="list list-inset">
@@ -43,11 +63,11 @@
       <label class="item item-input">
         <span class="input-label">{{ 'signup.fresh.city' | translate }}</span>
         <input type="text">
-      </label>
+      </label> -->
 
     </div>
     <div class="padding">
-      <button class="button button-block button-positive">{{ 'signup.fresh.signupCompleteButton' | translate }}</button>
+      <button ng-click="signup()" class="button button-block button-positive">{{ 'signup.fresh.signupCompleteButton' | translate }}</button>
     </div>
   </ion-content>
 </ion-view>

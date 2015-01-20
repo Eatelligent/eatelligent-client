@@ -20,6 +20,10 @@ angular.module('starter.directives', [])
         'name': 'Random User'
       },
       {
+        'url': '#/app/coldstart',
+        'name': 'Coldstart'
+      },
+      {
         'url': '#/app/shoppingcart',
         'name': 'shoppingCart'
       },

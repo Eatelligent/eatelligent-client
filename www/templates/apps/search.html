@@ -14,9 +14,9 @@
 
       <div class="search__results__list list">
         <a class="item item-avatar" ng-repeat="result in results" href="#/app/recipes/{{result.id}}">
-          <img src="{{result.image}}">
+          <img src="{{result.image}}" onerror="this.src='/img/ionic.png'">
           <h2>{{result.name}}</h2>
-          <!-- <p>{{result.description}}</p> -->
+          <p>Oppskrift</p>
         </a>
       </div>
     </div>

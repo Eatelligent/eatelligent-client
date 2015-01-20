@@ -32,3 +32,17 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 @import "user";
 @import "shoppingcart";
 @import "ionic_edits";
+
+// swipecards
+.td-card__bottom-text {
+  position: relative;
+  top: -60px;
+  background-color: white;
+  width: 100%;
+  padding: 5px;
+  height: 54.5px;
+  font-size: 12pt;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  border-top: 1px solid #ccc;
+}

@@ -8,7 +8,7 @@
       <ion-item ng-repeat="item in items"
                 class="item-thumbnail-left" href="#/app/recipes/{{item.id}}">
 
-        <img ng-src="{{item.img}}">
+        <img src="{{item.imgs}}" onerror="this.src='/img/ionic.png'">
         <h2>{{item.title}}</h2>
         <p>{{item.description}}</p>
         <ion-option-button class="button-assertive"

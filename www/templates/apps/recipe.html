@@ -2,7 +2,7 @@
   
   <ion-content overflow-scroll="false">
     <div class="recipe__image">
-      <img class="recipe__image__maximize" src="img/lasagne-02_6.jpg"> <!-- Background and background-size: cover -->
+      <img class="recipe__image__maximize" src="{{image}}"> <!-- Background and background-size: cover -->
     </div>
 
     <div class="recipe__content padding">
@@ -81,7 +81,7 @@
       <div class="recipe__content__row">
         <div class="recipe__content__procedure">
           <h4>{{ 'recipe.procedure' | translate }}</h4>
-          {{procedure}}
+          <div ng-bind-html="procedure"></div>
           <!-- <ul>
             <li>Brun kjøttdeig i olje på sterk varme i to omganger. Ha all kjøttdeigen tilbake i stekepanna. Tilsett hakket løk, hvitløk, tomater, tomatpuré, salt, pepper og vann. La sausen småkoke i ca. 10 minutter til den begynner å tykne. Dryss over basilikum.</li>
 

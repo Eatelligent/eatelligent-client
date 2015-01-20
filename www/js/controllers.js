@@ -134,13 +134,15 @@ angular.module('starter.controllers', [])
   }
 })
 
-.controller('RecipeController', function($scope, $http, $ionicModal) {
+.controller('RecipeController', function($stateParams, $scope, $http, $ionicModal) {
+  var id = $stateParams.id;
 
-  $http.get(settings.apiUrl + '/api/recipes/4')
+  $http.get(settings.apiUrl + '/api/recipes/' + id)
     .success(function(data, status, headers, config) {
       $scope.recipename = data.recipe.name;
       $scope.procedure = data.recipe.procedure;
       $scope.ingredients = data.recipe.ingredients;
+      $scope.image = data.recipe.image;
     })
     .error(function(data, status, headers, config) {
       console.log('error', JSON.stringify(data), status, headers, config);
@@ -252,6 +254,11 @@ angular.module('starter.controllers', [])
 
     $http.get(settings.apiUrl + '/api/recipes/' + q)
       .success(function(response) {
+        response.recipes.forEach(function(recipe) { // create thumbnail
+          recipe.image = recipe.image || '';
+          recipe.image = recipe.image.replace(/(v[0-9]*)/, 'w_100,h_100,c_fill');
+        });
+
         $scope.results = response.recipes;
       })
       .error(function(response) {
@@ -267,44 +274,63 @@ angular.module('starter.controllers', [])
 })
 
 .controller('ColdstartController', function($scope, $http) {
+
+})
+
+.controller('CardsCtrl', function($scope, TDCardDelegate) {
   var cardTypes = [
-    { image: 'lib/ionic-contrib-tinder-cards/demo/max.jpg' },
-    { image: 'lib/ionic-contrib-tinder-cards/demo/ben.png' },
-    { image: 'lib/ionic-contrib-tinder-cards/demo/perry.jpg' },
+    { image: 'img/lasagne-02_6.jpg' },
+    { image: 'img/lasagne-02_6.jpg' },
+    { image: 'img/lasagne-02_6.jpg' }
   ];
 
   $scope.cardDestroyed = function(index) {
+    console.log('$scope.cardDestroyed', arguments);
     $scope.cards.splice(index, 1);
   };
 
   $scope.addCard = function() {
-    var newCard = cardTypes[Math.floor(Math.random() * cardTypes.length)];
-    newCard.id = Math.random();
-    $scope.cards.unshift(angular.extend({}, newCard));
+    var newCard = {
+      image: 'img/ionic.png',
+      id: Math.random()
+    };
+    $scope.cards.push(newCard); // angular.extend({}, newCard));
   }
+
   $scope.cardSwiped = function() {
-    console.log('$scope.cardSwiped');
+    console.log('swipe', arguments);
   }
 
-  $scope.cards = [];
-  for(var i = 0; i < 3; i++) $scope.addCard();
-})
-
-.controller('CardCtrl', function($scope, TDCardDelegate) {
-  console.log('cardctrl');
-  $scope.cardSwipedLeft = function(index) {
-    console.log('LEFT SWIPE');
-    $scope.addCard();
-  };
   $scope.cardSwipedRight = function(index) {
     console.log('RIGHT SWIPE');
-    $scope.addCard();
   };
 
-  $scope.cardSwiped = function() {
-    console.log('$scope.cardSwiped');
-  }
+  $scope.cardSwipedLeft = function(index) {
+    console.log('LEFT SWIPE');
+  };
+
+  $scope.cards = [];
+  for(var i = 0; i < 3; i++) 
+    $scope.addCard();
+
+  $scope.$watch('cards', function(newArray) {
+    if(newArray.length === 0) {
+      console.log('done, finn på noe anna');
+    }
+  }, true);
 })
+
+// .controller('CardCtrl', function($scope, TDCardDelegate) {
+//   console.log('cardctrl', TDCardDelegate);
+//   // $scope.cardSwipedLeft = function(index) {
+//   //   console.log('LEFT SWIPE');
+//   //   $scope.addCard();
+//   //   // $scope.addCard();
+//   // };
+//   // $scope.cardSwiped = function() {
+//   //   console.log('$scope.cardSwiped');
+//   // }
+// })
 
 .controller('SettingsController', function($scope, $http) {
   $scope.settings = {

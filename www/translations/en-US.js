@@ -56,7 +56,9 @@ window.__translations_en = {
 
   favorites: {
     header: 'Favorites',
-    remove: 'Delete'
+    remove: 'Delete',
+    emptyheader: 'No favorites :(',
+    emptytext: 'You can add favorites by clicking the button in the bottom of each recipe.'
   },
 
   signup: {

@@ -118,20 +118,38 @@ angular.module('starter.controllers', [])
 })
 
 .controller('FavoritesController', function($scope, $http) {
-  $scope.items = [
-    {title: 'Lasser', description: 'Du starter med en jevning av...', id: _.uniqueId(), img: '/img/lasagne-02_6.jpg'},
-    {title: 'Lasser', description: 'Du starter med en jevning av...', id: _.uniqueId(), img: '/img/lasagne-02_6.jpg'},
-    {title: 'Lasser', description: 'Du starter med en jevning av...', id: _.uniqueId(), img: '/img/lasagne-02_6.jpg'},
-    {title: 'Lasser', description: 'Du starter med en jevning av...', id: _.uniqueId(), img: '/img/lasagne-02_6.jpg'},
-    {title: 'Lasser', description: 'Du starter med en jevning av...', id: _.uniqueId(), img: '/img/lasagne-02_6.jpg'},
-    {title: 'Lasser', description: 'Du starter med en jevning av...', id: _.uniqueId(), img: '/img/lasagne-02_6.jpg'},
-    {title: 'Lasser', description: 'Du starter med en jevning av...', id: _.uniqueId(), img: '/img/lasagne-02_6.jpg'},
-    {title: 'Lasser', description: 'Du starter med en jevning av...', id: _.uniqueId(), img: '/img/lasagne-02_6.jpg'}
-  ]
-  $scope.delete = function(item) {
-    // delete item from favs
-    console.log(item);
-  }
+
+  $scope.empty = false;
+  $scope.checkEmpty = function(items) {
+    if(items.length === 0) {
+      $scope.empty = true;
+    } else {
+      $scope.empty = false;
+    }
+  };
+
+  $http.get(settings.apiUrl + '/api/favorites/recipes')
+    .success(function(response) {
+      response.favorites.forEach(function(recipe) { // create thumbnail
+        recipe.image = recipe.image || '/img/ionic.png';
+        recipe.image = recipe.image.replace(/(v[0-9]*)/, 'w_100,h_100,c_fill');
+      });
+
+      $scope.items = response.favorites;
+      $scope.checkEmpty($scope.items);
+    })
+    .error(function(data) {
+      console.log('Favorites error', JSON.stringify(data));
+    });
+
+  $scope.delete = function(item, index) {
+    $scope.items.splice(index, 1);
+    $http.delete(settings.apiUrl + '/api/favorites/recipes/' + item.id, {})
+      .error(function(data) {
+        console.log('Error removing from favorites', JSON.stringify(data));
+      });
+    $scope.checkEmpty($scope.items);
+  };
 })
 
 .controller('RecipeController', function($stateParams, $scope, $http, $ionicModal) {
@@ -218,15 +236,32 @@ angular.module('starter.controllers', [])
   var timer = setInterval(function() {
     $scope.totalTime = moment().diff(startTime, 'seconds');
     $scope.$apply();
-  }, 1000)
+  }, 1000);
+
   $scope.portions = 1;
 
   $scope.incrementPortions = function() {
     $scope.portions++;
-  }
+  };
 
   $scope.decrementPortions = function() {
     $scope.portions = Math.max(1, $scope.portions - 1);
+  };
+
+  $scope.isFavorite = true;
+  $http.get(settings.apiUrl + '/api/favorites/recipes')
+    .success(function(response) {
+      $scope.isFavorite = _.reduce(response.favorites, function(memo, fav) {
+        return memo || fav.id === id;
+      }, false);
+    });
+
+  $scope.addToFavorites = function() {
+    $http.post(settings.apiUrl + '/api/favorites/recipes', {recipeId: id})
+      .success(function() {
+        window.location = '#/app/favorites';
+      })
+
   }
 })
 

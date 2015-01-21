@@ -1,18 +1,16 @@
 <ion-view title="{{ 'favorites.header' | translate }}">
   <ion-content class="padding">
-
-    <ion-list ng-controller="FavoritesController"
+    <ion-list ng-if="!empty"
               show-delete="shouldShowDelete"
               show-reorder="false"
               can-swipe="true">
       <ion-item ng-repeat="item in items"
                 class="item-thumbnail-left" href="#/app/recipes/{{item.id}}">
 
-        <img src="{{item.imgs}}" onerror="this.src='/img/ionic.png'">
-        <h2>{{item.title}}</h2>
-        <p>{{item.description}}</p>
+        <img ng-src="{{item.image}}" onerror="this.src='/img/ionic.png'">
+        <h2>{{item.name}}</h2>
         <ion-option-button class="button-assertive"
-                           ng-click="delete(item)">
+                           ng-click="delete(item, $index)">
           
           <i class="icon ion-trash-a"></i>
           {{ 'favorites.remove' | translate }}
@@ -24,12 +22,17 @@
         <ion-delete-button class="ion-minus-circled"
                            ng-click="items.splice($index, 1)">
         </ion-delete-button>
-        <ion-reorder-button class="ion-navicon"
-                            on-reorder="reorderItem(item, $fromIndex, $toIndex)">
-        </ion-reorder-button>
+        
 
       </ion-item>
     </ion-list>
+
+    <div ng-if="empty" class="row">
+      <div class="col">
+        <h3 style="color: #666;">{{ 'favorites.emptyheader' | translate }}</h3>
+        <span>{{ 'favorites.emptytext' | translate }}</span>
+      </div>
+    </div>
 
   </ion-content>
 </ion-view>

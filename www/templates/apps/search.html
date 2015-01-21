@@ -8,13 +8,14 @@
     </div>
 
     <div class="search__results">
-      <div class="search__results__header">
+      <div ng-if="hasSearched" class="search__results__header">
         <h5 translate="search.showingNResults" translate-value-n="{{results.length}}"></h5>
       </div>
 
       <div class="search__results__list list">
         <a class="item item-avatar" ng-repeat="result in results" href="#/app/recipes/{{result.id}}">
-          <img src="{{result.image}}" onerror="this.src='/img/ionic.png'">
+
+          <img ng-src="{{result.image}}">
           <h2>{{result.name}}</h2>
           <p>Oppskrift</p>
         </a>

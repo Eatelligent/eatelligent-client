@@ -104,7 +104,7 @@ angular.module('starter.controllers', [])
 
 .controller('SignoutController', function($http, $location) {
   console.log('SignoutController');
-  $http.get(settings.apiUrl+ '/signOut')
+  $http.get(settings.apiUrl + '/signOut')
     .success(function(data, status, headers, config) {
       // $location.path('#/account/login').replace();
       window.location = '#/account/login'

@@ -29,15 +29,16 @@
         <div class="recipe__content__info">
           <div class="recipe__content__info__item">
             <i class="icon ion-ios7-timer-outline"></i>
-            1t 40m
+            <any ng-if="recipehours" translate="recipe.translateHours" translate-value-h="{{recipehours}}"></any>
+            <any ng-if="recipeminutes" translate="recipe.translateMinutes" translate-value-m="{{recipeminutes}}"></any>
           </div>
         </div>
 
         <div class="recipe__content__info">
           <div class="recipe__content__info__item">
-            <i class="icon ion-flame icon--assertive"></i>
-            <i class="icon ion-flame icon--assertive"></i>
-            <i class="icon ion-flame icon--assertive"></i>
+            <i ng-if="spicy > 0" class="icon ion-flame icon--assertive"></i>
+            <i ng-if="spicy > 2" class="icon ion-flame icon--assertive"></i>
+            <i ng-if="spicy > 2" class="icon ion-flame icon--assertive"></i>
           </div>
 
         </div>

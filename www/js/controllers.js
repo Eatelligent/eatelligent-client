@@ -153,7 +153,7 @@ angular.module('starter.controllers', [])
 })
 
 .controller('RecipeController', function($stateParams, $scope, $http, $ionicModal) {
-  var id = $stateParams.id;
+  var id = parseInt($stateParams.id, 10);
 
   $http.get(settings.apiUrl + '/api/recipes/' + id)
     .success(function(data, status, headers, config) {
@@ -161,6 +161,12 @@ angular.module('starter.controllers', [])
       $scope.procedure = data.recipe.procedure;
       $scope.ingredients = data.recipe.ingredients;
       $scope.image = data.recipe.image;
+      $scope.recipehours = Math.floor(data.recipe.time / 60);
+      $scope.recipeminutes = data.recipe.time % 60;
+      $scope.spicy = data.recipe.spicy;
+
+      // $scope.rated = true;
+      // $scope.numStarsRated = 1;
     })
     .error(function(data, status, headers, config) {
       console.log('error', JSON.stringify(data), status, headers, config);
@@ -284,14 +290,17 @@ angular.module('starter.controllers', [])
   //   .error(function(data, status) {
   //     console.log('Error fetching user', JSON.stringify(data), 'Status:', status);
   //   });
+  
+  $scope.hasSearched = false;
   $scope.search = function(obj) {
     var q = obj.query;
 
-    $http.get(settings.apiUrl + '/api/recipes/' + q)
+    $http.get(settings.apiUrl + '/api/recipes?published=true&deleted=false&q=' + q)
       .success(function(response) {
         response.recipes.forEach(function(recipe) { // create thumbnail
-          recipe.image = recipe.image || '';
+          recipe.image = recipe.image || '/img/ionic.png';
           recipe.image = recipe.image.replace(/(v[0-9]*)/, 'w_100,h_100,c_fill');
+          $scope.hasSearched = true;
         });
 
         $scope.results = response.recipes;

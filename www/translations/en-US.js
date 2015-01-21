@@ -40,7 +40,10 @@ window.__translations_en = {
     portions: 'Portions',
     ingredients: 'Ingredients',
     showNutrient: 'Show nutrients',
-    procedure: 'Procedure'
+    procedure: 'Procedure',
+    addToFavorites: 'Add to favorites',
+    translateHours: '{{h}}h',
+    translateMinutes: '{{m}}m'
   },
 
   nutrientsModal: {

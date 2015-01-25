@@ -4,7 +4,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'pascalprecht.translate', 'starter.controllers', 'starter.services', 'starter.directives', 'ngCookies', 'ionic.contrib.ui.tinderCards'])
+angular.module('starter', ['ionic', 'pascalprecht.translate', 'starter.controllers', 'starter.services', 'starter.directives', 'ngCookies', 'ionic.contrib.ui.tinderCards','angularSpinner'])
 .run(function($ionicPlatform, $http, $cookies) {
 
   $http.defaults.headers.post['id'] = $cookies.csrftoken;

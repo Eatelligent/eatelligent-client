@@ -46,7 +46,6 @@ angular.module('starter.controllers', [])
 
   $scope.signup = function() {
     if ($scope.isValid()) {
-      console.log('valid');
       $http.post(settings.apiUrl + '/api/users', $scope.user)
         .success(function(response) {
           $http.post(settings.apiUrl + '/api/authenticate', {
@@ -72,6 +71,7 @@ angular.module('starter.controllers', [])
     email: 'admin@admin.com',
     password: 'admin'
   };
+  $scope.loading = false;
   // $scope.errormessage = '';
 
   $scope.checkIfAuthed = function() {
@@ -86,24 +86,22 @@ angular.module('starter.controllers', [])
       email: $scope.user.email,
       password: $scope.user.password
     };
-    console.log('AUTH', JSON.stringify(auth));
-    console.log(settings.apiUrl);
-    
+
+    $scope.loading = true;
     $http.post(settings.apiUrl + '/api/authenticate', auth)
       .success(function(data) {
-        console.log('good', JSON.stringify(data));
         window.location = '#/app/search';
-        $location.path('/app/search')
+        $location.path('/app/search');
       })
       .error(function(data) {
-        console.log('piss', JSON.stringify(data));
+        $scope.loading = false;
+        console.log('Login error', JSON.stringify(data));
         $scope.errormessage = data.message;
       });
   };
 })
 
 .controller('SignoutController', function($http, $location) {
-  console.log('SignoutController');
   $http.get(settings.apiUrl + '/signOut')
     .success(function(data, status, headers, config) {
       // $location.path('#/account/login').replace();

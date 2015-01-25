@@ -7,15 +7,27 @@
   <author email="mealchooserdev@gmail.com" href="http://folk.ntnu.no/oystt">
     The Mealchooser Team
   </author>
+
   <content src="index.html"/>
   <access origin="*"/>
+
   <preference name="webviewbounce" value="false"/>
   <preference name="UIWebViewBounce" value="false"/>
   <preference name="DisallowOverscroll" value="true"/>
   <preference name="BackupWebStorage" value="none"/>
   <preference name="StatusBarOverlaysWebView" value="true"/>
+
   <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
   </feature>
+
   <icon src="www/icon.png"/>
+
+  <platform name="ios">
+    <splash src="www/food.png" width="320" height="480"/>
+    <splash src="www/food.png" width="640" height="960"/>
+    <splash src="www/food.png" width="640" height="1136"/>
+    <splash src="www/food.png" width="750" height="1334"/>
+    <splash src="www/food.png" width="1242" height="2208"/>
+  </platform>
 </widget>

@@ -163,8 +163,15 @@ angular.module('starter.controllers', [])
       $scope.recipeminutes = data.recipe.time % 60;
       $scope.spicy = data.recipe.spicy;
 
-      // $scope.rated = true;
+      // $scope.rated = true; // todo show rated on load
       // $scope.numStarsRated = 1;
+
+      if(data.recipe.currentUserRating) {
+        $scope.rated = true;
+        $scope.numStarsRated = data.recipe.currentUserRating;
+      } else {
+        $scope.globalRating = data.recipe.averageRating;
+      }
     })
     .error(function(data, status, headers, config) {
       console.log('error', JSON.stringify(data), status, headers, config);
@@ -177,6 +184,14 @@ angular.module('starter.controllers', [])
   $scope.rate = function(stars) {
     $scope.rated = true;
     $scope.numStarsRated = stars;
+
+    $http.post(settings.apiUrl + '/api/ratings/recipes', {recipeId: id, rating: stars})
+      .success(function() {
+        // todo
+      })
+      .error(function(data) {
+        console.log('Error posting recipe rating', JSON.stringify(data));
+      });
   };
 
   $scope.getStarClass = function(i) {

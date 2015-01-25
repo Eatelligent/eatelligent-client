@@ -33,7 +33,8 @@ window.__translations_en = {
 
   shoppingCart: { // not really implemented
     header: 'Shopping Cart',
-    XrecipesOfYPortions: 'Showing ingredients for {{recipes}} recipes of {{portions}} portions'
+    XrecipesOfYPortions: 'Showing ingredients for {{recipes}} recipes of {{portions}} portions',
+    clearCompleted: 'Clear completed ingredients'
   },
 
   recipe: {
@@ -42,6 +43,7 @@ window.__translations_en = {
     showNutrient: 'Show nutrients',
     procedure: 'Procedure',
     addToFavorites: 'Add to favorites',
+    addToCart: 'Add to shoppingcart',
     translateHours: '{{h}}h',
     translateMinutes: '{{m}}m'
   },

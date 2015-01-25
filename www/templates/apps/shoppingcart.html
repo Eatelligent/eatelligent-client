@@ -3,10 +3,14 @@
     <div class="shopping__cart">
       <h4 translate="shoppingCart.XrecipesOfYPortions" translate-value-recipes="3" translate-value-portions="4"></h4>
 
-      <ion-checkbox ng-repeat="item in items" ng-model="isChecked" class="shopping__cart__item">
+      <ion-checkbox ng-change="checkBoxChanged(item)" ng-repeat="item in items" ng-model="isChecked" class="shopping__cart__item">
         <div class="shopping__cart__item__left">{{item.title}}</div>
         <div class="shopping__cart__item__right">{{item.amount}}</div>
       </ion-checkbox>
+    </div>
+
+    <div style="margin-top: 30px">
+        <button style="width: 100%" class="button button-positive" ng-click="clearCompleted()">{{ 'shoppingCart.clearCompleted' | translate }}</button>
     </div>
 
   </ion-content>

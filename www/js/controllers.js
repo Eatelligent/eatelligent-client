@@ -152,7 +152,7 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('RecipeController', function($stateParams, $scope, $http, $ionicModal) {
+.controller('RecipeController', function($stateParams, $scope, $http, $ionicModal, ShoppingCart) {
   var id = parseInt($stateParams.id, 10);
 
   $http.get(settings.apiUrl + '/api/recipes/' + id)
@@ -266,19 +266,39 @@ angular.module('starter.controllers', [])
     $http.post(settings.apiUrl + '/api/favorites/recipes', {recipeId: id})
       .success(function() {
         window.location = '#/app/favorites';
-      })
+      });
+  };
 
-  }
+  $scope.addToShoppingCart = function() {
+    var ingredients = $scope.ingredients.map(function(ing) {
+      return {
+        title: ing.name, 
+        amount: ($scope.portions * ing.amount) + ' ' + ing.unit
+      };
+    });
+
+    ShoppingCart.add(ingredients);
+    window.location = '#/app/shoppingcart';
+  };
 })
 
-.controller('ShoppingCartController', function($scope) {
-  $scope.items = [
-    {title: 'Ost', amount: '400g'},
-    {title: 'Tomat', amount: '8 stk'},
-    {title: 'Fisk', amount: '4 fileter'},
-    {title: 'Kjøttdeig', amount: '1200g'},
-    {title: 'Pepper', amount: '1 pose'}
-  ]
+.controller('ShoppingCartController', function($scope, ShoppingCart) {
+  // ShoppingCart.add([{title: 'Ost', amount: '400g'}])
+  $scope.items = ShoppingCart.all();console.log($scope.items);
+
+  $scope.checkBoxChanged = function(item) {
+    $scope.completed = $scope.completed || [];
+    $scope.completed.push(item)
+  }
+
+  $scope.clearCompleted = function() {
+    $scope.completed = $scope.completed || [];
+
+    $scope.completed.forEach(function(item) {
+      ShoppingCart.remove(item);
+    });
+    $scope.items = ShoppingCart.all();
+  }
 })
 
 .controller('SearchController', function($scope, $http) {

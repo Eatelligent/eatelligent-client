@@ -97,6 +97,10 @@
         </div>
       </div>
 
+      <div class="recipe__content__row">
+        <button class="button button-positive" ng-click="addToShoppingCart()">{{ 'recipe.addToCart' | translate }}</button>
+      </div>
+
       <div ng-if="!isFavorite" class="recipe__content__row">
         <button class="button button-positive" ng-click="addToFavorites()">{{ 'recipe.addToFavorites' | translate }}</button>
       </div>

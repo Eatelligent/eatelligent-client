@@ -103,10 +103,10 @@ angular.module('starter', ['ionic', 'pascalprecht.translate', 'starter.controlle
       controller: 'SearchController'
     })
 
-    .state('app.user', {
-      url: '/user/:id',
-      templateUrl: 'templates/apps/user.html',
-      controller: 'UserController'
+    .state('app.recommend', {
+      url: '/recommend',
+      templateUrl: 'templates/apps/recommend.html',
+      controller: 'RecommenderController'
     })
 
     .state('app.settings', {

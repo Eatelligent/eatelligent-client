@@ -11,13 +11,13 @@ angular.module('starter.directives', [])
         'url': '#/app/favorites',
         'name': 'favorites'
       },
+      {
+        'url': '#/app/recommend',
+        'name': 'recommend'
+      },
       { // todo
         'url': '#/app/recipes/'+random,
         'name': 'Random Recipe'
-      },
-      { // todo
-        'url': '#/app/user/'+random,
-        'name': 'Random User'
       },
       {
         'url': '#/app/coldstart',

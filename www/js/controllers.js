@@ -346,7 +346,7 @@ angular.module('starter.controllers', [])
   // TODO: Sette $scope.results til ei top 10 liste når ingenting er utfylt. (Kanskje siste søk etter det)
 })
 
-.controller('UserController', function($scope) {
+.controller('RecommenderController', function($scope, $http) {
   
 })
 

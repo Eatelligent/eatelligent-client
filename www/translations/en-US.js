@@ -2,9 +2,12 @@ window.__translations_en = {
   sidebar: { // Missing some
     search: 'Search',
     favorites: 'Favorites',
+    recommend: 'Recommender',
     settings: 'Settings',
     shoppingCart: 'Shopping Cart',
-    signout: 'Sign out'
+    signout: 'Sign out',
+    Coldstart: '< COLD START PROBLEM >', // <--- TODO
+    "Random Recipe" : '< RANDOM RECIPE >' // <--- TODO,
   },
 
   coldstart: {
@@ -16,6 +19,11 @@ window.__translations_en = {
     header: 'Search recipes',
     placeholder: 'Search',
     showingNResults: 'Showing {{n}} results'
+  },
+
+  recommend: {
+    title: 'Recipe recommender',
+    description: 'This recipes is recommended to you based on your and other users history of ratings. The more you use the application and rate recipes, the better the recommendation will get.'
   },
 
   settings: { // done

@@ -1,19 +1,27 @@
 <ion-view title="{{ 'recommend.title' | translate }}">
   <ion-content>
-    <p class="padding">{{ 'recommend.description' | translate }}</p>
+    <div class="card" ng-if="!infoShown">
+      <div class="item item-divider">
+      {{ 'recommend.information' | translate }}
+      <i style="float: right;" class="icon ion-close-round" ng-click="removeInfo()"></i>
+      </div>
+      <div class="item item-text-wrap">
+        {{ 'recommend.description' | translate }}
+      </div>
+    </div>
 
     <div class="list card">
 
-      <div class="item">
+      <div class="item" ng-click="confirmRecommendation()">
         <h2>Pretty Hate Machine</h2>
         <p>Nine Inch Nails</p>
       </div>
 
-      <div class="item item-image">
+      <div class="item item-image" ng-click="confirmRecommendation()">
         <img src="img/lasagne-02_6.jpg">
       </div>
 
-      <a class="item item-icon-left assertive" ng-click="sayNo()">
+      <a class="item item-icon-left assertive" ng-click="declineReommendation()">
         <i class="icon ion-close-round"></i>
         Nei takk
       </a>

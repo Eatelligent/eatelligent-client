@@ -23,6 +23,7 @@ window.__translations_en = {
 
   recommend: {
     title: 'Recipe recommender',
+    information: 'Information',
     description: 'This recipes is recommended to you based on your and other users history of ratings. The more you use the application and rate recipes, the better the recommendation will get.'
   },
 
@@ -39,10 +40,12 @@ window.__translations_en = {
     wheatAllergy: 'Wheat allergy'
   },
 
-  shoppingCart: { // not really implemented
+  shoppingCart: {
     header: 'Shopping Cart',
     XrecipesOfYPortions: 'Showing ingredients for {{recipes}} recipes of {{portions}} portions',
-    clearCompleted: 'Clear completed ingredients'
+    clearCompleted: 'Clear completed ingredients',
+    emptyheader: 'No items in your shopping cart',
+    emptytext: 'You can add items in your shopping cart by clicking the button in the bottom of each recipe. Hint: Increase the number of portions to scale up the items in your shopping cart'
   },
 
   recipe: {

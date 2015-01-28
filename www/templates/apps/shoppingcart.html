@@ -1,16 +1,23 @@
 <ion-view title="{{ 'shoppingCart.header' | translate }}">
   <ion-content class="padding">
-    <div class="shopping__cart">
+    <div class="shopping__cart" ng-if="!empty">
       <h4 translate="shoppingCart.XrecipesOfYPortions" translate-value-recipes="3" translate-value-portions="4"></h4>
 
       <ion-checkbox ng-change="checkBoxChanged(item)" ng-repeat="item in items" ng-model="isChecked" class="shopping__cart__item">
         <div class="shopping__cart__item__left">{{item.title}}</div>
         <div class="shopping__cart__item__right">{{item.amount}}</div>
       </ion-checkbox>
+
+      <div style="margin-top: 30px">
+          <button style="width: 100%" class="button button-positive" ng-click="clearCompleted()">{{ 'shoppingCart.clearCompleted' | translate }}</button>
+      </div>
     </div>
 
-    <div style="margin-top: 30px">
-        <button style="width: 100%" class="button button-positive" ng-click="clearCompleted()">{{ 'shoppingCart.clearCompleted' | translate }}</button>
+    <div ng-if="empty" class="row">
+      <div class="col">
+        <h3 style="color: #666;">{{ 'shoppingCart.emptyheader' | translate }}</h3>
+        <span>{{ 'shoppingCart.emptytext' | translate }}</span>
+      </div>
     </div>
 
   </ion-content>

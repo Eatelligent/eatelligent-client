@@ -296,8 +296,8 @@ angular.module('starter.controllers', [])
 })
 
 .controller('ShoppingCartController', function($scope, ShoppingCart) {
-  // ShoppingCart.add([{title: 'Ost', amount: '400g'}])
-  $scope.items = ShoppingCart.all();console.log($scope.items);
+  $scope.items = ShoppingCart.all();
+  $scope.empty = !$scope.items.length;
 
   $scope.checkBoxChanged = function(item) {
     $scope.completed = $scope.completed || [];
@@ -311,6 +311,7 @@ angular.module('starter.controllers', [])
       ShoppingCart.remove(item);
     });
     $scope.items = ShoppingCart.all();
+    $scope.empty = !$scope.items.length;
   }
 })
 
@@ -347,7 +348,19 @@ angular.module('starter.controllers', [])
 })
 
 .controller('RecommenderController', function($scope, $http) {
-  
+  $scope.infoShown = localStorage.getItem('mealchooser-recommender-info-not-shown');
+  $scope.confirmRecommendation = function() {
+    console.log('confirm');
+  };
+
+  $scope.declineReommendation = function() {
+    console.log('decline');
+  };
+
+  $scope.removeInfo = function() {
+    localStorage.setItem('mealchooser-recommender-info-not-shown', false);
+    $scope.infoShown = true;
+  };
 })
 
 .controller('ColdstartController', function($scope, $http) {

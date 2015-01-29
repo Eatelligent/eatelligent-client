@@ -1,20 +1,26 @@
+var signout = function($http) {
+  $http.get(settings.apiUrl + '/signOut')
+    .success(function(data, status, headers, config) {
+      // $location.path('#/account/login').replace();
+      window.location = '#/account/login';
+      window.location.reload();
+    })
+    .error(function() {
+      // $location.path('#/account/login').replace();
+      window.location = '#/account/login';
+      window.location.reload();
+    });
+};
+
+var authCheck = function($http) {
+  $http.get(settings.apiUrl + '/api/user')
+    .error(function(data, status) {
+      window.location = '#/account/login';
+      window.location.reload();
+    });
+};
+
 angular.module('starter.controllers', [])
-
-.controller('DashCtrl', function($scope) {
-})
-
-.controller('FriendsCtrl', function($scope, Friends) {
-  $scope.friends = Friends.all();
-})
-
-.controller('FriendDetailCtrl', function($scope, $stateParams, Friends) {
-  $scope.friend = Friends.get($stateParams.friendId);
-})
-
-.controller('AccountCtrl', function($scope) {
-})
-
-// this guy
 
 .controller('SignupController', function($scope, $http, $location) {
   $scope.redirect = function(location) {
@@ -77,7 +83,7 @@ angular.module('starter.controllers', [])
   $scope.checkIfAuthed = function() {
     $http.get(settings.apiUrl + '/api/user')
       .success(function(data) {
-        window.location = '#/app/search'
+        window.location = '#/app/search';
       });
   };
 
@@ -93,29 +99,20 @@ angular.module('starter.controllers', [])
         window.location = '#/app/search';
         $location.path('/app/search');
       })
-      .error(function(data) {
+      .error(function(data, b, c) {
         $scope.loading = false;
-        console.log('Login error', JSON.stringify(data));
+        console.log('Login error', JSON.stringify(data), data);
         $scope.errormessage = data.message;
       });
   };
 })
 
 .controller('SignoutController', function($http, $location) {
-  $http.get(settings.apiUrl + '/signOut')
-    .success(function(data, status, headers, config) {
-      // $location.path('#/account/login').replace();
-      window.location = '#/account/login'
-      window.location.reload();
-    })
-    .error(function() {
-      // $location.path('#/account/login').replace();
-      window.location = '#/account/login'
-      window.location.reload();
-    });
+  signout($http);
 })
 
 .controller('FavoritesController', function($scope, $http) {
+  authCheck($http);
 
   $scope.empty = false;
   $scope.checkEmpty = function(items) {
@@ -151,6 +148,8 @@ angular.module('starter.controllers', [])
 })
 
 .controller('RecipeController', function($stateParams, $scope, $http, $ionicModal, ShoppingCart) {
+  authCheck($http);
+
   var id = parseInt($stateParams.id, 10);
 
   $http.get(settings.apiUrl + '/api/recipes/' + id)
@@ -218,7 +217,7 @@ angular.module('starter.controllers', [])
       // }
       // else if (i <= $scope.globalRating) {
       //   return 'ion-ios7-star';
-      // } 
+      // }
     } else {
       return $scope.numStarsRated >= i ? 'ion-ios7-star' : 'ion-ios7-star-outline';
     }
@@ -285,7 +284,7 @@ angular.module('starter.controllers', [])
   $scope.addToShoppingCart = function() {
     var ingredients = $scope.ingredients.map(function(ing) {
       return {
-        title: ing.name, 
+        title: ing.name,
         amount: ($scope.portions * ing.amount) + ' ' + ing.unit
       };
     });
@@ -296,6 +295,8 @@ angular.module('starter.controllers', [])
 })
 
 .controller('ShoppingCartController', function($scope, ShoppingCart) {
+  authCheck($http);
+
   $scope.items = ShoppingCart.all();
   $scope.empty = !$scope.items.length;
 
@@ -316,15 +317,8 @@ angular.module('starter.controllers', [])
 })
 
 .controller('SearchController', function($scope, $http) {
+  authCheck($http);
 
-  // $http.get(settings.apiUrl + '/api/user') // TODO: Finne en plass å ha den kontinuerlige sjekken for om du er logga inn.
-  //   .success(function(data) {
-  //     console.log('success', data);
-  //   })
-  //   .error(function(data, status) {
-  //     console.log('Error fetching user', JSON.stringify(data), 'Status:', status);
-  //   });
-  
   $scope.hasSearched = false;
   $scope.search = function(obj) {
     var q = obj.query;
@@ -335,12 +329,13 @@ angular.module('starter.controllers', [])
           recipe.image = recipe.image || '/img/ionic.png';
           recipe.image = recipe.image.replace(/(v[0-9]*)/, 'w_100,h_100,c_fill');
           $scope.hasSearched = true;
+
         });
 
         $scope.results = response.recipes;
       })
-      .error(function(response) {
-        console.log('Error searching for recipe', JSON.stringify(response), 'Status:', status);
+      .error(function(data, status) {
+        console.log('Error searching for recipe', JSON.stringify(data), 'Status:', status);
       });
   };
 
@@ -348,22 +343,28 @@ angular.module('starter.controllers', [])
 })
 
 .controller('RecommenderController', function($scope, $http) {
+  authCheck($http);
+
   $scope.infoShown = localStorage.getItem('mealchooser-recommender-info-not-shown');
-  $scope.confirmRecommendation = function() {
-    console.log('confirm');
-  };
-
-  $scope.declineReommendation = function() {
-    console.log('decline');
-  };
-
   $scope.removeInfo = function() {
     localStorage.setItem('mealchooser-recommender-info-not-shown', false);
     $scope.infoShown = true;
   };
+
+  $scope.confirmRecommendation = function() { console.log('confirm'); };
+  $scope.declineReommendation = function() { console.log('decline'); };
+
+  $http.get(settings.apiUrl + '/api/recommendation/recipes')
+    .success(function(response) {
+      $scope.recommendations = response.recipes;
+    })
+    .error(function(data) {
+      console.log('Recommendation error', JSON.stringify(data));
+    });
 })
 
 .controller('ColdstartController', function($scope, $http) {
+  authCheck($http);
 
 })
 
@@ -400,7 +401,7 @@ angular.module('starter.controllers', [])
   };
 
   $scope.cards = [];
-  for(var i = 0; i < 3; i++) 
+  for(var i = 0; i < 3; i++)
     $scope.addCard();
 
   $scope.$watch('cards', function(newArray) {
@@ -423,6 +424,8 @@ angular.module('starter.controllers', [])
 // })
 
 .controller('SettingsController', function($scope, $http) {
+  authCheck($http);
+
   $scope.settings = {
     email: 'pelle@krogstad.no',
     name: 'Pelle Krogstad',

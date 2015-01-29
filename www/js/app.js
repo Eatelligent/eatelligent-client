@@ -5,7 +5,7 @@
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'pascalprecht.translate', 'starter.controllers', 'starter.services', 'starter.directives', 'ngCookies', 'ionic.contrib.ui.tinderCards','angularSpinner'])
-.run(function($ionicPlatform, $http, $cookies) {
+.run(function($ionicPlatform, $http, $cookies, $translate) {
 
   $http.defaults.headers.post['id'] = $cookies.csrftoken;
   $ionicPlatform.ready(function() {
@@ -19,7 +19,22 @@ angular.module('starter', ['ionic', 'pascalprecht.translate', 'starter.controlle
       StatusBar.styleDefault();
       // StatusBar.hide();
     }
+
+    var globalization = navigator.globalization;
+    
+    if(globalization) {
+      globalization.getPreferredLanguage(
+        function (language) { 
+          $translate.use(language.value.split('-')[0]); 
+        },
+        function () { 
+          console.log('Error getting language\n');
+        }
+      );
+    }
   });
+
+
 })
 
 .config(function($stateProvider, $urlRouterProvider, $translateProvider, $httpProvider) {
@@ -128,6 +143,7 @@ angular.module('starter', ['ionic', 'pascalprecht.translate', 'starter.controlle
   $translateProvider.translations('no', window.__translations_no);
 
   $translateProvider.preferredLanguage('en');
+
 });
 
 function ContentController($scope, $ionicSideMenuDelegate) {

@@ -352,15 +352,35 @@ angular.module('starter.controllers', [])
   };
 
   $scope.confirmRecommendation = function() { console.log('confirm'); };
-  $scope.declineReommendation = function() { console.log('decline'); };
+  $scope.declineReommendation = function() { console.log('decline');
+    $scope.recommendations.splice(0, 1);
+  };
+
+  $scope.name = '';
+  $scope.image = '';
+  $scope.description = '';
 
   $http.get(settings.apiUrl + '/api/recommendation/recipes')
     .success(function(response) {
-      $scope.recommendations = response.recipes;
+      $scope.recommendations = response.recommendations;
     })
     .error(function(data) {
       console.log('Recommendation error', JSON.stringify(data));
     });
+
+  $scope.$watch('recommendations', function(newArray) {
+    console.log('yes', arguments);
+    if(newArray && newArray.length) {
+      var recipe = newArray[0].recipe;
+      $scope.name = recipe.name;
+      $scope.image = (recipe.image || '').replace(/(v[0-9]*)/, 'w_300,h_300,c_fill');
+      $scope.description = recipe.description;
+      $scope.empty = false;
+    } else if(newArray && newArray.length == 0) {
+      console.log('ferdig');
+      $scope.empty = true;
+    }
+  }, true);
 })
 
 .controller('ColdstartController', function($scope, $http) {

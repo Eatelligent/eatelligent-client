@@ -10,15 +10,15 @@
       </div>
     </div>
 
-    <div class="list card">
+    <div class="list card" ng-if="!empty">
 
       <div class="item" ng-click="confirmRecommendation()">
-        <h2>Pretty Hate Machine</h2>
-        <p>Nine Inch Nails</p>
+        <h2>{{name}}</h2>
+        <p>{{description}}</p>
       </div>
 
       <div class="item item-image" ng-click="confirmRecommendation()">
-        <img src="img/lasagne-02_6.jpg">
+        <img ng-src="{{image}}">
       </div>
 
       <a class="item item-icon-left assertive" ng-click="declineReommendation()">
@@ -26,6 +26,13 @@
         Nei takk
       </a>
 
+    </div>
+
+    <div ng-if="empty" class="row">
+      <div class="col">
+        <h3 style="color: #666;">{{ 'recommend.emptyheader' | translate }}</h3>
+        <span>{{ 'recommend.emptytext' | translate }}</span>
+      </div>
     </div>
   </ion-content>
 </ion-view>

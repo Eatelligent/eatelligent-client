@@ -294,7 +294,7 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('ShoppingCartController', function($scope, ShoppingCart) {
+.controller('ShoppingCartController', function($scope, $http, ShoppingCart) {
   authCheck($http);
 
   $scope.items = ShoppingCart.all();

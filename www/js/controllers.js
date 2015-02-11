@@ -1,34 +1,24 @@
-var signout = function($http) {
+var signout = function($http, $location) {
   $http.get(settings.apiUrl + '/signOut')
-    .success(function(data, status, headers, config) {
-      // $location.path('#/account/login').replace();
-      window.location = '#/account/login';
-      window.location.reload();
-    })
-    .error(function() {
-      // $location.path('#/account/login').replace();
-      window.location = '#/account/login';
-      window.location.reload();
-    });
+  $location.path('/account/login');
 };
 
 var authCheck = function($http) {
   $http.get(settings.apiUrl + '/api/user')
     .error(function(data, status) {
       window.location = '#/account/login';
-      window.location.reload();
     });
 };
 
 angular.module('starter.controllers', [])
 
-.controller('SignupController', function($scope, $http, $location) {
-  $scope.redirect = function(location) {
-    window.location = '#/account/signup/'+location;
-  };
-})
+// .controller('SignupController', function($scope, $http, $location) {
+//   $scope.redirect = function(location) {
+//     window.location = '#/account/signup/'+location;
+//   };
+// })
 
-.controller('SignupControllerFresh', function($scope, $http) {
+.controller('SignupControllerFresh', function($scope, $http, $location) {
   $scope.user = {
     email: ''
   };
@@ -59,7 +49,7 @@ angular.module('starter.controllers', [])
             password: $scope.user.password
           })
           .success(function(data) {
-            window.location = '#/app/search';
+            $location.path('/app/coldstart');
           })
         })
         .error(function(data) {
@@ -83,7 +73,7 @@ angular.module('starter.controllers', [])
   $scope.checkIfAuthed = function() {
     $http.get(settings.apiUrl + '/api/user')
       .success(function(data) {
-        window.location = '#/app/search';
+        $location.path('/app/search');
       });
   };
 

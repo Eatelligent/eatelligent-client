@@ -58,7 +58,6 @@ angular.module('starter.controllers', [])
     } else {
       console.log('errors', $scope.errors);
     }
-
   };
 })
 
@@ -151,7 +150,7 @@ angular.module('starter.controllers', [])
       $scope.recipename = data.recipe.name;
       $scope.procedure = data.recipe.procedure;
       $scope.ingredients = data.recipe.ingredients;
-      $scope.image = data.recipe.image;
+      $scope.image = data.recipe.image.replace(/(v[0-9]*)/, 'w_500,h_280,c_fill');
       $scope.recipehours = Math.floor(data.recipe.time / 60);
       $scope.recipeminutes = data.recipe.time % 60;
       $scope.spicy = data.recipe.spicy;
@@ -183,9 +182,7 @@ angular.module('starter.controllers', [])
     $scope.numStarsRated = stars;
 
     $http.post(settings.apiUrl + '/api/ratings/recipes', {recipeId: id, rating: stars})
-      .success(function() {
-        // todo
-      })
+      .success(function() { /* todo */ })
       .error(function(data) {
         console.log('Error posting recipe rating', JSON.stringify(data));
       });
@@ -215,7 +212,11 @@ angular.module('starter.controllers', [])
     $scope.$apply();
   }, 1000);
 
-  $scope.portions = 1;
+  $scope.$on('$locationChangeStart', function( event ) {
+    $http.post(settings.apiUrl + '/api/recipes/viewed', {recipeId: id, duration: $scope.totalTime})
+  });
+
+  $scope.portions = 4;
 
   $scope.incrementPortions = function() {
     $scope.portions++;

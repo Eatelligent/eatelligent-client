@@ -116,5 +116,22 @@ window.__translations_en = {
 
   generic: {
     back: 'Back'
-  }
+  },
+
+  //units
+  pcs: 'pcs',
+  teaspoon: 'teaspoon',
+  gram: 'grams',
+  tablespoon: 'tablespoon',
+  deciliter: 'deciliter',
+  liter: 'liter',
+  kilogram: 'kg',
+  cup: 'cup',
+  bag: 'bag',
+  can: 'can',
+  clove: 'clove',
+  leafs: 'leafs',
+  slice: 'slice',
+  pinch: 'pinch'
+
 };

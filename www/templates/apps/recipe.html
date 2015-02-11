@@ -1,31 +1,26 @@
-<ion-view title="{{recipename}}"> <!-- Lasagne med solbrente tomater og god stemning"> -->
-  
+<ion-view title="{{recipename}}">
+
   <ion-content overflow-scroll="false">
-    <div class="recipe__image">
-      <img class="recipe__image__maximize" src="{{image}}"> <!-- Background and background-size: cover -->
+    <div class="recipe__image" ng-if="!loading">
+      <img class="recipe__image__maximize" ng-src="{{image}}">
     </div>
 
-    <div class="recipe__content padding">
+    <div class="recipe__content padding" ng-if="!loading">
       <div class="recipe__content__row">
         <div class="recipe__content__rating" ng-class="{rated: rated}">
           <div class="recipe__content__rating__star" ng-repeat="i in numStars" ng-click="rate(i)">
             <i ng-class="getStarClass(i)" class="icon"></i>
           </div>
-          <!-- <div class="recipe__content__rating__star"><i class="icon ion-ios7-star"></i></div> -->
-          <!-- <div class="recipe__content__rating__star"><i class="icon ion-ios7-star"></i></div> -->
-          <!-- <div class="recipe__content__rating__star"><i class="icon ion-ios7-star-half"></i></div> -->
-          <!-- <div class="recipe__content__rating__star"><i class="icon ion-ios7-star-outline"></i></div> -->
-          <!-- <div class="recipe__content__rating__star"><i class="icon ion-ios7-star-outline"></i></div> -->
         </div>
       </div>
 
-      <div class="recipe__content__row">
+      <div class="recipe__content__row" ng-if="!loading">
         <div class="recipe__content__name">
-          <h3>{{recipename}}</h3><!-- Lasagne med solbrente tomater og god stemning</h3> -->
+          <h3>{{recipename}}</h3>
         </div>
       </div>
 
-      <div class="recipe__content__row">
+      <div class="recipe__content__row" ng-if="!loading">
         <div class="recipe__content__info">
           <div class="recipe__content__info__item">
             <i class="icon ion-ios7-timer-outline"></i>
@@ -34,8 +29,9 @@
           </div>
         </div>
 
-        <div class="recipe__content__info">
-          <div class="recipe__content__info__item">
+        <div class="recipe__content__info" ng-if="!loading">
+          <div class="recipe__content__info__item" ng-if="spicy > 1">
+            Styrke
             <i ng-if="spicy > 0" class="icon ion-flame icon--assertive"></i>
             <i ng-if="spicy > 2" class="icon ion-flame icon--assertive"></i>
             <i ng-if="spicy > 2" class="icon ion-flame icon--assertive"></i>
@@ -44,7 +40,7 @@
         </div>
       </div>
 
-      <div class="recipe__content__row">
+      <div class="recipe__content__row" ng-if="!loading">
           <div class="recipe__content__portions">
             <div class="recipe__content__portions__text">{{ 'recipe.portions' | translate }}: {{portions}}</div>
           </div>
@@ -55,56 +51,37 @@
       </div>
 
 
-      <div class="recipe__content__row">
+      <div class="recipe__content__row" ng-if="!loading">
         <div class="recipe__content__ingredients">
           <h4>{{ 'recipe.ingredients' | translate }}</h4>
           <ul>
-            <li ng-repeat="ingredient in ingredients">{{ingredient.amount}} - {{ingredient.name}}</li>
-            <!-- <li>400 g kjøttdeig</li>
-            <li>2 ss olje til steking</li>
-            <li>1 stk hakket løk</li>
-            <li>2 båt finhakket hvitløk</li>
-            <li>1 boks hakkede hermetiske tomater</li>
-            <li>2 ss tomatpuré</li>
-            <li>1⁄2 ts pepper</li>
-            <li>1 ts salt</li>
-            <li>1 ss frisk basilikum</li>
-            <li>ca. 1 dl vann</li> -->
+            <li ng-repeat="ingredient in ingredients">{{ingredient.amount * portions}} {{ ingredient.unit | translate}} - {{ingredient.name}}</li>
           </ul>
         </div>
 
       </div>
-      
-      <div class="recipe__content__row">
-        <button class="button button-light" ng-click="openModal()">{{ 'recipe.showNutrient' | translate }}</button>
-      </div>
 
-      <div class="recipe__content__row">
+<!--  <div class="recipe__content__row">
+        <button class="button button-light" ng-click="openModal()">{{ 'recipe.showNutrient' | translate }}</button>
+      </div> -->
+
+      <div class="recipe__content__row" ng-if="!loading">
         <div class="recipe__content__procedure">
           <h4>{{ 'recipe.procedure' | translate }}</h4>
           <div ng-bind-html="procedure"></div>
-          <!-- <ul>
-            <li>Brun kjøttdeig i olje på sterk varme i to omganger. Ha all kjøttdeigen tilbake i stekepanna. Tilsett hakket løk, hvitløk, tomater, tomatpuré, salt, pepper og vann. La sausen småkoke i ca. 10 minutter til den begynner å tykne. Dryss over basilikum.</li>
-
-            <li>Smelt smør i en kjele og rør inn mel. Spe med melk under omrøring og la sausen koke i ca. 10 minutter. Den skal være forholdsvis tykk. Ha i parmesan og la osten smelte. Smak til med krydder.</li>
-
-            <li>Legg lasagneplater, kjøttsaus og ostesaus lagvis i en ildfast form. Start og avslutt med ostesaus. Dryss over revet ost til slutt.</li>
-
-            <li>Sett formen i stekeovn på 225° C og stek i 30-40 minutter. Kjenn etter med en pinne eller spiss kniv om pastaen er mør. La lasagnen hvile noen minutter før servering.</li>
-
-            <li>Server med baguette og salat ved siden av.</li>
-          </ul> -->
         </div>
       </div>
 
-      <div class="recipe__content__row">
+      <div class="recipe__content__row" ng-if="!loading">
         <button class="button button-positive" ng-click="addToShoppingCart()">{{ 'recipe.addToCart' | translate }}</button>
       </div>
 
-      <div ng-if="!isFavorite" class="recipe__content__row">
+      <div ng-if="!isFavorite" class="recipe__content__row" ng-if="!loading">
         <button class="button button-positive" ng-click="addToFavorites()">{{ 'recipe.addToFavorites' | translate }}</button>
       </div>
 
     </div>
   </ion-content>
+  <span ng-if="loading" class="padding" us-spinner></span>
+
 </ion-view>

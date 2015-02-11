@@ -1,6 +1,6 @@
 <ion-view title="{{ 'favorites.header' | translate }}">
   <ion-content class="padding">
-    <ion-list ng-if="!empty"
+    <ion-list ng-if="!empty && !loading"
               show-delete="shouldShowDelete"
               show-reorder="false"
               can-swipe="true">
@@ -11,7 +11,7 @@
         <h2>{{item.name}}</h2>
         <ion-option-button class="button-assertive"
                            ng-click="delete(item, $index)">
-          
+
           <i class="icon ion-trash-a"></i>
           {{ 'favorites.remove' | translate }}
         </ion-option-button>
@@ -22,12 +22,12 @@
         <ion-delete-button class="ion-minus-circled"
                            ng-click="items.splice($index, 1)">
         </ion-delete-button>
-        
+
 
       </ion-item>
     </ion-list>
 
-    <div ng-if="empty" class="row">
+    <div ng-if="empty && !loading" class="row">
       <div class="col">
         <h3 style="color: #666;">{{ 'favorites.emptyheader' | translate }}</h3>
         <span>{{ 'favorites.emptytext' | translate }}</span>
@@ -35,4 +35,6 @@
     </div>
 
   </ion-content>
+  <span ng-if="loading" class="padding" us-spinner></span>
+
 </ion-view>

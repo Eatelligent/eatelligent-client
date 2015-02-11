@@ -12,7 +12,7 @@
         <h5 translate="search.showingNResults" translate-value-n="{{results.length}}"></h5>
       </div>
 
-      <div class="search__results__list list">
+      <div class="search__results__list list" ng-if="!loading">
         <a class="item item-avatar" ng-repeat="result in results" href="#/app/recipes/{{result.id}}">
 
           <img ng-src="{{result.image}}">
@@ -23,4 +23,6 @@
     </div>
 
   </ion-content>
+  <span ng-if="loading" class="padding" us-spinner></span>
+
 </ion-view>

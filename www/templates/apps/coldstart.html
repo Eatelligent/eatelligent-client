@@ -1,20 +1,22 @@
 <ion-view title="{{ 'coldstart.header' | translate }}">
   <ion-content class="padding">
-    <p>{{ 'coldstart.why' | translate }}</p>
+    <p ng-if="!loading">{{ 'coldstart.why' | translate }}</p>
 
     <div ng-controller="CardsCtrl">
 
-      <td-cards>
-        <td-card ng-repeat="card in cards" on-destroy="cardDestroyed($index)" on-swipe="cardSwiped(this)" on-swipe-left="cardSwipedLeft($index)" on-swipe-right="cardSwipedRight($index)" on-partial-swipe="cardPartialSwipe(amt)" class="card-{{$index}}">
+      <td-cards ng-if="!loading">
+        <td-card ng-repeat="card in cards" on-destroy="cardDestroyed($index)" on-swipe="cardSwiped(this)" on-swipe-left="cardSwipedLeft($index, card.id)" on-swipe-right="cardSwipedRight($index)" on-partial-swipe="cardPartialSwipe(amt)" class="card-{{$index}}">
           <div class="image">
             <div class="no-text">NOPE</div>
             <img ng-src="{{card.image}}">
-            <div class="td-card__bottom-text">Lasagne med bolognese og ostesaus</div>
+            <div class="td-card__bottom-text">{{card.description}}</div>
             <div class="yes-text">LIKE</div>
           </div>
         </td-card>
       </td-cards>
+      <span ng-if="loading" class="padding" us-spinner></span>
     </div>
-      
+
   </ion-content>
+
 </ion-view>

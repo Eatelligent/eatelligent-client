@@ -10,7 +10,7 @@
       </div>
     </div>
 
-    <div class="list card" ng-if="!empty">
+    <div class="list card" ng-if="!empty && !loading">
 
       <div class="item" ng-click="confirmRecommendation()">
         <h2>{{name}}</h2>
@@ -21,18 +21,25 @@
         <img ng-src="{{image}}">
       </div>
 
-      <a class="item item-icon-left assertive" ng-click="declineReommendation()">
+      <a class="item item-icon-left assertive" style="width: 50%; float: left" ng-click="declineReommendation()">
         <i class="icon ion-close-round"></i>
         Nei takk
+      </a>
+      <a class="item item-icon-left balanced" style="width: 50%; float: right" ng-click="confirmRecommendation()">
+        <i class="icon ion-checkmark-round" style="float: right"></i>
+        Ja takk
       </a>
 
     </div>
 
-    <div ng-if="empty" class="row">
+    <div ng-if="empty && !loading" class="row">
       <div class="col">
         <h3 style="color: #666;">{{ 'recommend.emptyheader' | translate }}</h3>
         <span>{{ 'recommend.emptytext' | translate }}</span>
       </div>
     </div>
   </ion-content>
+
+  <span ng-if="loading" class="padding" style="" us-spinner></span>
+
 </ion-view>

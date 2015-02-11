@@ -86,24 +86,24 @@ angular.module('starter.controllers', [])
     $scope.loading = true;
     $http.post(settings.apiUrl + '/api/authenticate', auth)
       .success(function(data) {
-        window.location = '#/app/search';
         $location.path('/app/search');
       })
       .error(function(data, b, c) {
         $scope.loading = false;
         console.log('Login error', JSON.stringify(data), data);
-        $scope.errormessage = data.message;
+        $scope.errormessage = data.message || 'Something went wrong';
       });
   };
 })
 
 .controller('SignoutController', function($http, $location) {
-  signout($http);
+  signout($http, $location);
 })
 
 .controller('FavoritesController', function($scope, $http) {
   authCheck($http);
 
+  $scope.loading = true;
   $scope.empty = false;
   $scope.checkEmpty = function(items) {
     if(items.length === 0) {
@@ -125,6 +125,9 @@ angular.module('starter.controllers', [])
     })
     .error(function(data) {
       console.log('Favorites error', JSON.stringify(data));
+    })
+    .then(function() {
+      $scope.loading = false;
     });
 
   $scope.delete = function(item, index) {
@@ -137,9 +140,10 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('RecipeController', function($stateParams, $scope, $http, $ionicModal, ShoppingCart) {
+.controller('RecipeController', function($stateParams, $scope, $http, ShoppingCart) {
   authCheck($http);
 
+  $scope.loading = true;
   var id = parseInt($stateParams.id, 10);
 
   $http.get(settings.apiUrl + '/api/recipes/' + id)
@@ -161,9 +165,13 @@ angular.module('starter.controllers', [])
       } else {
         $scope.globalRating = data.recipe.averageRating;
       }
+
     })
     .error(function(data, status, headers, config) {
       console.log('error', JSON.stringify(data), status, headers, config);
+    })
+    .then(function() {
+      $scope.loading = false;
     })
 
   $scope.globalRating = 3.5;
@@ -195,49 +203,10 @@ angular.module('starter.controllers', [])
         return 'ion-ios7-star';
       }
       return 'ion-ios7-star-outline';
-
-
-      // if(i + 0.5 <= $scope.globalRating) {
-      //   console.log('her');
-      //   if ($scope.globalRating - 0.5 >= i) {
-      //     return 'ion-ios7-star';
-      //   } else {
-      //     return 'ion-ios7-star-half';
-      //   }
-      // }
-      // else if (i <= $scope.globalRating) {
-      //   return 'ion-ios7-star';
-      // }
     } else {
       return $scope.numStarsRated >= i ? 'ion-ios7-star' : 'ion-ios7-star-outline';
     }
   };
-
-  $ionicModal.fromTemplateUrl('templates/apps/nutrition.modal.html', {
-    scope: $scope,
-    animation: 'slide-in-up'
-  }).then(function(modal) {
-    $scope.modal = modal;
-  });
-
-  $scope.openModal = function() {
-    $scope.modal.show();
-  };
-  $scope.closeModal = function() {
-    $scope.modal.hide();
-  };
-  //Cleanup the modal when we're done with it!
-  $scope.$on('$destroy', function() {
-    $scope.modal.remove();
-  });
-  // Execute action on hide modal
-  $scope.$on('modal.hidden', function() {
-    // Execute action
-  });
-  // Execute action on remove modal
-  $scope.$on('modal.removed', function() {
-    // Execute action
-  });
 
   // Determine how long the user have watched a recipe.
   var startTime = moment();
@@ -308,32 +277,49 @@ angular.module('starter.controllers', [])
 
 .controller('SearchController', function($scope, $http) {
   authCheck($http);
-
   $scope.hasSearched = false;
+  $scope.loading = true;
+
+  var handleResponse = function(response) {
+    response.recipes.forEach(function(recipe) { // create thumbnail
+      recipe.image = recipe.image || '/img/ionic.png';
+      recipe.image = recipe.image.replace(/(v[0-9]*)/, 'w_100,h_100,c_fill');
+      $scope.hasSearched = true;
+    });
+
+    $scope.results = response.recipes;
+  };
+
+  $http.get(settings.apiUrl + '/api/recipes?published=true&deleted=false&limit=10')
+    .success(handleResponse)
+    .error(function() {
+      authCheck($http);
+    })
+    .then(function() {
+      $scope.loading = false;
+    });
+
+
   $scope.search = function(obj) {
     var q = obj.query;
+    $scope.loading = true;
 
     $http.get(settings.apiUrl + '/api/recipes?published=true&deleted=false&q=' + q)
-      .success(function(response) {
-        response.recipes.forEach(function(recipe) { // create thumbnail
-          recipe.image = recipe.image || '/img/ionic.png';
-          recipe.image = recipe.image.replace(/(v[0-9]*)/, 'w_100,h_100,c_fill');
-          $scope.hasSearched = true;
-
-        });
-
-        $scope.results = response.recipes;
-      })
+      .success(handleResponse)
       .error(function(data, status) {
         console.log('Error searching for recipe', JSON.stringify(data), 'Status:', status);
+      })
+      .then(function() {
+        $scope.loading = false;
       });
   };
 
   // TODO: Sette $scope.results til ei top 10 liste når ingenting er utfylt. (Kanskje siste søk etter det)
 })
 
-.controller('RecommenderController', function($scope, $http) {
-  authCheck($http);
+.controller('RecommenderController', function($scope, $http, $location) {
+
+  $scope.loading = true;
 
   $scope.infoShown = localStorage.getItem('mealchooser-recommender-info-not-shown');
   $scope.removeInfo = function() {
@@ -341,8 +327,14 @@ angular.module('starter.controllers', [])
     $scope.infoShown = true;
   };
 
-  $scope.confirmRecommendation = function() { console.log('confirm'); };
-  $scope.declineReommendation = function() { console.log('decline');
+  $scope.confirmRecommendation = function() {
+    var choice = $scope.recommendations[0];
+
+    // TODO: Send inn hvilken som ble valgt til AI-endpoint
+
+    $location.path('/app/recipes/'+choice.recipe.id);
+  };
+  $scope.declineReommendation = function() {
     $scope.recommendations.splice(0, 1);
   };
 
@@ -356,10 +348,12 @@ angular.module('starter.controllers', [])
     })
     .error(function(data) {
       console.log('Recommendation error', JSON.stringify(data));
+    })
+    .then(function() {
+      $scope.loading = false;
     });
 
   $scope.$watch('recommendations', function(newArray) {
-    console.log('yes', arguments);
     if(newArray && newArray.length) {
       var recipe = newArray[0].recipe;
       $scope.name = recipe.name;
@@ -376,47 +370,57 @@ angular.module('starter.controllers', [])
 .controller('ColdstartController', function($scope, $http) {
   authCheck($http);
 
+  // $http.get(settings.apiUrl + '/api/coldstart')
+  //   .success(function(response) {
+  //   })
+
+  // TODO: get cold start shit
 })
 
-.controller('CardsCtrl', function($scope, TDCardDelegate) {
-  var cardTypes = [
-    { image: 'img/lasagne-02_6.jpg' },
-    { image: 'img/lasagne-02_6.jpg' },
-    { image: 'img/lasagne-02_6.jpg' }
-  ];
+.controller('CardsCtrl', function($scope, $http, $location, TDCardDelegate) {
+  $scope.loading = true;
+
+  $scope.cards = [];
+  $http.get(settings.apiUrl + '/api/coldstart')
+    .success(function(response) {
+      var array = [];
+      response.choices.forEach(function(choice) {
+        array.push({
+          image: choice.image,
+          description: choice.description,
+          id: choice.id
+        });
+      });
+
+      $scope.cards = array;
+      $scope.loading = false;
+    });
 
   $scope.cardDestroyed = function(index) {
     console.log('$scope.cardDestroyed', arguments);
     $scope.cards.splice(index, 1);
   };
 
-  $scope.addCard = function() {
-    var newCard = {
-      image: 'img/ionic.png',
-      id: Math.random()
-    };
-    $scope.cards.push(newCard); // angular.extend({}, newCard));
-  }
-
-  $scope.cardSwiped = function() {
-    console.log('swipe', arguments);
-  }
+  $scope.cardSwiped = function() {}
 
   $scope.cardSwipedRight = function(index) {
-    console.log('RIGHT SWIPE');
+    console.log('RIGHT SWIPE', arguments);
+    var cards = $scope.cards[index];
+    $http.post(settings.apiUrl + '/api/coldstart', {coldStartId: cards.id, answer: true});
   };
 
   $scope.cardSwipedLeft = function(index) {
     console.log('LEFT SWIPE');
+    var cards = $scope.cards[index];
+    $http.post(settings.apiUrl + '/api/coldstart', {coldStartId: cards.id, answer: false});
   };
 
-  $scope.cards = [];
-  for(var i = 0; i < 3; i++)
-    $scope.addCard();
 
-  $scope.$watch('cards', function(newArray) {
-    if(newArray.length === 0) {
-      console.log('done, finn på noe anna');
+  $scope.$watch('cards', function(newArray, old) {
+    console.log(arguments);
+    if(newArray.length === 0 && old.length === 1) {
+      // console.log('done, finn på noe anna');
+      $location.path('/app/recommend');
     }
   }, true);
 })

@@ -226,6 +226,10 @@ angular.module('starter.controllers', [])
     $scope.portions = Math.max(1, $scope.portions - 1);
   };
 
+  $scope.convertToFraction = function(a, b) {
+    return (new Fraction(a * b).toString())
+  };
+
   $scope.isFavorite = true;
   $http.get(settings.apiUrl + '/api/favorites/recipes')
     .success(function(response) {

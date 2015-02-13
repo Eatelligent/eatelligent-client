@@ -55,7 +55,7 @@
         <div class="recipe__content__ingredients">
           <h4>{{ 'recipe.ingredients' | translate }}</h4>
           <ul>
-            <li ng-repeat="ingredient in ingredients">{{ingredient.amount * portions}} {{ ingredient.unit | translate}} - {{ingredient.name}}</li>
+            <li ng-repeat="ingredient in ingredients">{{convertToFraction(ingredient.amount, portions)}} {{ ingredient.unit | translate}} - {{ingredient.name}}</li>
           </ul>
         </div>
 

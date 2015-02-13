@@ -1,6 +1,10 @@
 // Sidebar
 $sidebar_image_size: 120px;
 
+.sidebar__item:first-child {
+  margin-top:40px;
+}
+
 .sidebar__profile {
   height: 140px;
   margin-top: 20px;

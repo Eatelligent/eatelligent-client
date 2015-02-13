@@ -37,12 +37,18 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 .td-card__bottom-text {
   position: relative;
   top: -60px;
-  background-color: white;
+  background-color: $light;
   width: 100%;
-  padding: 5px;
+  text-align: center;
+  padding: 14px;
   height: 54.5px;
   font-size: 12pt;
   border-bottom-left-radius: 6px;
   border-bottom-right-radius: 6px;
   border-top: 1px solid #ccc;
+}
+
+.toggle .track.gender {
+  background-color: $assertive;
+  border-color: $assertive;
 }

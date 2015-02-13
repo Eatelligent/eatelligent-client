@@ -17,7 +17,7 @@
 
 .icon--positive {
   color: $positive;
-} 
+}
 
 .icon--calm {
   color: $calm;
@@ -25,7 +25,7 @@
 
 .icon--balanced {
   color: $balanced;
-} 
+}
 
 .icon--energized {
   color: $energized;
@@ -37,4 +37,10 @@
 
 .icon--dark {
   color: $dark;
-}     
+}
+
+.modal-wrapper {
+  .scroll-content {
+    overflow: scroll !important;
+  }
+}

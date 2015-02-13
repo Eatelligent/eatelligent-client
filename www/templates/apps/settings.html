@@ -1,34 +1,60 @@
 
 <ion-view title="{{ 'settings.header' | translate }}">
   <ion-content>
-    <ion-list>
-
+    <!-- <ion-list> -->
+    <div class="list">
       <div class="item item-divider">
         {{ 'settings.personalInformation' | translate }}
       </div>
 
-      <ion-item class="item item-icon-left">
-        <i class="icon ion-email"></i>
-        {{ 'settings.email' | translate }}
-        <span class="item-note">
-          {{email}}
-        </span>
-      </ion-item>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">{{'settings.email' | translate}}</span>
+        <input type="text" ng-model="user.email">
+      </label>
 
-      <ion-item class="item item-icon-left">
-        <i class="icon ion-person"></i>
-        {{ 'settings.name' | translate }}
-        <span class="item-note">
-          <input type="text" value="{{settings.name}}">
-        </span>
-      </ion-item>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">{{'settings.name' | translate}}</span>
+        <input type="text" value="{{user.firstName}} {{user.lastName}}">
+      </label>
 
-      <div class="item item-divider">
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">{{'settings.city' | translate}}</span>
+        <input type="text" ng-model="user.city" value="{{user.city}}" placeholder="Hamar" ng-change="change()">
+      </label>
+
+      <label class="item item-input item-select">
+        <div class="input-label">
+          Year of birth
+        </div>
+        <select ng-controller="Years" ng-model="user.yearBorn" ng-change="change()">
+          <option ng-repeat="year in years">{{year.year}}</option>
+        </select>
+      </label>
+
+    </div>
+
+
+    <div class="item item-divider">
+      {{ 'settings.others' | translate }}
+    </div>
+
+    <div class="list card">
+      <a class="item item-icon-right" ng-click="showAboutModal()">
+        {{'settings.aboutLink' | translate}}
+        <i class="icon ion-help"></i>
+      </a>
+      <a class="item item-icon-right" ng-click="resetKnowledgeBase()">
+        {{'settings.resetMyAI' | translate}}
+        <i class="icon ion-close-round"></i>
+      </a>
+    </div>
+
+ <!-- </ion-list> -->
+      <!-- <div class="item item-divider">
         {{ 'settings.allergies' | translate }}
       </div>
 
       <ul class="list">
-
         <li class="item item-toggle">
           {{ 'settings.glutenAllergy' | translate }}
           <label class="toggle toggle-positive">
@@ -77,8 +103,7 @@
           </label>
         </li>
 
-      </ul>
+      </ul> -->
 
-    </ion-list>
   </ion-content>
 </ion-view>

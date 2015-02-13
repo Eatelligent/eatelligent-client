@@ -9,7 +9,7 @@
           <div class="image">
             <div class="no-text">NOPE</div>
             <img ng-src="{{card.image}}">
-            <div class="td-card__bottom-text">{{card.description}}</div>
+            <div class="td-card__bottom-text">{{ card.description | translate}}</div>
             <div class="yes-text">LIKE</div>
           </div>
         </td-card>
@@ -18,5 +18,4 @@
     </div>
 
   </ion-content>
-
 </ion-view>

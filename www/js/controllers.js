@@ -61,13 +61,24 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('LoginController', function($scope, $http, $location) {
+.controller('LoginController', function($scope, $http, $location, $translate) {
+
+  if(!!localStorage.getItem('mealchooser-reset-password')) {
+    $scope.errormessage = 'reset true';
+    localStorage.removeItem('mealchooser-reset-password');
+    if($translate.preferredLanguage() === 'en') {
+      $scope.errormessage = window.__translations_en.forgot.doneMessage;
+    } else {
+      $scope.errormessage = window.__translations_no.forgot.doneMessage;
+    }
+  }
+
+
   $scope.user = {
-    email: 'admin@admin.com',
+    email: localStorage.getItem('mealchooser-email') || 'admin@admin.com',
     password: 'admin'
   };
   $scope.loading = false;
-  // $scope.errormessage = '';
 
   $scope.checkIfAuthed = function() {
     $http.get(settings.apiUrl + '/api/user')
@@ -82,6 +93,8 @@ angular.module('starter.controllers', [])
       password: $scope.user.password
     };
 
+    localStorage.setItem('mealchooser-email', auth.email);
+
     $scope.loading = true;
     $http.post(settings.apiUrl + '/api/authenticate', auth)
       .success(function(data) {
@@ -95,8 +108,48 @@ angular.module('starter.controllers', [])
   };
 })
 
+.controller('ForgotController', function($scope, $http, $location) {
+
+  $scope.email = localStorage.getItem('mealchooser-email') || '';
+
+  $scope.sendEmail = function() {
+    $scope.loading = true;
+    $http.post(settings.apiUrl + '/api/reset', {email: $scope.email})
+      .success(function() {
+        localStorage.setItem('mealchooser-reset-password', true);
+        $location.path('/account/login');
+
+        $scope.loading = false;
+      })
+      .error(function(data) {
+        $scope.loading = false;
+        console.log('Reset password error', JSON.stringify(data));
+      })
+  }
+})
+
 .controller('SignoutController', function($http, $location) {
   signout($http, $location);
+})
+
+.controller('HistoryController', function($scope, $http) {
+  authCheck($http);
+  $scope.loading = true;
+
+  $http.get(settings.apiUrl + '/api/recipes/viewed')
+    .success(function(response) {
+      $scope.items = response.viewedRecipes.map(function(view) {
+        view.recipe.image = view.recipe.image.replace(/(v[0-9]*)/, 'w_100,h_100,c_fill');
+        return view;
+      });
+    })
+    .error(function(data) {
+      console.log('History error', JSON.stringify(data));
+      $scope.empty = true;
+    })
+    .then(function() {
+      $scope.loading = false;
+    });
 })
 
 .controller('FavoritesController', function($scope, $http) {
@@ -333,13 +386,13 @@ angular.module('starter.controllers', [])
   };
 
   $scope.confirmRecommendation = function() {
-    var choice = $scope.recommendations[0];
-
-    // TODO: Send inn hvilken som ble valgt til AI-endpoint
-
-    $location.path('/app/recipes/'+choice.recipe.id);
+    var id = $scope.recommendations[0].recipe.id;
+    $http.post(settings.apiUrl + '/api/ratings/recipes/binary', {recipeId: id, rating: true})
+    $location.path('/app/recipes/'+id);
   };
   $scope.declineReommendation = function() {
+    var id = $scope.recommendations[0].recipe.id;
+    $http.post(settings.apiUrl + '/api/ratings/recipes/binary', {recipeId: id, rating: false})
     $scope.recommendations.splice(0, 1);
   };
 
@@ -350,13 +403,13 @@ angular.module('starter.controllers', [])
   $http.get(settings.apiUrl + '/api/recommendation/recipes')
     .success(function(response) {
       $scope.recommendations = response.recommendations;
+      $scope.loading = false;
     })
     .error(function(data) {
       console.log('Recommendation error', JSON.stringify(data));
-    })
-    .then(function() {
       $scope.loading = false;
-    });
+      $scope.empty = true;
+    })
 
   $scope.$watch('recommendations', function(newArray) {
     if(newArray && newArray.length) {
@@ -374,12 +427,6 @@ angular.module('starter.controllers', [])
 
 .controller('ColdstartController', function($scope, $http) {
   authCheck($http);
-
-  // $http.get(settings.apiUrl + '/api/coldstart')
-  //   .success(function(response) {
-  //   })
-
-  // TODO: get cold start shit
 })
 
 .controller('CardsCtrl', function($scope, $http, $location, TDCardDelegate) {
@@ -409,22 +456,18 @@ angular.module('starter.controllers', [])
   $scope.cardSwiped = function() {}
 
   $scope.cardSwipedRight = function(index) {
-    console.log('RIGHT SWIPE', arguments);
     var cards = $scope.cards[index];
     $http.post(settings.apiUrl + '/api/coldstart', {coldStartId: cards.id, answer: true});
   };
 
   $scope.cardSwipedLeft = function(index) {
-    console.log('LEFT SWIPE');
     var cards = $scope.cards[index];
     $http.post(settings.apiUrl + '/api/coldstart', {coldStartId: cards.id, answer: false});
   };
 
 
   $scope.$watch('cards', function(newArray, old) {
-    console.log(arguments);
     if(newArray.length === 0 && old.length === 1) {
-      // console.log('done, finn på noe anna');
       $location.path('/app/recommend');
     }
   }, true);
@@ -442,16 +485,75 @@ angular.module('starter.controllers', [])
 //   // }
 // })
 
-.controller('SettingsController', function($scope, $http) {
+.controller('SettingsController', function($scope, $http, $ionicModal, $translate) {
   authCheck($http);
 
+  var convertGender = function(sex) {
+    return sex;
+    if(typeof sex === 'boolean') { return sex ? 'male' : 'female' }
+    return sex === 'male';
+  };
+
   $scope.settings = {
-    email: 'pelle@krogstad.no',
-    name: 'Pelle Krogstad',
+    // email: 'pelle@krogstad.no',
+    // name: 'Pelle Krogstad',
     allergies: {}
   };
 
-  $scope.allergyChange = function(what) {
-    $scope.settings.allergies[what] = 'vasadasdl'
+  $http.get(settings.apiUrl + '/api/user')
+    .success(function(response) {
+      var user = response.user;
+      user.sex = convertGender(user.sex);
+
+      $scope.user = user;
+      $scope.settings.email = user.email;
+      $scope.settings.name = user.firstName + ' ' + user.lastName;
+    })
+
+  $scope.change = function() {
+    if($scope.user.yearBorn) { $scope.user.yearBorn = parseInt($scope.user.yearBorn); }
+    $http.put(settings.apiUrl + '/api/user', $scope.user)
+      .error(function(data) {
+        console.log('Error updating user', JSON.stringify(data));
+      });
+  };
+
+  $scope.abouttext = "<h1>banan</h1><p>Lol</p>";
+
+  $ionicModal.fromTemplateUrl('templates/apps/about.modal.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.loading = true;
+    $scope.modal = modal;
+
+    var lang = $translate.preferredLanguage() === 'en' ? 'EN-en' : 'NO-no';
+    console.log(lang);
+
+    $http.get(settings.apiUrl + '/api/about?language=' + lang)
+      .success(function(response) {
+        $scope.abouttext = '<h3>Banan</h3>text<p>text</p><h4>arne</h4><p>';
+      })
+      .error(function(data) {
+        $scope.abouttext = 'Error fetching';
+        console.log('Error fetching about', JSON.stringify(data));
+        $scope.loading = false;
+      })
+  });
+
+  $scope.showAboutModal = function() {
+    $scope.modal.show();
+  }
+  $scope.closeModal = function() {
+    $scope.modal.hide();
+  };
+  $scope.$on('$destroy', function() {
+    $scope.modal.remove();
+  });
+
+  $scope.resetKnowledgeBase = function() {
+    if(confirm('Sure?')) {
+      // do it
+    }
   }
 });

@@ -1,13 +1,19 @@
 window.__translations_en = {
   sidebar: { // Missing some
+    history: 'Last viewed recipes',
     search: 'Search',
     favorites: 'Favorites',
     recommend: 'Recommender',
     settings: 'Settings',
     shoppingCart: 'Shopping Cart',
-    signout: 'Sign out',
-    Coldstart: '< COLD START PROBLEM >', // <--- TODO
-    "Random Recipe" : '< RANDOM RECIPE >' // <--- TODO,
+    signout: 'Sign out'
+    // Coldstart: '< COLD START PROBLEM >' // <--- TODO
+  },
+
+  history: {
+    header: 'History',
+    emptyheader: 'No recipes viewed yet',
+    emptytext: 'You can browse recipes eighter in the <a href="#/app/search">search</a> or the <a href="#/app/recommend">recommender</a>.'
   },
 
   coldstart: {
@@ -34,12 +40,20 @@ window.__translations_en = {
     personalInformation: 'Personal Information',
     email: 'Email',
     name: 'Name',
-    allergies: 'Allergies',
-    glutenAllergy: 'Gluten allergy',
-    nutsAllergy: 'Nut allergy',
-    celiacDisease: 'Celiac disease',
-    soyaAllergy: 'Soya allergy',
-    wheatAllergy: 'Wheat allergy'
+    city: 'City',
+    others: 'Usefull links',
+    aboutLink: 'About this project',
+    resetMyAI: 'Reset my knowledge base',
+    // allergies: 'Allergies',
+    // glutenAllergy: 'Gluten allergy',
+    // nutsAllergy: 'Nut allergy',
+    // celiacDisease: 'Celiac disease',
+    // soyaAllergy: 'Soya allergy',
+    // wheatAllergy: 'Wheat allergy'
+
+    about: {
+      header: 'About'
+    }
   },
 
   shoppingCart: {
@@ -101,7 +115,7 @@ window.__translations_en = {
       errors: {
         disjointPasswords: 'Passwords does not match',
         emptyPassword: 'Empty password fields',
-        noAlpha: 'The email need to contain one @ (atsign)'
+        noAlpha: 'The email is not valid'
       }
     }
   },
@@ -111,7 +125,15 @@ window.__translations_en = {
     username: 'Email',
     password: 'Password',
     loginSubmitButton: 'Login',
-    newAccount: 'Signup a new user account'
+    newAccount: 'Signup a new user account',
+    forgotPassword: 'I forgot my password'
+  },
+
+  forgot: {
+    header: 'Forgot password',
+    email: 'Email',
+    sendEmail: 'Send email',
+    doneMessage: 'We have sent you a email with instructions to reset you password'
   },
 
   generic: {
@@ -132,6 +154,12 @@ window.__translations_en = {
   clove: 'clove',
   leafs: 'leafs',
   slice: 'slice',
-  pinch: 'pinch'
+  pinch: 'pinch',
 
+  // Cold start API-strings
+  'Do you like meat?': 'Do you like meat?',
+  'Do you like spicy food?': 'Do you like spicy food?',
+  'Do you view yourself as a good chef?': 'Do you view yourself as a good chef?',
+  'Do you like fish?': 'Do you like fish?',
+  'Do you like chicken?': 'Do you like chicken?'
 };

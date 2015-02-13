@@ -21,13 +21,13 @@ angular.module('starter', ['ionic', 'pascalprecht.translate', 'starter.controlle
     }
 
     var globalization = navigator.globalization;
-    
+
     if(globalization) {
       globalization.getPreferredLanguage(
-        function (language) { 
-          $translate.use(language.value.split('-')[0]); 
+        function (language) {
+          $translate.use(language.value.split('-')[0]);
         },
-        function () { 
+        function () {
           console.log('Error getting language\n');
         }
       );
@@ -81,6 +81,12 @@ angular.module('starter', ['ionic', 'pascalprecht.translate', 'starter.controlle
       controller: 'LoginController'
     })
 
+    .state('account.forgot', {
+      url: '/forgot',
+      templateUrl: 'templates/account/forgot.html',
+      controller: 'ForgotController'
+    })
+
     // app states
     .state('app', {
       abstract: true,
@@ -92,6 +98,12 @@ angular.module('starter', ['ionic', 'pascalprecht.translate', 'starter.controlle
       url: '/coldstart',
       templateUrl: 'templates/apps/coldstart.html',
       controller: 'ColdstartController'
+    })
+
+    .state('app.history', {
+      url: '/history',
+      templateUrl: 'templates/apps/history.html',
+      controller: 'HistoryController'
     })
 
     .state('app.favorites', {
@@ -132,6 +144,7 @@ angular.module('starter', ['ionic', 'pascalprecht.translate', 'starter.controlle
 
     .state('app.logout', {
       url: '/logout',
+      templateUrl: 'templates/account/signout.html',
       controller: 'SignoutController'
     });
 

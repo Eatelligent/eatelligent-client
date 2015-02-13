@@ -1,8 +1,16 @@
 angular.module('starter.directives', [])
   .controller('SideBarController', ['$scope', function($scope) {
-    var random = _.random(1, 50);    
+    var random = _.random(1, 50);
 
     $scope.links = [
+      {
+        'url': '#/app/history',
+        'name': 'history'
+      },
+      {
+        'url': '#/app/recommend',
+        'name': 'recommend'
+      },
       {
         'url': '#/app/search',
         'name': 'search'
@@ -11,18 +19,10 @@ angular.module('starter.directives', [])
         'url': '#/app/favorites',
         'name': 'favorites'
       },
-      {
-        'url': '#/app/recommend',
-        'name': 'recommend'
-      },
-      { // todo
-        'url': '#/app/recipes/'+random,
-        'name': 'Random Recipe'
-      },
-      {
-        'url': '#/app/coldstart',
-        'name': 'Coldstart'
-      },
+      // {
+      //   'url': '#/app/coldstart',
+      //   'name': 'Coldstart'
+      // },
       {
         'url': '#/app/shoppingcart',
         'name': 'shoppingCart'
@@ -55,6 +55,6 @@ angular.module('starter.directives', [])
         years[years.length-1].selected = 'selected';
     });
 
-    $scope.years = years; 
+    $scope.years = years;
   }])
 ;

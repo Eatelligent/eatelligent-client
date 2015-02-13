@@ -72,16 +72,15 @@
         </div>
       </div>
 
-      <div class="recipe__content__row" ng-if="!loading">
-        <button class="button button-positive" ng-click="addToShoppingCart()">{{ 'recipe.addToCart' | translate }}</button>
+      <div class="recipe__content__row padding" ng-if="!loading">
+        <button class="button button-positive" style="width: 100%" ng-click="addToShoppingCart()">{{ 'recipe.addToCart' | translate }}</button>
       </div>
 
       <div ng-if="!isFavorite" class="recipe__content__row" ng-if="!loading">
-        <button class="button button-positive" ng-click="addToFavorites()">{{ 'recipe.addToFavorites' | translate }}</button>
+        <button class="button button-positive" style="width: 100%" ng-click="addToFavorites()">{{ 'recipe.addToFavorites' | translate }}</button>
       </div>
 
     </div>
   </ion-content>
   <span ng-if="loading" class="padding" us-spinner></span>
-
 </ion-view>

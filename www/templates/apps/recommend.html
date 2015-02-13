@@ -1,5 +1,5 @@
 <ion-view title="{{ 'recommend.title' | translate }}">
-  <ion-content>
+  <ion-content class="padding">
     <div class="card" ng-if="!infoShown">
       <div class="item item-divider">
       {{ 'recommend.information' | translate }}
@@ -12,12 +12,12 @@
 
     <div class="list card" ng-if="!empty && !loading">
 
-      <div class="item" ng-click="confirmRecommendation()">
+      <div class="item">
         <h2>{{name}}</h2>
         <p>{{description}}</p>
       </div>
 
-      <div class="item item-image" ng-click="confirmRecommendation()">
+      <div class="item item-image">
         <img ng-src="{{image}}">
       </div>
 
@@ -39,7 +39,5 @@
       </div>
     </div>
   </ion-content>
-
-  <span ng-if="loading" class="padding" style="" us-spinner></span>
-
+  <span ng-if="loading" class="padding" us-spinner></span>
 </ion-view>

@@ -32,7 +32,9 @@ window.__translations_en = {
     information: 'Information',
     description: 'This recipes is recommended to you based on your and other users history of ratings. The more you use the application and rate recipes, the better the recommendation will get.',
     emptyheader: 'No recommendations available',
-    emptytext: 'We have no recommendations available for you right now. Please come back later for more personalized recommendations.'
+    emptytext: 'We have no recommendations available for you right now. Please come back later for more personalized recommendations.',
+    yes: 'Yes Please',
+    no: 'No Thanks'
   },
 
   settings: {

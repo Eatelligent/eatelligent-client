@@ -1,0 +1,11 @@
+<ion-modal-view>
+  <ion-header-bar>
+    <button class="button button-icon icon ion-ios7-close-empty pull-right" ng-click="closeModal()"></button>
+    <h1 class="title">{{ 'settings.about.header' | translate }}</h1>
+  </ion-header-bar>
+  <ion-content scroll="true" class="padding">
+    <any ng-if="!loading" ng-bind-html="abouttext"></any>
+  </ion-content>
+  <span ng-if="loading" class="padding" us-spinner></span>
+
+</ion-modal-view>

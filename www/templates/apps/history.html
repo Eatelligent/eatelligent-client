@@ -1,0 +1,31 @@
+<ion-view title="{{ 'history.header' | translate }}">
+  <ion-content class="padding">
+    <div class="padding" ng-if="noInternet">
+      <div class="col">
+        <h3 style="color: #666;">{{ 'generic.noInternetHeader' | translate }}</h3>
+        <span>{{ 'generic.noInternetDescription' | translate }}</span>
+      </div>
+    </div>
+    <ion-list ng-if="!empty && !loading"
+              show-delete="shouldShowDelete"
+              show-reorder="false"
+              can-swipe="true">
+      <ion-item ng-repeat="item in items"
+                class="item-thumbnail-left" href="#/app/recipes/{{item.recipe.id}}">
+
+        <img ng-src="{{item.recipe.image}}" onerror="this.src='/img/ionic.png'">
+        <h2>{{item.recipe.name}}</h2>
+        <p>{{ 'history.recipe' | translate}}</p>
+      </ion-item>
+    </ion-list>
+
+    <div ng-if="empty && !loading" class="row">
+      <div class="col">
+        <h3 style="color: #666;">{{ 'history.emptyheader' | translate }}</h3>
+        <span translate="history.emptytext"></span>
+      </div>
+    </div>
+
+  </ion-content>
+  <span ng-if="loading && !noInternet" class="padding" us-spinner></span>
+</ion-view>

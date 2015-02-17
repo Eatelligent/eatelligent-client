@@ -1,0 +1,17 @@
+<ion-view title="{{ 'forgot.header' | translate }}">
+  <ion-content>
+    <div class="list list-inset" ng-if="!loading">
+      <label class="item item-input">
+        <span class="input-label">{{ 'forgot.email' | translate }}</span>
+        <input type="text" ng-model="email">
+      </label>
+    </div>
+
+    <div class="padding" ng-if="!loading">
+      <button class="button button-block button-positive" ng-click="sendEmail()">{{ 'forgot.sendEmail' | translate }}</button>
+    </div>
+
+  </ion-content>
+  <span ng-if="loading" class="padding" us-spinner></span>
+</ion-view>
+

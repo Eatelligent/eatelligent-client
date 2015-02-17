@@ -1,6 +1,13 @@
 <ion-view title="{{ 'search.header' | translate }}">
   <ion-content class="padding">
-    <div class="list">
+    <div class="padding" ng-if="noInternet">
+      <div class="col">
+        <h3 style="color: #666;">{{ 'generic.noInternetHeader' | translate }}</h3>
+        <span>{{ 'generic.noInternetDescription' | translate }}</span>
+      </div>
+    </div>
+
+    <div class="list" ng-if="!noInternet">
       <label class="item item-input">
         <i class="icon ion-search placeholder-icon"></i>
         <input type="text" ng-model="query" ng-change="search(this)" placeholder="{{ 'search.placeholder' | translate }}">
@@ -23,6 +30,6 @@
     </div>
 
   </ion-content>
-  <span ng-if="loading" class="padding" us-spinner></span>
+  <span ng-if="loading && !noInternet" class="padding" us-spinner></span>
 
 </ion-view>

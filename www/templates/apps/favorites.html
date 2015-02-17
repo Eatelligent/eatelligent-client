@@ -1,5 +1,11 @@
 <ion-view title="{{ 'favorites.header' | translate }}">
   <ion-content class="padding">
+    <div class="padding" ng-if="noInternet">
+      <div class="col">
+        <h3 style="color: #666;">{{ 'generic.noInternetHeader' | translate }}</h3>
+        <span>{{ 'generic.noInternetDescription' | translate }}</span>
+      </div>
+    </div>
     <ion-list ng-if="!empty && !loading"
               show-delete="shouldShowDelete"
               show-reorder="false"
@@ -35,5 +41,5 @@
     </div>
 
   </ion-content>
-  <span ng-if="loading" class="padding" us-spinner></span>
+  <span ng-if="loading && !noInternet" class="padding" us-spinner></span>
 </ion-view>

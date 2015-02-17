@@ -133,6 +133,12 @@ angular.module('starter.controllers', [])
 })
 
 .controller('HistoryController', function($scope, $http) {
+  if(!window.isOnline()) {
+    $scope.noInternet = true;
+    $scope.loading = true;
+    return;
+  }
+
   authCheck($http);
   $scope.loading = true;
 
@@ -153,6 +159,12 @@ angular.module('starter.controllers', [])
 })
 
 .controller('FavoritesController', function($scope, $http) {
+  if(!window.isOnline()) {
+    $scope.noInternet = true;
+    $scope.loading = true;
+    return;
+  }
+
   authCheck($http);
 
   $scope.loading = true;
@@ -193,6 +205,13 @@ angular.module('starter.controllers', [])
 })
 
 .controller('RecipeController', function($stateParams, $scope, $http, ShoppingCart) {
+
+  if(!window.isOnline()) {
+    $scope.noInternet = true;
+    $scope.loading = true;
+    return;
+  }
+
   authCheck($http);
 
   $scope.loading = true;
@@ -334,6 +353,12 @@ angular.module('starter.controllers', [])
 })
 
 .controller('SearchController', function($scope, $http) {
+  if(!window.isOnline()) {
+    $scope.noInternet = true;
+    $scope.loading = true;
+    return;
+  }
+
   authCheck($http);
   $scope.hasSearched = false;
   $scope.loading = true;
@@ -371,11 +396,14 @@ angular.module('starter.controllers', [])
         $scope.loading = false;
       });
   };
-
-  // TODO: Sette $scope.results til ei top 10 liste når ingenting er utfylt. (Kanskje siste søk etter det)
 })
 
 .controller('RecommenderController', function($scope, $http, $location) {
+  if(!window.isOnline()) {
+    $scope.noInternet = true;
+    $scope.loading = true;
+    return;
+  }
 
   $scope.loading = true;
 

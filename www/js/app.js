@@ -34,6 +34,20 @@ angular.module('starter', ['ionic', 'pascalprecht.translate', 'starter.controlle
     }
   });
 
+  window.isOnline = function() {
+    if(navigator.connection) {
+      var networkState = navigator.connection.type;
+      if(networkState != Connection.NONE && networkState != Connection.UNKNOWN){
+        return true;
+      }
+      return false;
+    } else {
+      // Desktop machine
+      return true;
+    }
+  }
+
+
 
 })
 

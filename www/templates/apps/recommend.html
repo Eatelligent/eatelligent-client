@@ -1,6 +1,13 @@
 <ion-view title="{{ 'recommend.title' | translate }}">
   <ion-content class="padding">
-    <div class="card" ng-if="!infoShown">
+    <div class="padding" ng-if="noInternet">
+      <div class="col">
+        <h3 style="color: #666;">{{ 'generic.noInternetHeader' | translate }}</h3>
+        <span>{{ 'generic.noInternetDescription' | translate }}</span>
+      </div>
+    </div>
+
+    <div class="card" ng-if="!infoShown && !noInternet">
       <div class="item item-divider">
       {{ 'recommend.information' | translate }}
       <i style="float: right;" class="icon ion-close-round" ng-click="removeInfo()"></i>
@@ -39,5 +46,5 @@
       </div>
     </div>
   </ion-content>
-  <span ng-if="loading" class="padding" us-spinner></span>
+  <span ng-if="loading && !noInternet" class="padding" us-spinner></span>
 </ion-view>

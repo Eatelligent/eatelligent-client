@@ -137,7 +137,9 @@ window.__translations_en = {
   },
 
   generic: {
-    back: 'Back'
+    back: 'Back',
+    noInternetHeader: 'No internet connection',
+    noInternetDescription: 'You need an internet connection to use this part of the application.'
   },
 
   //units

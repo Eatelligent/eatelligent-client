@@ -72,7 +72,10 @@ window.__translations_en = {
     addToFavorites: 'Add to favorites',
     addToCart: 'Add to shoppingcart',
     translateHours: '{{h}}h',
-    translateMinutes: '{{m}}m'
+    translateMinutes: '{{m}}m',
+
+    infoStarHeader: 'Information',
+    infoStarDescription: 'Remember to give the recipe a rating to help us give you a better recommendation later on.'
   },
 
   nutrientsModal: {

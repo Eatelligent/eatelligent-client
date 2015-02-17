@@ -12,6 +12,16 @@
       <img class="recipe__image__maximize" ng-src="{{image}}">
     </div>
 
+    <div class="card" ng-if="!loading && info">
+      <div class="item item-divider">
+        {{'recipe.infoStarHeader' | translate}}
+      <i style="float: right;" class="icon ion-close-round" ng-click="removeInfo()"></i>
+      </div>
+      <div class="item item-text-wrap">
+        {{'recipe.infoStarDescription' | translate}}
+      </div>
+    </div>
+
     <div class="recipe__content padding" ng-if="!loading">
       <div class="recipe__content__row">
         <div class="recipe__content__rating" ng-class="{rated: rated}">

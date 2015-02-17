@@ -227,9 +227,6 @@ angular.module('starter.controllers', [])
       $scope.recipeminutes = data.recipe.time % 60;
       $scope.spicy = data.recipe.spicy;
 
-      // $scope.rated = true; // todo show rated on load
-      // $scope.numStarsRated = 1;
-
       if(data.recipe.currentUserRating) {
         $scope.rated = true;
         $scope.numStarsRated = data.recipe.currentUserRating;
@@ -244,6 +241,12 @@ angular.module('starter.controllers', [])
     .then(function() {
       $scope.loading = false;
     })
+
+  $scope.info = !localStorage.getItem('mealchooser-recipe-info-shown');
+  $scope.removeInfo = function() {
+    localStorage.setItem('mealchooser-recipe-info-shown', true);
+    $scope.info = false;
+  };
 
   $scope.globalRating = 3.5;
 

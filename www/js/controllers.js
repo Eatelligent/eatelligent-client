@@ -1,6 +1,11 @@
 var signout = function($http, $location) {
   $http.get(settings.apiUrl + '/signOut')
-  $location.path('/account/login');
+    .success(function() {
+      $location.path('/account/login');
+    })
+    .error(function() {
+      $location.path('/account/login');
+    });
 };
 
 var authCheck = function($http) {
@@ -324,7 +329,8 @@ angular.module('starter.controllers', [])
     var ingredients = $scope.ingredients.map(function(ing) {
       return {
         title: ing.name,
-        amount: ($scope.portions * ing.amount) + ' ' + ing.unit
+        amount: ($scope.portions * ing.amount),
+        unit: ing.unit
       };
     });
 
@@ -450,7 +456,6 @@ angular.module('starter.controllers', [])
       $scope.description = recipe.description;
       $scope.empty = false;
     } else if(newArray && newArray.length == 0) {
-      console.log('ferdig');
       $scope.empty = true;
     }
   }, true);
@@ -480,7 +485,6 @@ angular.module('starter.controllers', [])
     });
 
   $scope.cardDestroyed = function(index) {
-    console.log('$scope.cardDestroyed', arguments);
     $scope.cards.splice(index, 1);
   };
 
@@ -503,18 +507,6 @@ angular.module('starter.controllers', [])
     }
   }, true);
 })
-
-// .controller('CardCtrl', function($scope, TDCardDelegate) {
-//   console.log('cardctrl', TDCardDelegate);
-//   // $scope.cardSwipedLeft = function(index) {
-//   //   console.log('LEFT SWIPE');
-//   //   $scope.addCard();
-//   //   // $scope.addCard();
-//   // };
-//   // $scope.cardSwiped = function() {
-//   //   console.log('$scope.cardSwiped');
-//   // }
-// })
 
 .controller('SettingsController', function($scope, $http, $ionicModal, $translate) {
   authCheck($http);
@@ -559,7 +551,6 @@ angular.module('starter.controllers', [])
     $scope.modal = modal;
 
     var lang = $translate.preferredLanguage() === 'en' ? 'EN-en' : 'NO-no';
-    console.log(lang);
 
     $http.get(settings.apiUrl + '/api/about?language=' + lang)
       .success(function(response) {

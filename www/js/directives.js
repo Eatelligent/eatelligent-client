@@ -19,10 +19,6 @@ angular.module('starter.directives', [])
         'url': '#/app/favorites',
         'name': 'favorites'
       },
-      // {
-      //   'url': '#/app/coldstart',
-      //   'name': 'Coldstart'
-      // },
       {
         'url': '#/app/shoppingcart',
         'name': 'shoppingCart'

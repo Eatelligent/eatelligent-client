@@ -1,5 +1,5 @@
 window.__translations_en = {
-  sidebar: { // Missing some
+  sidebar: {
     history: 'Last viewed recipes',
     search: 'Search',
     favorites: 'Favorites',
@@ -7,11 +7,11 @@ window.__translations_en = {
     settings: 'Settings',
     shoppingCart: 'Shopping Cart',
     signout: 'Sign out'
-    // Coldstart: '< COLD START PROBLEM >' // <--- TODO
   },
 
   history: {
     header: 'History',
+    recipe: 'Recipe',
     emptyheader: 'No recipes viewed yet',
     emptytext: 'You can browse recipes eighter in the <a href="#/app/search">search</a> or the <a href="#/app/recommend">recommender</a>.'
   },
@@ -35,7 +35,7 @@ window.__translations_en = {
     emptytext: 'We have no recommendations available for you right now. Please come back later for more personalized recommendations.'
   },
 
-  settings: { // done
+  settings: {
     header: 'Settings',
     personalInformation: 'Personal Information',
     email: 'Email',
@@ -44,13 +44,6 @@ window.__translations_en = {
     others: 'Usefull links',
     aboutLink: 'About this project',
     resetMyAI: 'Reset my knowledge base',
-    // allergies: 'Allergies',
-    // glutenAllergy: 'Gluten allergy',
-    // nutsAllergy: 'Nut allergy',
-    // celiacDisease: 'Celiac disease',
-    // soyaAllergy: 'Soya allergy',
-    // wheatAllergy: 'Wheat allergy'
-
     about: {
       header: 'About'
     }
@@ -58,7 +51,7 @@ window.__translations_en = {
 
   shoppingCart: {
     header: 'Shopping Cart',
-    XrecipesOfYPortions: 'Showing ingredients for {{recipes}} recipes of {{portions}} portions',
+    elementsInShoppingCart: 'Showing elements in shopping cart',
     clearCompleted: 'Clear completed ingredients',
     emptyheader: 'No items in your shopping cart',
     emptytext: 'You can add items in your shopping cart by clicking the button in the bottom of each recipe. Hint: Increase the number of portions to scale up the items in your shopping cart'

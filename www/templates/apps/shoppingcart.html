@@ -1,11 +1,11 @@
 <ion-view title="{{ 'shoppingCart.header' | translate }}">
   <ion-content class="padding">
     <div class="shopping__cart" ng-if="!empty">
-      <h4 translate="shoppingCart.XrecipesOfYPortions" translate-value-recipes="3" translate-value-portions="4"></h4>
+      <h4>{{'shoppingCart.elementsInShoppingCart' | translate}}</h4>
 
       <ion-checkbox ng-change="checkBoxChanged(item)" ng-repeat="item in items" ng-model="isChecked" class="shopping__cart__item">
         <div class="shopping__cart__item__left">{{item.title}}</div>
-        <div class="shopping__cart__item__right">{{item.amount}}</div>
+        <div class="shopping__cart__item__right">{{item.amount}} {{ item.unit | translate}}</div>
       </ion-checkbox>
 
       <div style="margin-top: 30px">

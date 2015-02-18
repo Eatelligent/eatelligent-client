@@ -508,7 +508,7 @@ angular.module('starter.controllers', [])
   }, true);
 })
 
-.controller('SettingsController', function($scope, $http, $ionicModal, $translate) {
+.controller('SettingsController', function($scope, $http, $ionicModal, $translate, $ionicPopup) {
   authCheck($http);
 
   var convertGender = function(sex) {
@@ -573,9 +573,62 @@ angular.module('starter.controllers', [])
     $scope.modal.remove();
   });
 
-  $scope.resetKnowledgeBase = function() {
-    if(confirm('Sure?')) {
-      // do it
-    }
+  var strings;
+  if($translate.preferredLanguage() === 'en') {
+    strings = window.__translations_en;
+  } else {
+    strings = window.__translations_no;
   }
+
+  $scope.resetKnowledgeBase = function() {
+    var title = strings.settings.resetMyAIWarningHeader;
+    var template = strings.settings.resetMyAIWarningDescription;
+    var confirmPopup = $ionicPopup.confirm({
+      title: title,
+      template: template,
+      buttons: [
+        {
+          type: 'button-default',
+          text: 'No',
+          onTap: function() { return false; }
+        },
+        {
+          type: 'button-positive',
+          text: 'Yes',
+          onTap: function() { return true; }
+        }
+      ]
+    });
+    confirmPopup.then(function(res) {
+      if(res) {
+        // TODO: Send request to remove all AI-collections.
+      }
+    });
+  };
+
+  $scope.resetLocalStorage = function() {
+    var title = strings.settings.resetLocalStorageHeader;
+    var template = strings.settings.resetLocalStorageDescription;
+    var confirmPopup = $ionicPopup.confirm({
+      title: title,
+      template: template,
+      buttons: [
+        {
+          type: 'button-default',
+          text: 'No',
+          onTap: function() { return false; }
+        },
+        {
+          type: 'button-positive',
+          text: 'Yes',
+          onTap: function() { return true; }
+        }
+      ]
+    });
+    confirmPopup.then(function(res) {
+      if(res) {
+        localStorage.clear();
+      }
+    });
+  };
 });

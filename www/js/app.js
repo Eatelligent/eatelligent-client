@@ -25,7 +25,13 @@ angular.module('starter', ['ionic', 'pascalprecht.translate', 'starter.controlle
     if(globalization) {
       globalization.getPreferredLanguage(
         function (language) {
-          $translate.use(language.value.split('-')[0]);
+          var lang = language.value.split('-')[0];
+          if(lang === 'nb' || lang === 'en') {
+            $translate.use(lang);
+          } else {
+            // default language
+            $translate.use('nb')
+          }
         },
         function () {
           console.log('Error getting language\n');
@@ -167,7 +173,7 @@ angular.module('starter', ['ionic', 'pascalprecht.translate', 'starter.controlle
 
   // i18n
   $translateProvider.translations('en', window.__translations_en);
-  $translateProvider.translations('no', window.__translations_no);
+  $translateProvider.translations('nb', window.__translations_no);
 
   $translateProvider.preferredLanguage('en');
 

@@ -98,7 +98,7 @@ angular.module('starter.controllers', [])
       password: $scope.user.password
     };
 
-    localStorage.setItem('mealchooser-email', auth.email);
+    localStorage.setItem('mealchooser-email', auth.email.toLowerCase());
 
     $scope.loading = true;
     $http.post(settings.apiUrl + '/api/authenticate', auth)

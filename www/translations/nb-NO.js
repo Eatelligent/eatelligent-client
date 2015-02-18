@@ -63,7 +63,7 @@ window.__translations_no = {
     elementsInShoppingCart: 'Viser ingredienser i din handleliste',
     clearCompleted: 'Ta bort fullførte ingredienser',
     emptyheader: 'Det er ingen ingredienser i din handleliste',
-    // emptytext: 'You can add items in your shopping cart by clicking the button in the bottom of each recipe. Hint: Increase the number of portions to scale up the items in your shopping cart'
+    emptytext: 'Du kan legge til ingredienser i din handleliste ved å klikke på knappen nederst i hver oppskrift. Hint: Øk antallet porsjoner for å skalere opp hvor mye som skal inn i handlelisten'
   },
 
   recipe: {

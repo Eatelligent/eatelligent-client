@@ -46,9 +46,14 @@ window.__translations_en = {
     others: 'Usefull links',
     aboutLink: 'About this project',
     resetMyAI: 'Reset my knowledge base',
+    resetLocalStorage: 'Reset the local storage used',
     about: {
       header: 'About'
-    }
+    },
+    resetMyAIWarningHeader: 'Are you sure?',
+    resetMyAIWarningDescription: 'We will remove all your collected data',
+    resetLocalStorageHeader: 'Are you sure?',
+    resetLocalStorageDescription: 'We will remove all your data stores on your device',
   },
 
   shoppingCart: {

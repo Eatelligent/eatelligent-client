@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="com.ionicframework.mealchooserclient285932" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-  <name>Mealchooser</name>
+<widget id="com.eatelligent.application" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+  <name>Eatelligent</name>
   <description>
-      You know, for food.
+    You know, for food.
   </description>
   <author email="mealchooserdev@gmail.com" href="http://folk.ntnu.no/oystt">
     The Mealchooser Team
@@ -21,13 +21,13 @@
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
   </feature>
 
-  <icon src="www/icon.png"/>
+  <icon src="www/img/logo_256.png"/>
 
   <platform name="ios">
-    <splash src="www/food.png" width="320" height="480"/>
-    <splash src="www/food.png" width="640" height="960"/>
-    <splash src="www/food.png" width="640" height="1136"/>
-    <splash src="www/food.png" width="750" height="1334"/>
-    <splash src="www/food.png" width="1242" height="2208"/>
+    <splash src="www/img/background_640x1136.png" width="320" height="480"/>
+    <splash src="www/img/background_640x1136.png" width="640" height="960"/>
+    <splash src="www/img/background_640x1136.png" width="640" height="1136"/>
+    <splash src="www/img/background_640x1136.png" width="750" height="1334"/>
+    <splash src="www/img/background_640x1136.png" width="1242" height="2208"/>
   </platform>
 </widget>

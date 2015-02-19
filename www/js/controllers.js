@@ -78,10 +78,9 @@ angular.module('starter.controllers', [])
     }
   }
 
-
   $scope.user = {
-    email: localStorage.getItem('mealchooser-email') || 'admin@admin.com',
-    password: 'admin'
+    email: localStorage.getItem('mealchooser-email') || '',
+    password: localStorage.getItem('mealchooser-password') || ''
   };
   $scope.loading = false;
 
@@ -103,12 +102,21 @@ angular.module('starter.controllers', [])
     $scope.loading = true;
     $http.post(settings.apiUrl + '/api/authenticate', auth)
       .success(function(data) {
+        localStorage.setItem('mealchooser-password', auth.password);
         $location.path('/app/search');
       })
       .error(function(data, b, c) {
         $scope.loading = false;
         console.log('Login error', JSON.stringify(data), data);
-        $scope.errormessage = data.message || 'Something went wrong';
+        if(!window.isOnline()) {
+          if($translate.preferredLanguage() === 'en') {
+            $scope.errormessage = window.__translations_en.generic.noInternetHeader;
+          } else {
+            $scope.errormessage = window.__translations_no.generic.noInternetHeader;
+          }
+        } else {
+          $scope.errormessage = data.message || 'Noe fikk feil, prøv igjen senere';
+        }
       });
   };
 })

@@ -248,6 +248,7 @@ angular.module('starter.controllers', [])
   authCheck($http);
 
   $scope.loading = true;
+  $scope.info = true;
   var id = parseInt($stateParams.id, 10);
 
   $http.get(settings.apiUrl + '/api/recipes/' + id)
@@ -264,6 +265,7 @@ angular.module('starter.controllers', [])
 
       if(data.recipe.currentUserRating) {
         $scope.rated = true;
+        $scope.info = false;
         $scope.numStarsRated = data.recipe.currentUserRating;
       } else {
         $scope.globalRating = data.recipe.averageRating;
@@ -277,7 +279,7 @@ angular.module('starter.controllers', [])
       $scope.loading = false;
     })
 
-  $scope.info = !localStorage.getItem('mealchooser-recipe-info-shown');
+  // $scope.info = !localStorage.getItem('mealchooser-recipe-info-shown');
   $scope.removeInfo = function() {
     localStorage.setItem('mealchooser-recipe-info-shown', true);
     $scope.info = false;
@@ -289,6 +291,7 @@ angular.module('starter.controllers', [])
   $scope.numStars = [1,2,3,4,5];
   $scope.rate = function(stars) {
     $scope.rated = true;
+    $scope.info = false;
     $scope.numStarsRated = stars;
 
     $http.post(settings.apiUrl + '/api/ratings/recipes', {recipeId: id, rating: stars})

@@ -95,7 +95,7 @@ angular.module('starter.controllers', [])
   $scope.checkIfAuthed = function() {
     $http.get(settings.apiUrl + '/api/user')
       .success(function(data) {
-        $location.path('/app/search');
+        $location.path('/app/recommend');
       });
   };
 
@@ -111,7 +111,7 @@ angular.module('starter.controllers', [])
     $http.post(settings.apiUrl + '/api/authenticate', auth)
       .success(function(data) {
         localStorage.setItem('mealchooser-password', auth.password);
-        $location.path('/app/search');
+        $location.path('/app/recommend');
       })
       .error(function(data, b, c) {
         $scope.loading = false;

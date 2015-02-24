@@ -175,6 +175,7 @@ angular.module('starter.controllers', [])
         view.recipe.image = view.recipe.image.replace(/(v[0-9]*)/, 'w_100,h_100,c_fill');
         return view;
       });
+      $scope.empty = ($scope.items.length === 0);
     })
     .error(function(data) {
       console.log('History error', JSON.stringify(data));

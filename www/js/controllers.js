@@ -621,9 +621,10 @@ angular.module('starter.controllers', [])
 
     var lang = $translate.preferredLanguage() === 'en' ? 'EN-en' : 'NO-no';
 
-    $http.get(settings.apiUrl + '/api/about?language=' + lang)
+    $http.get(settings.apiUrl + '/about')
       .success(function(response) {
-        $scope.abouttext = '<h3>Banan</h3>text<p>text</p><h4>arne</h4><p>';
+        $scope.abouttext = response;
+        $scope.loading = false;
       })
       .error(function(data) {
         $scope.abouttext = 'Error fetching';

@@ -35,14 +35,20 @@
 
 
     <div class="item item-divider">
-      {{ 'settings.others' | translate }}
+      {{ 'settings.aboutDivider' | translate }}
     </div>
 
     <div class="list card">
       <a class="item item-icon-right" ng-click="showAboutModal()">
         {{'settings.aboutLink' | translate}}
-        <i class="icon ion-help"></i>
+        <i class="icon ion-chevron-right"></i>
       </a>
+    </div>
+
+    <div class="item item-divider">
+      {{ 'settings.dangerZone' | translate }}
+    </div>
+    <div class="list card">
       <a class="item item-icon-right" ng-click="resetKnowledgeBase()">
         {{'settings.resetMyAI' | translate}}
         <i class="icon ion-close-round"></i>

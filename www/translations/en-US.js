@@ -73,6 +73,7 @@ window.__translations_en = {
     addToCart: 'Add to shoppingcart',
     translateHours: '{{h}}h',
     translateMinutes: '{{m}}m',
+    source: 'Source for the recipe',
 
     infoStarHeader: 'Information',
     infoStarDescription: 'Remember to give the recipe a rating to help us give you a better recommendation later on.'

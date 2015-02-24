@@ -239,6 +239,8 @@ angular.module('starter.controllers', [])
       $scope.recipehours = Math.floor(data.recipe.time / 60);
       $scope.recipeminutes = data.recipe.time % 60;
       $scope.spicy = data.recipe.spicy;
+      $scope.source = data.recipe.source;
+
 
       if(data.recipe.currentUserRating) {
         $scope.rated = true;
@@ -344,6 +346,10 @@ angular.module('starter.controllers', [])
 
     ShoppingCart.add(ingredients);
     window.location = '#/app/shoppingcart';
+  };
+
+  $scope.sourceCliked = function() {
+    window.open($scope.source, '_system');
   };
 })
 

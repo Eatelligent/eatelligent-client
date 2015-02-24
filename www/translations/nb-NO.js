@@ -75,6 +75,7 @@ window.__translations_no = {
     addToCart: 'Legg til i handleliste',
     translateHours: '{{h}}t',
     translateMinutes: '{{m}}m',
+    source: 'Kilde for oppskrift',
 
     infoStarHeader: 'Informasjon',
     infoStarDescription: 'Husk å gi oppskriftene du lager en vurdering ved å klikke på stjernene. Dette hjelper oss å gi deg bedre anbefalinger på et senere tidspunkt.'

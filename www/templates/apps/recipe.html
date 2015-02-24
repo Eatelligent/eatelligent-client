@@ -96,6 +96,8 @@
         <button class="button button-positive" style="width: 100%" ng-click="addToFavorites()">{{ 'recipe.addToFavorites' | translate }}</button>
       </div>
 
+      <a ng-click="sourceCliked()">{{ 'recipe.source' | translate }}</a>
+
     </div>
   </ion-content>
   <span ng-if="loading && !noInternet" class="padding" us-spinner></span>

@@ -3,7 +3,7 @@ window.__translations_no = {
     history: 'Sist viste oppskrifter',
     search: 'Søk',
     favorites: 'Favoritter',
-    recommend: 'Anbefaler',
+    recommend: 'Anbefalinger',
     settings: 'Innstillinger',
     shoppingCart: 'Handleliste',
     signout: 'Logg ut'
@@ -28,7 +28,7 @@ window.__translations_no = {
   },
 
   recommend: {
-    title: 'Oppskrifts anbefaler',
+    title: 'Anbefalinger',
     information: 'Informasjon',
     description: 'Disse oppskriftene er gitt til deg basert på deg og andres historie av vurderinger. Jo mer du bruker applikasjonen og anbefaler oppskrifter, jo bedre vill anbefalingene bli.',
     emptyheader: 'Ingen anbefalinger er tilgjengelige',
@@ -43,7 +43,8 @@ window.__translations_no = {
     email: 'Email',
     name: 'Navn',
     city: 'By',
-    others: 'Praktiske lenker',
+    aboutDivider: 'Om',
+    dangerZone: 'Sletting',
     aboutLink: 'Om dette prosjektet',
     resetMyAI: 'Nullstill min kunnskapsbase',
     resetLocalStorage: 'Slett all lokal data',

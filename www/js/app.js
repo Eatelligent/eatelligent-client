@@ -56,9 +56,6 @@ angular.module('starter', ['ionic', 'pascalprecht.translate', 'starter.controlle
       return true;
     }
   }
-
-
-
 })
 
 .config(function($stateProvider, $urlRouterProvider, $translateProvider, $httpProvider) {
@@ -182,9 +179,3 @@ angular.module('starter', ['ionic', 'pascalprecht.translate', 'starter.controlle
   $translateProvider.preferredLanguage('en');
 
 });
-
-function ContentController($scope, $ionicSideMenuDelegate) {
-  $scope.toggleLeft = function() {
-    $ionicSideMenuDelegate.toggleLeft();
-  };
-}

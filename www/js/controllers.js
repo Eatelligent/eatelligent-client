@@ -23,6 +23,12 @@ angular.module('starter.controllers', [])
 //   };
 // })
 
+.controller('ContentController', function ContentController($scope, $ionicSideMenuDelegate) {
+  $scope.toggleLeft = function() {
+    $ionicSideMenuDelegate.toggleLeft();
+  };
+})
+
 .controller('SignupControllerFresh', function($scope, $http, $location) {
   $scope.user = {
     email: ''

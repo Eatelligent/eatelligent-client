@@ -64,6 +64,8 @@ angular.module('starter.controllers', [])
       console.log('errors', $scope.errors);
     }
   };
+  if (window.analytics)
+    window.analytics.trackView('SignupController');
 })
 
 .controller('LoginController', function($scope, $http, $location, $translate) {
@@ -119,6 +121,8 @@ angular.module('starter.controllers', [])
         }
       });
   };
+  if (window.analytics)
+    window.analytics.trackView('LoginController');
 })
 
 .controller('ForgotController', function($scope, $http, $location) {
@@ -139,10 +143,14 @@ angular.module('starter.controllers', [])
         console.log('Reset password error', JSON.stringify(data));
       })
   }
+  if (window.analytics)
+    window.analytics.trackView('ForgotPasswordController');
 })
 
 .controller('SignoutController', function($http, $location) {
   signout($http, $location);
+  if (window.analytics)
+    window.analytics.trackView('SignoutController');
 })
 
 .controller('HistoryController', function($scope, $http) {
@@ -169,6 +177,9 @@ angular.module('starter.controllers', [])
     .then(function() {
       $scope.loading = false;
     });
+
+  if (window.analytics)
+    window.analytics.trackView('HistoryController');
 })
 
 .controller('FavoritesController', function($scope, $http) {
@@ -215,6 +226,9 @@ angular.module('starter.controllers', [])
       });
     $scope.checkEmpty($scope.items);
   };
+
+  if (window.analytics)
+    window.analytics.trackView('FavoritesController');
 })
 
 .controller('RecipeController', function($stateParams, $scope, $http, ShoppingCart) {
@@ -276,6 +290,10 @@ angular.module('starter.controllers', [])
       .error(function(data) {
         console.log('Error posting recipe rating', JSON.stringify(data));
       });
+
+
+    if (window.analytics)
+      window.analytics.trackEvent('Rating', 'RecipeRating', $scope.recipename, stars);
   };
 
   $scope.getStarClass = function(i) {
@@ -351,6 +369,9 @@ angular.module('starter.controllers', [])
   $scope.sourceCliked = function() {
     window.open($scope.source, '_system');
   };
+
+  if (window.analytics)
+    window.analytics.trackView('RecipeController');
 })
 
 .controller('ShoppingCartController', function($scope, $http, ShoppingCart) {
@@ -373,6 +394,16 @@ angular.module('starter.controllers', [])
     $scope.items = ShoppingCart.all();
     $scope.empty = !$scope.items.length;
   }
+
+  $scope.truncateTitle = function(title) {
+    if(title.length > 15) {
+      return title.substr(0, 15) + '...';
+    }
+    return title;
+  }
+
+  if (window.analytics)
+    window.analytics.trackView('ShoppingCartController')
 })
 
 .controller('SearchController', function($scope, $http) {
@@ -418,7 +449,13 @@ angular.module('starter.controllers', [])
       .then(function() {
         $scope.loading = false;
       });
+
+    if (window.analytics)
+      window.analytics.trackEvent('Search', 'Search', 'User searched for: ' + q, 5);
   };
+
+  if (window.analytics)
+    window.analytics.trackView('SearchController')
 })
 
 .controller('RecommenderController', function($scope, $http, $location) {
@@ -440,11 +477,14 @@ angular.module('starter.controllers', [])
     var id = $scope.recommendations[0].recipe.id;
     $http.post(settings.apiUrl + '/api/ratings/recipes/binary', {recipeId: id, rating: true})
     $location.path('/app/recipes/'+id);
+    window.analytics.trackEvent('Recommendation', 'YesNo', 'YesNoRating', 1);
   };
   $scope.declineReommendation = function() {
     var id = $scope.recommendations[0].recipe.id;
     $http.post(settings.apiUrl + '/api/ratings/recipes/binary', {recipeId: id, rating: false})
     $scope.recommendations.splice(0, 1);
+
+    window.analytics.trackEvent('Recommendation', 'YesNo', 'YesNoRating', 0);
   };
 
   $scope.name = '';
@@ -473,10 +513,15 @@ angular.module('starter.controllers', [])
       $scope.empty = true;
     }
   }, true);
+
+  if (window.analytics)
+    window.analytics.trackView('RecommenderController')
 })
 
 .controller('ColdstartController', function($scope, $http) {
   authCheck($http);
+  if (window.analytics)
+    window.analytics.trackView('ColdstartController')
 })
 
 .controller('CardsCtrl', function($scope, $http, $location, TDCardDelegate) {
@@ -645,4 +690,7 @@ angular.module('starter.controllers', [])
       }
     });
   };
+
+  if (window.analytics)
+    window.analytics.trackView('SettingsController')
 });

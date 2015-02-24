@@ -20,6 +20,7 @@
   },
   "cordovaPlugins": [
     "org.apache.cordova.network-information",
-    "org.apache.cordova.inappbrowser"
+    "org.apache.cordova.inappbrowser",
+    "https://github.com/danwilson/google-analytics-plugin.git"
   ]
 }

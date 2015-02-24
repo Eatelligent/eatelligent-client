@@ -38,6 +38,10 @@ angular.module('starter', ['ionic', 'pascalprecht.translate', 'starter.controlle
         }
       );
     }
+
+    if(window.analytics) {
+      window.analytics.startTrackerWithId('UA-60064468-2')
+    }
   });
 
   window.isOnline = function() {

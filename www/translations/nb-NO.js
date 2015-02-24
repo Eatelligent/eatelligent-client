@@ -18,7 +18,7 @@ window.__translations_no = {
 
   coldstart: {
     header: 'Velkommen',
-    why: 'For å hjelpe oss gi deg bedre anbefalinger, trenger vi vite litt om dine matpreferanser. Svar på noen få spørsmål for gi oss litt innsikt. Dra bildet til høyre for å like, venstre for å indikere at du ikke like.'
+    why: 'For å hjelpe oss gi deg bedre anbefalinger, trenger vi vite litt om dine matpreferanser. Svar på noen få spørsmål for gi oss litt innsikt. Dra bildet til høyre for å like, venstre for å indikere at du ikke liker.'
   },
 
   search: {
@@ -30,7 +30,7 @@ window.__translations_no = {
   recommend: {
     title: 'Anbefalinger',
     information: 'Informasjon',
-    description: 'Disse oppskriftene er gitt til deg basert på deg og andres historie av vurderinger. Jo mer du bruker applikasjonen og anbefaler oppskrifter, jo bedre vill anbefalingene bli.',
+    description: 'Disse oppskriftene er gitt til deg basert på deg og andres historie av vurderinger. Jo mer du bruker applikasjonen og gir oppskrifter vurdering, jo bedre vill anbefalingene bli.',
     emptyheader: 'Ingen anbefalinger er tilgjengelige',
     emptytext: 'Vi har ingen anbefalinger å gi deg for øyeblikket. Kom tilbake litt senere for flere personaliserte anbefalinger.',
     yes: 'Ja takk',
@@ -40,16 +40,16 @@ window.__translations_no = {
   settings: {
     header: 'Innstillinger',
     personalInformation: 'Personlig informasjon',
-    email: 'Email',
+    email: 'E-post',
     name: 'Navn',
     city: 'By',
     aboutDivider: 'Om',
     dangerZone: 'Sletting',
-    aboutLink: 'Om dette prosjektet',
+    aboutLink: 'Om denne appen',
     resetMyAI: 'Nullstill min kunnskapsbase',
     resetLocalStorage: 'Slett all lokal data',
     about: {
-      header: 'Om dette prosjektet'
+      header: 'Om denne appen'
     },
 
     resetMyAIWarningHeader: 'Er du sikker?',
@@ -125,15 +125,15 @@ window.__translations_no = {
 
   forgot: {
     header: 'Glemt passord',
-    email: 'Epost',
-    sendEmail: 'Send epost',
-    doneMessage: 'Vi har sendt deg en epost med instruksjoner om hvordan du tilbakestiller passordet.'
+    email: 'E-post',
+    sendEmail: 'Send e-post',
+    doneMessage: 'Vi har sendt deg en e-post med instruksjoner om hvordan du tilbakestiller passordet.'
   },
 
   generic: {
     back: 'Tilbake',
-    noInternetHeader: 'Ingen internetforbindelse',
-    noInternetDescription: 'Du trenger en internetforbindelse for å bruke denne delen av applikasjonen.'
+    noInternetHeader: 'Ingen internettforbindelse',
+    noInternetDescription: 'Du trenger en internettforbindelse for å bruke denne delen av applikasjonen.'
   },
 
   //units
@@ -155,7 +155,7 @@ window.__translations_no = {
   // Cold start API-strings
   'Do you like meat?': 'Liker du kjøtt?',
   'Do you like spicy food?': 'Liker du sterk mat?',
-  'Do you view yourself as a good chef?': 'Anser du deg selv til å være dyktig på kjøkkenet?',
+  'Do you view yourself as a good chef?': 'Anser du deg selv som dyktig på kjøkkenet?',
   'Do you like fish?': 'Liker du fisk?',
   'Do you like chicken?': 'Liker du kylling?'
 };

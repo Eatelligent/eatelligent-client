@@ -1,19 +1,19 @@
 window.__translations_en = {
   sidebar: {
-    history: 'Last viewed recipes',
+    history: 'Last Viewed Recipes',
     search: 'Search',
     favorites: 'Favorites',
     recommend: 'Recommender',
     settings: 'Settings',
     shoppingCart: 'Shopping Cart',
-    signout: 'Sign out'
+    signout: 'Sign Out'
   },
 
   history: {
     header: 'History',
     recipe: 'Recipe',
     emptyheader: 'No recipes viewed yet',
-    emptytext: 'You can browse recipes eighter in the <a href="#/app/search">search</a> or the <a href="#/app/recommend">recommender</a>.'
+    emptytext: 'You can browse recipes either in the <a href="#/app/search">search</a> or the <a href="#/app/recommend">recommender</a>.'
   },
 
   coldstart: {
@@ -30,7 +30,7 @@ window.__translations_en = {
   recommend: {
     title: 'Recipe recommender',
     information: 'Information',
-    description: 'This recipes is recommended to you based on your and other users history of ratings. The more you use the application and rate recipes, the better the recommendation will get.',
+    description: 'These recipes are recommended to you based on your and other users history. The more you use the application and rate recipes, the better the recommendations will you get.',
     emptyheader: 'No recommendations available',
     emptytext: 'We have no recommendations available for you right now. Please come back later for more personalized recommendations.',
     yes: 'Yes Please',
@@ -71,7 +71,7 @@ window.__translations_en = {
     showNutrient: 'Show nutrients',
     procedure: 'Procedure',
     addToFavorites: 'Add to favorites',
-    addToCart: 'Add to shoppingcart',
+    addToCart: 'Add to shopping cart',
     translateHours: '{{h}}h',
     translateMinutes: '{{m}}m',
     source: 'Source for the recipe',
@@ -99,11 +99,11 @@ window.__translations_en = {
   },
 
   signup: {
-    header: 'Sign up',
+    header: 'Sign Up',
     facebookDescription: 'Login with your Facebook account',
     googleDescription: 'Login with your Google account',
     freshHeader: 'Register a new account',
-    freshDescription: 'Register a new user with your email-address',
+    freshDescription: 'Register a new user with your email address',
 
     fresh: {
       userAccount: 'User account',
@@ -111,7 +111,7 @@ window.__translations_en = {
       lastname: 'Last name',
       email: 'Email',
       password: 'Password',
-      passwordAgain: 'Passowrd again',
+      passwordAgain: 'Password again',
       otherInformation: 'Other information',
       yearOfBirth: 'Year of birth',
       city: 'City',
@@ -130,7 +130,7 @@ window.__translations_en = {
     username: 'Email',
     password: 'Password',
     loginSubmitButton: 'Login',
-    newAccount: 'Signup a new user account',
+    newAccount: 'Sign up a new user account',
     forgotPassword: 'I forgot my password'
   },
 

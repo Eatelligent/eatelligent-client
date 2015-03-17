@@ -29,7 +29,7 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('SignupControllerFresh', function($scope, $http, $location) {
+.controller('SignupControllerFresh', function($scope, $http, $location, $translate) {
   $scope.user = {
     email: ''
   };
@@ -51,19 +51,41 @@ angular.module('starter.controllers', [])
     return errors.length === 0;
   };
 
+  var errorscope;
+
+  if($translate.preferredLanguage() === 'en') {
+    errorscope = window.__translations_en.signup.fresh.errors;
+  } else {
+    errorscope = window.__translations_no.signup.fresh.errors;
+  }
+
   $scope.signup = function() {
     if ($scope.isValid()) {
+      $scope.loading = true;
+
       $http.post(settings.apiUrl + '/api/users', $scope.user)
         .success(function(response) {
+          $scope.loading = false;
+
           $http.post(settings.apiUrl + '/api/authenticate', {
             email: $scope.user.email,
             password: $scope.user.password
           })
           .success(function(data) {
+            localStorage.setItem('mealchooser-email', $scope.user.email);
+            localStorage.setItem('mealchooser-password', $scope.user.password);
+
             $location.path('/app/coldstart');
           })
         })
         .error(function(data) {
+          $scope.loading = false;
+          if(data.message === 'Execution exception[[DuplicateException: User already exists.]]') {
+            $scope.errormessage = errorscope.userexists;
+          } else {
+            $scope.errormessage = errorscope.generic;
+          }
+
           console.log('Signup error:', JSON.stringify(data));
         })
     } else {

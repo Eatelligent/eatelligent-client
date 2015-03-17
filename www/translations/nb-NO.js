@@ -109,7 +109,9 @@ window.__translations_no = {
       errors: {
         disjointPasswords: 'Passordene stemmer ikke overens',
         emptyPassword: 'Tomme passordfelt',
-        noAlpha: 'Eposten er ikke gyldig'
+        noAlpha: 'Eposten er ikke gyldig',
+        userexists: 'En bruker med den eposten finnes fra før',
+        generic: 'Noe gikk galt, prøv igjen senere'
       }
     }
   },

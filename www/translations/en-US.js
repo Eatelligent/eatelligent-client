@@ -120,7 +120,9 @@ window.__translations_en = {
       errors: {
         disjointPasswords: 'Passwords does not match',
         emptyPassword: 'Empty password fields',
-        noAlpha: 'The email is not valid'
+        noAlpha: 'The email is not valid',
+        userexists: 'A user with that email already exists',
+        generic: 'Something went wrong, please try again'
       }
     }
   },

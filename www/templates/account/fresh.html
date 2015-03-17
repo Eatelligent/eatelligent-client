@@ -1,73 +1,81 @@
 <ion-view title="{{ 'signup.freshHeader' | translate }}">
   <ion-content>
 
+    <form>
+      <div class="card ng-hide" ng-show="errormessage">
+        <div class="item item-text-wrap">
+          {{errormessage}}
+        </div>
+      </div>
 
-    <div class="item item-divider">
-      {{ 'signup.fresh.userAccount' | translate }}
-    </div>
+      <div class="item item-divider">
+        {{ 'signup.fresh.userAccount' | translate }}
+      </div>
 
-    <ul class="card padding ng-hide" style="background-color: #ef4e3a; color: white" ng-show="errors">
-      {{ 'signup.fresh.validationErrorsHeader' | translate }}
-      <li ng-repeat="error in errors">
-        - <any translate="signup.fresh.errors.{{error.text}}"></any>
-      </li>
-    </ul>
+      <ul class="card padding ng-hide" style="background-color: #ef4e3a; color: white" ng-show="errors">
+        {{ 'signup.fresh.validationErrorsHeader' | translate }}
+        <li ng-repeat="error in errors">
+          - <any translate="signup.fresh.errors.{{error.text}}"></any>
+        </li>
+      </ul>
 
-    <div class="list list-inset">
-      <label class="item item-input">
-        <span class="input-label">{{ 'signup.fresh.firstname' | translate }}</span>
-        <input ng-model="user.firstName" type="text">
-      </label>
+      <div class="list list-inset">
+        <label class="item item-input">
+          <span class="input-label">{{ 'signup.fresh.firstname' | translate }}</span>
+          <input ng-model="user.firstName" type="text">
+        </label>
 
-      <label class="item item-input">
-        <span class="input-label">{{ 'signup.fresh.lastname' | translate }}</span>
-        <input ng-model="user.lastName" type="text">
-      </label>
-    
-    </div>
-    <div class="list list-inset">
+        <label class="item item-input">
+          <span class="input-label">{{ 'signup.fresh.lastname' | translate }}</span>
+          <input ng-model="user.lastName" type="text">
+        </label>
 
-      <label class="item item-input">
-        <span class="input-label">{{ 'signup.fresh.email' | translate }}</span>
-        <input ng-model="user.email" type="text">
-      </label>
+      </div>
+      <div class="list list-inset">
 
-    </div>
-    <div class="list list-inset">
-    
-      <label class="item item-input">
-        <span class="input-label">{{ 'signup.fresh.password' | translate }}</span>
-        <input ng-model="user.password" type="password">
-      </label>
+        <label class="item item-input">
+          <span class="input-label">{{ 'signup.fresh.email' | translate }}</span>
+          <input ng-model="user.email" type="email">
+        </label>
 
-      <label class="item item-input">
-        <span class="input-label">{{ 'signup.fresh.passwordAgain' | translate }}</span>
-        <input ng-model="user.password2" type="password">
-      </label>
-    </div>
+      </div>
+      <div class="list list-inset">
 
-    <!-- <div class="item item-divider">
-      {{ 'signup.fresh.otherInformation' | translate }}
-    </div>
-    <div class="list list-inset">
+        <label class="item item-input">
+          <span class="input-label pw-fix">{{ 'signup.fresh.password' | translate }}</span>
+          <input ng-model="user.password" type="password">
+        </label>
 
-      <label class="item item-input item-select">
-        <span class="input-label">{{ 'signup.fresh.yearOfBirth' | translate }}</span>
+        <label class="item item-input">
+          <span class="input-label pw-fix">{{ 'signup.fresh.passwordAgain' | translate }}</span>
+          <input ng-model="user.password2" type="password">
+        </label>
+      </div>
 
-         <select ng-controller="Years">
-          <option ng-repeat="year in years" ng-selected="{{year.selected}}">{{year.year}}</option>
-        </select>
+      <!-- <div class="item item-divider">
+        {{ 'signup.fresh.otherInformation' | translate }}
+      </div>
+      <div class="list list-inset">
 
-      </label>
+        <label class="item item-input item-select">
+          <span class="input-label">{{ 'signup.fresh.yearOfBirth' | translate }}</span>
 
-      <label class="item item-input">
-        <span class="input-label">{{ 'signup.fresh.city' | translate }}</span>
-        <input type="text">
-      </label> -->
+           <select ng-controller="Years">
+            <option ng-repeat="year in years" ng-selected="{{year.selected}}">{{year.year}}</option>
+          </select>
 
-    </div>
-    <div class="padding">
-      <button ng-click="signup()" class="button button-block button-positive">{{ 'signup.fresh.signupCompleteButton' | translate }}</button>
-    </div>
+        </label>
+
+        <label class="item item-input">
+          <span class="input-label">{{ 'signup.fresh.city' | translate }}</span>
+          <input type="text">
+        </label> -->
+
+      <div class="padding">
+        <button type="submit" ng-click="signup()" class="button button-block button-positive">{{ 'signup.fresh.signupCompleteButton' | translate }}</button>
+      </div>
+    </form>
+    <span ng-if="loading" class="padding" style="" us-spinner></span>
+
   </ion-content>
 </ion-view>

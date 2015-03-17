@@ -419,9 +419,7 @@ angular.module('starter.controllers', [])
     window.analytics.trackView('RecipeController');
 })
 
-.controller('ShoppingCartController', function($scope, $http, ShoppingCart) {
-  authCheck($http);
-
+.controller('ShoppingCartController', function($scope, ShoppingCart) {
   $scope.items = ShoppingCart.all();
   $scope.empty = !$scope.items.length;
 

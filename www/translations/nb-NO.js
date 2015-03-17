@@ -122,7 +122,8 @@ window.__translations_no = {
     password: 'Passord',
     loginSubmitButton: 'Logg inn',
     newAccount: 'Registrer en ny brukerkonto',
-    forgotPassword: 'Jeg har glemt passordet mitt'
+    forgotPassword: 'Jeg har glemt passordet mitt',
+    wrongpworuser: 'Feil epost og/eller passord'
   },
 
   forgot: {

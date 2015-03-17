@@ -133,7 +133,8 @@ window.__translations_en = {
     password: 'Password',
     loginSubmitButton: 'Login',
     newAccount: 'Sign up a new user account',
-    forgotPassword: 'I forgot my password'
+    forgotPassword: 'I forgot my password',
+    wrongpworuser: 'Wrong email and/or password'
   },
 
   forgot: {

@@ -138,14 +138,27 @@ angular.module('starter.controllers', [])
       .error(function(data, b, c) {
         $scope.loading = false;
         console.log('Login error', JSON.stringify(data), data);
-        if(!window.isOnline()) {
-          if($translate.preferredLanguage() === 'en') {
-            $scope.errormessage = window.__translations_en.generic.noInternetHeader;
-          } else {
-            $scope.errormessage = window.__translations_no.generic.noInternetHeader;
-          }
+
+        var translations;
+        if($translate.preferredLanguage() === 'en') {
+          translations = window.__translations_en;
         } else {
-          $scope.errormessage = data.message || 'Noe fikk feil, prøv igjen senere';
+          translations = window.__translations_no;
+        }
+
+
+        if(!window.isOnline()) {
+          $scope.errormessage = translations.generic.noInternetHeader;
+        } else {
+
+          if(data.message === 'Authenticated, but not authorized') {
+            console.log('ok=');
+            $scope.errormessage = translations.login.wrongpworuser;
+          } else {
+            $scope.errormessage = data.message || 'Noe fikk feil, prøv igjen senere';
+          }
+
+          console.log($scope.errormessage);
         }
       });
   };
@@ -581,20 +594,30 @@ angular.module('starter.controllers', [])
 
   $scope.cardSwiped = function() {}
 
+
+  $scope._xhr;
+
+
   $scope.cardSwipedRight = function(index) {
     var cards = $scope.cards[index];
-    $http.post(settings.apiUrl + '/api/coldstart', {coldStartId: cards.id, answer: true});
+    $scope._xhr = $http.post(settings.apiUrl + '/api/coldstart', {coldStartId: cards.id, answer: true});
   };
 
   $scope.cardSwipedLeft = function(index) {
     var cards = $scope.cards[index];
-    $http.post(settings.apiUrl + '/api/coldstart', {coldStartId: cards.id, answer: false});
+    $scope._xhr = $http.post(settings.apiUrl + '/api/coldstart', {coldStartId: cards.id, answer: false});
   };
 
 
   $scope.$watch('cards', function(newArray, old) {
     if(newArray.length === 0 && old.length === 1) {
-      $location.path('/app/recommend');
+
+      var fn = function() {
+        $scope.loading = false;
+        $location.path('/app/recommend');
+      }
+
+      $scope._xhr.success(fn).error(fn);
     }
   }, true);
 })

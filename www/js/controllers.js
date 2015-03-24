@@ -114,10 +114,18 @@ angular.module('starter.controllers', [])
   };
   $scope.loading = false;
 
+
   $scope.checkIfAuthed = function() {
+    $scope.initialLoading = true;
     $http.get(settings.apiUrl + '/api/user')
       .success(function(data) {
         $location.path('/app/recommend');
+        setTimeout(function() {
+          $scope.initialLoading = false;
+        }, 0)
+      })
+      .error(function() {
+        $scope.initialLoading = false;
       });
   };
 

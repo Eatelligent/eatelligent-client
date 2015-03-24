@@ -18,7 +18,7 @@ window.__translations_en = {
 
   coldstart: {
     header: 'Welcome',
-    why: 'To help us give you a better recommendation for different recipes. Please answer a few questions to let us know you a little bit.'
+    why: 'Please answer a few questions to let us know you a little bit. Swipe right for like, and left for dislike.'
   },
 
   search: {

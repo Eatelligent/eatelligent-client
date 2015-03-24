@@ -18,7 +18,7 @@ window.__translations_no = {
 
   coldstart: {
     header: 'Velkommen',
-    why: 'For å hjelpe oss gi deg bedre anbefalinger, trenger vi vite litt om dine matpreferanser. Svar på noen få spørsmål for gi oss litt innsikt. Dra bildet til høyre for å like, venstre for å indikere at du ikke liker.'
+    why: 'Svar på noen få spørsmål for gi oss litt innsikt i hva du liker. Dra bildet til høyre for å like, venstre for å indikere at du ikke liker.'
   },
 
   search: {

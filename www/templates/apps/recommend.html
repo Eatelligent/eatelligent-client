@@ -19,12 +19,12 @@
 
     <div class="list card" ng-if="!empty && !loading">
 
-      <div class="item">
+      <div class="item" ng-click="showDescription()">
         <h2>{{name}}</h2>
-        <p>{{description}}</p>
+        <p ng-class="getDescriptionClass()">{{description}}</p>
       </div>
 
-      <div class="item item-image">
+      <div class="item item-image" ng-click="showDescription()">
         <img ng-src="{{image}}">
       </div>
 

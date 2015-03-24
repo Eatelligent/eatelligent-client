@@ -565,6 +565,14 @@ angular.module('starter.controllers', [])
     }
   }, true);
 
+  $scope.showDescription = function() {
+    $scope.showFullDescription = true;
+  };
+
+  $scope.getDescriptionClass = function() {
+    return $scope.showFullDescription ? 'showFullDescription' : '';
+  };
+
   if (window.analytics)
     window.analytics.trackView('RecommenderController')
 })

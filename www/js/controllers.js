@@ -628,7 +628,7 @@ angular.module('starter.controllers', [])
   }, true);
 })
 
-.controller('SettingsController', function($scope, $http, $ionicModal, $translate, $ionicPopup) {
+.controller('SettingsController', function($scope, $http, $ionicModal, $translate, $ionicPopup, $location) {
   authCheck($http);
 
   var convertGender = function(sex) {
@@ -660,8 +660,6 @@ angular.module('starter.controllers', [])
         console.log('Error updating user', JSON.stringify(data));
       });
   };
-
-  $scope.abouttext = "<h1>banan</h1><p>Lol</p>";
 
   $ionicModal.fromTemplateUrl('templates/apps/about.modal.html', {
     scope: $scope,
@@ -749,6 +747,7 @@ angular.module('starter.controllers', [])
     confirmPopup.then(function(res) {
       if(res) {
         localStorage.clear();
+        $location.path('/app/coldstart');
       }
     });
   };

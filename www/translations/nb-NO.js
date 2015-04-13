@@ -30,7 +30,7 @@ window.__translations_no = {
   recommend: {
     title: 'Anbefalinger',
     information: 'Informasjon',
-    description: 'Disse oppskriftene er gitt til deg basert på deg og andres historie av vurderinger. Jo mer du bruker applikasjonen og gir oppskrifter vurdering, jo bedre vill anbefalingene bli.',
+    description: 'Disse oppskriftene er gitt til deg basert på deg og andres historie av vurderinger. Jo mer du bruker applikasjonen og gir oppskrifter vurdering, jo bedre vil anbefalingene bli.',
     emptyheader: 'Ingen anbefalinger er tilgjengelige',
     emptytext: 'Vi har ingen anbefalinger å gi deg for øyeblikket. Kom tilbake litt senere for flere personaliserte anbefalinger.',
     yes: 'Ja takk',

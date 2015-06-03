@@ -728,7 +728,7 @@ angular.module('starter.controllers', [])
     });
     confirmPopup.then(function(res) {
       if(res) {
-        // TODO: Send request to remove all AI-collections.
+        $http.post(settings.apiUrl + '/api/knowledge/_reset');
       }
     });
   };
